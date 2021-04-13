@@ -28,7 +28,8 @@ import { YagaModule } from '@yaga/leaflet-ng2';
     MatInputModule,
     MatSelectModule,
     MatMenuModule,
-    YagaModule
+    YagaModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
