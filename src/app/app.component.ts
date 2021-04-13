@@ -1,4 +1,4 @@
-import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 import firebase from 'firebase/app';
@@ -17,6 +17,14 @@ export class AppComponent {
   constructor(public auth: AngularFireAuth) {}
 
   login(): void {
-    const provider = new firebase.auth.GoogleAuthProvider
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
+    this.auth.signInWithPopup(provider);
+  }
+
+  logout(): void {
+    this.auth.signOut();
   }
 }
