@@ -1,6 +1,7 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
+
 import firebase from 'firebase/app';
 
 @Component({
