@@ -21,9 +21,11 @@ import { environment } from '../environments/environment';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     BrowserAnimationsModule,
+    BrowserModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -31,9 +33,7 @@ import { environment } from '../environments/environment';
     MatInputModule,
     MatSelectModule,
     MatMenuModule,
-    YagaModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    YagaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 
 import firebase from 'firebase/app';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 export interface User {
   login: string,
@@ -31,6 +30,7 @@ export class AppComponent {
 
   users : User[] = [];
   defis : Defi[] = [];
+  boutonLogs = false;
 
   constructor(public auth: AngularFireAuth) {
     this.getUsers();
@@ -49,15 +49,19 @@ export class AppComponent {
     this.auth.signOut();
   }
 
-  getUsers(): void{
+  getUsers(): void {
     fetch('https://ttg-xi.herokuapp.com/api/users/')
     .then(response => response.json())
     .then(users => this.users = users);
   }
 
-  getDefis(): void{
+  getDefis(): void {
     fetch('https://ttg-xi.herokuapp.com/api/defis/')
     .then(response => response.json())
     .then(defis => this.defis = defis);
+  }
+
+  afficherLogs(): void {
+    this.boutonLogs = !this.boutonLogs;
   }
 }

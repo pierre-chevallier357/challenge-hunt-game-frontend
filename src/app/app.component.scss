@@ -27,8 +27,30 @@
     }
   }
 
-
   yaga-map {
     height: 480px;
+  }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+  }
+
+  th {
+    border: 2px solid #000000;
+    text-align: left;
+    padding: 8px;
+    background-color: #000000;
+    color: #ffffff
+  }
+
+  td {
+    border: 2px solid #000000;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
   }
 }
