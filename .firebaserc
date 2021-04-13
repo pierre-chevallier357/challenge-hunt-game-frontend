@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ttg-xi": {
+      "hosting": {
+        "amorce-client": [
+          "ttg-xi"
+        ]
+      }
+    }
+  }
+}
