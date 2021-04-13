@@ -10,8 +10,12 @@
     account_circle
   </mat-icon>
   <mat-menu #menuConnect="matMenu">
+<<<<<<< Updated upstream
     <button mat-menu-item
             (click)="login()">
+=======
+    <button (click)="login()" mat-menu-item>
+>>>>>>> Stashed changes
       <img [src]="dataIconGoogle" width="24" height="24"/>
       &nbsp;
       <span>Compte Google</span>
@@ -40,6 +44,44 @@
       </mat-select>
     </mat-form-field>
 
+
+    <div *ngIf="users.length > 0;then TABLE_USERS else TABLE_USERS_UNLOADED"></div>
+    <ng-template #TABLE_USERS>
+      <table border="1">
+
+        <tr><td>login</td><td>age</td></tr>
+        <tr *ngFor="let user of users">
+          <td>{{user.login}}</td> <td>{{user.age}}</td>
+        </tr>
+
+      </table>
+    </ng-template>
+    <ng-template #TABLE_USERS_UNLOADED>
+      USERS communication avec le serveur impossible - error code 502 .
+    </ng-template>
+
+    <div *ngIf="defis.length > 0;then TABLE_DEFIS else TABLE_DEFIS_UNLOADED"></div>
+    <ng-template #TABLE_DEFIS>
+      <table border="1">
+
+        <tr><td>datedecreation</td><td>descritption</td><td>id</td><td>titre</td></tr>
+        <tr *ngFor="let defi of defis">
+          <td>{{defi.datedecreation}}</td><td>{{defi.descritption}}</td>
+          <td>{{defi.id}}</td><td>{{defi.titre}}</td>
+        </tr>
+
+      </table>
+    </ng-template>
+    <ng-template #TABLE_DEFIS_UNLOADED>
+      DEFIS communication avec le serveur impossible - error code 502 .
+    </ng-template>
+
+    <pre>
+      <a *ngIf=" auth.user | async as obs">
+        {{ obs | json }}
+      </a>
+    </pre>
+
     <yaga-map [lng]="5.724524" [lat]="45.188529" [zoom]="12">
       <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
       <yaga-marker  [lng] = "5.724524"
@@ -54,3 +96,4 @@
 
   </mat-drawer-content>
 </mat-drawer-container>
+
