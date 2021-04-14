@@ -66,7 +66,7 @@
       </ng-template>
       <ng-template #TABLE_CHAMIS_ERROR>
         - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
-        [CHAMIS TABLE] - communication avec le serveur impossible - error code 502 -> please check console <br><br>
+        [CHAMIS TABLE] - Communication avec le serveur impossible - Error 502, please check the console <br><br>
         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
       </ng-template>
     </ng-template>
@@ -94,7 +94,7 @@
       </ng-template>
       <ng-template #TABLE_CHAMIS_ERROR>
         - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
-        [DEFIS TABLE] - communication avec le serveur impossible - error code 502 -> please check console <br><br>
+        [DEFIS TABLE] - Communication avec le serveur impossible - Error 502, please check the console <br><br>
         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
       </ng-template>
     </ng-template>
@@ -116,6 +116,7 @@
 
 
     <!-- LOGS D'AUTHENTIFICATION -->
+    <!-- DEBUG TEMPORAIRE -->
     <pre>
       <a *ngIf="auth.user | async as obs">
         <button (click)="afficherLogs()">Logs d'authentification</button>

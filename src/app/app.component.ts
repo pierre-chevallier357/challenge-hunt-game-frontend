@@ -33,7 +33,7 @@ export class AppComponent {
   iconMarker = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
   tileLayerUrl = OSM_TILE_LAYER_URL;
 
-  //un chamis est un user qui a crée des defis
+  //Un chamis est un user qui a créé des défis
   chamis : Chamis[] = [];
   defis : Defi[] = [];
 
@@ -42,7 +42,7 @@ export class AppComponent {
     DefisTableErrror : false
   });
 
-  //debug, en attendant
+  //Debug : temporaire
   boutonLogs = false;
 
   constructor(public auth: AngularFireAuth) {
@@ -76,6 +76,7 @@ export class AppComponent {
     .catch(error          => {this.errorManager.DefisTableErrror = true  ; console.log(error) });
   }
 
+  //Debug : temporaire
   afficherLogs(): void {
     this.boutonLogs = !this.boutonLogs;
   }
