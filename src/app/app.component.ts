@@ -15,10 +15,11 @@ export interface Chamis {
 }
 
 export interface Defi {
+  id: string,
+  titre: string,
+  auteur: string,
+  description: string,
   datedecreation: string
-  descritption: string
-  id: string
-  titre: string
 }
 
 @Component({

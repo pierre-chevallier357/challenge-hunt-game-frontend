@@ -78,11 +78,12 @@
     <div *ngIf="defis.length > 0;then TABLE_DEFIS else TABLE_DEFIS_UNLOADED"></div>
     <ng-template #TABLE_DEFIS>
       <table border="1">
-        <tr><th>Défi</th><th>Titre</th><th>Description</th><th>Date de création</th></tr>
+        <tr><th>Défi</th><th>Titre</th><th>Auteur</th><th>Description</th><th>Date de création</th></tr>
         <tr *ngFor="let defi of defis">
           <td>{{defi.id}}</td>
           <td>{{defi.titre}}</td>
-          <td>{{defi.descritption}}</td>
+          <td>{{defi.auteur}}</td>
+          <td>{{defi.description}}</td>
           <td>{{defi.datedecreation}}</td>
         </tr>
       </table>
