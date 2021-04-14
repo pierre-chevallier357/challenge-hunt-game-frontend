@@ -33,7 +33,7 @@ export class AppComponent {
   iconMarker = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
   tileLayerUrl = OSM_TILE_LAYER_URL;
 
-  //Un chamis est un user qui a créé des défis
+  //Un chamis est un utilisateur qui a créé des défis
   chamis : Chamis[] = [];
   defis : Defi[] = [];
 
@@ -63,7 +63,7 @@ export class AppComponent {
   }
 
   getChamis(): void {
-      fetch('https://ttg-xi.herokuapp.com/api/user/')
+      fetch('https://ttg-xi.herokuapp.com/api/chamis/')
       .then(response => response.json())
       .then(chamisFromServer => {this.chamis = chamisFromServer })
       .catch(error           => {this.errorManager.ChamisTableErrror = true  ; console.log(error)  });
