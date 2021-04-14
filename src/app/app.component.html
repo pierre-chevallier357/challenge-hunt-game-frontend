@@ -47,20 +47,28 @@
   <br/><br/>
 
 
-    <!-- TABLE DES USERS -->
+    <!-- TABLE DES CHAMIS -->
     <h2>Users</h2>
-    <div *ngIf="users.length > 0;then TABLE_USERS else TABLE_USERS_UNLOADED"></div>
-    <ng-template #TABLE_USERS>
+    <div *ngIf="chamis.length > 0;then TABLE_CHAMIS else TABLE_CHAMIS_UNLOADED"></div>
+    <ng-template #TABLE_CHAMIS>
       <table border="1">
         <tr><th>Auteur</th><th>Âge</th></tr>
-        <tr *ngFor="let user of users">
-          <td>{{user.login}}</td>
-          <td>{{user.age}}</td>
+        <tr *ngFor="let chami of chamis">
+          <td>{{chami.login}}</td>
+          <td>{{chami.age}}</td>
         </tr>
       </table>
     </ng-template>
-    <ng-template #TABLE_USERS_UNLOADED>
-      USERS communication avec le serveur impossible - error code 502 .
+    <ng-template #TABLE_CHAMIS_UNLOADED>
+      <div *ngIf="!errorManager.ChamisTableErrror ;then TABLE_CHAMIS_LOADING else TABLE_CHAMIS_ERROR"></div>
+      <ng-template #TABLE_CHAMIS_LOADING>
+        [CHAMIS TABLE] - Chargement des données...
+      </ng-template>
+      <ng-template #TABLE_CHAMIS_ERROR>
+        - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
+        [CHAMIS TABLE] - communication avec le serveur impossible - error code 502 -> please check console <br><br>
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+      </ng-template>
     </ng-template>
     <br/><br/>
 
@@ -80,7 +88,15 @@
       </table>
     </ng-template>
     <ng-template #TABLE_DEFIS_UNLOADED>
-      DEFIS communication avec le serveur impossible - error code 502 .
+      <div *ngIf="!errorManager.DefisTableErrror ;then TABLE_CHAMIS_LOADING else TABLE_CHAMIS_ERROR"></div>
+      <ng-template #TABLE_CHAMIS_LOADING>
+        [DEFIS TABLE] - Chargement des données...
+      </ng-template>
+      <ng-template #TABLE_CHAMIS_ERROR>
+        - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
+        [DEFIS TABLE] - communication avec le serveur impossible - error code 502 -> please check console <br><br>
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+      </ng-template>
     </ng-template>
     <br/><br/>
 
