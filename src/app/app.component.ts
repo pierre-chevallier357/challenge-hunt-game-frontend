@@ -11,7 +11,8 @@ export interface ErrorManager {
 
 export interface Chamis {
   login: string,
-  age : number
+  age: number,
+  nb_defis: number
 }
 
 export interface Defi {

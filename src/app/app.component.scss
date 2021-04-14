@@ -41,7 +41,7 @@
     text-align: left;
     padding: 8px;
     background-color: #000000;
-    color: #ffffff
+    color: #ffffff;
   }
 
   td {
@@ -52,5 +52,17 @@
 
   tr:nth-child(even) {
     background-color: #dddddd;
+  }
+
+  .connecte {
+    margin:1%;
+    float:right;
+    color: #00dd00;
+  }
+
+  .deconnecte {
+    margin:1%;
+    float:right;
+    color: #dd0000;
   }
 }
