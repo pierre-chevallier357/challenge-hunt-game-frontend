@@ -16,10 +16,25 @@
   <!-- Si connecté -->
   <mat-icon [matMenuTriggerFor]="menuDisconnect"
             *ngIf="auth.user | async as user; else menuConnexion">
-    account_circle
+    <img [src]="user.photoURL"/>
   </mat-icon>
     <!-- Afficher menu deconnexion -->
     <mat-menu #menuDisconnect="matMenu">
+      <!-- PROFIL -->
+      <button mat-menu-item
+              (click)="loadProfil()">
+        <mat-icon>account_circle</mat-icon>
+        <span>Profil</span>
+      </button>
+
+      <!-- SETTINGS -->
+      <button mat-menu-item
+              (click)="loadSettings()">
+        <mat-icon>settings</mat-icon>
+        <span>Paramètres</span>
+      </button>
+
+      <!-- DECONEXION-->
       <button mat-menu-item
               (click)="logout()">
         <mat-icon>logout</mat-icon>
@@ -47,7 +62,42 @@
 <mat-drawer-container class="example-container">
   <!-- MENU LATÉRAL -->
   <mat-drawer #drawer [mode]="mode.value">
-    Placez votre menu ici...
+
+      <!-- HOME -->
+      <button mat-menu-item
+              (click)="loadProfil()">
+        <mat-icon>home</mat-icon>
+        <span>Page d'accueil</span>
+      </button>
+
+      <!-- TRENDING -->
+      <button mat-menu-item
+              (click)="loadProfil()">
+        <mat-icon>trending_up</mat-icon>
+        <span>Defis les mieux notés</span>
+      </button>
+
+      <!-- DEFIS -->
+      <button mat-menu-item
+              (click)="loadProfil()">
+        <mat-icon>explore</mat-icon>
+        <span>Chercher un défi</span>
+      </button>
+
+      <!-- MES VISITES -->
+      <button mat-menu-item
+              (click)="loadProfil()">
+        <mat-icon>contact_page</mat-icon>
+        <span>Mes Visites</span>
+      </button>
+
+      <!-- IDEE -->
+      <button mat-menu-item
+              (click)="loadProfil()">
+        <mat-icon>lightbulb</mat-icon>
+        <span>Soumettre une idée aux Devs</span>
+      </button>
+
   </mat-drawer>
   <mat-drawer-content>
 
@@ -154,13 +204,13 @@
 
     <!-- LOGS D'AUTHENTIFICATION -->
     <!-- DEBUG TEMPORAIRE -->
-    <!--
+
     <pre>
       <a *ngIf="auth.user | async as obs">
         <button (click)="afficherLogs()">Logs d'authentification</button>
         <div *ngIf="boutonLogs">{{ obs | json }}</div>
       </a>
     </pre>
-    -->
+
   </mat-drawer-content>
 </mat-drawer-container>

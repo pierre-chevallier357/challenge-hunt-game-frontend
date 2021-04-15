@@ -58,6 +58,7 @@ export class AppComponent {
       prompt: 'select_account'
     });
     this.auth.signInWithPopup(provider);
+    //envoyer une requette HTML pour enregister l'utilisateur
   }
 
   logout(): void {
@@ -82,4 +83,8 @@ export class AppComponent {
   afficherLogs(): void {
     this.boutonLogs = !this.boutonLogs;
   }
+
+  loadProfil(){}
+
+  loadSettings(){}
 }
