@@ -1,5 +1,9 @@
-export interface Chamis {
-  login: string,
-  age: number,
-  nb_defis: number
+export interface Chami {
+  uid: number;
+  email: string;
+  pseudo: string;
+  age: number;
+  ville: string;
+  description: string;
+  nbDefis: number;
 }
