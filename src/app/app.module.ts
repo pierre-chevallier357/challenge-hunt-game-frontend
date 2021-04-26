@@ -21,7 +21,6 @@ import { ChallengeComponent } from './challenge/challenge.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { IdeaComponent } from './idea/idea.component';
 
-import { HttpClientModule } from '@angular/common/http';
 
 import "leaflet/dist/images/marker-shadow.png";
 
