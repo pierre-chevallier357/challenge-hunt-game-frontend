@@ -13,7 +13,7 @@ export class ChamiService {
   }
 
   getChamiByUid(uid: number) {
-    const url = `${this.chamiUrl}?${uid}`;
+    const url = `${this.chamiUrl}${uid}`;
 
     return this.http.get<Chami>(url);
   }

@@ -8,7 +8,7 @@ import { Chami } from '../chami';
   styleUrls: ['./page-profil.component.scss']
 })
 export class PageProfilComponent implements OnInit {
-  chami?: Chami;
+  chami!: Chami;
 
   constructor(private chamiService: ChamiService) {
   }
