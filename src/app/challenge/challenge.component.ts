@@ -1,5 +1,5 @@
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 
 import { HttpClient } from '@angular/common/http';
@@ -46,6 +46,9 @@ export class ChallengeComponent{
     ChamisTableErrror : false,
     DefisTableErrror : false
   });
+
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
 
   //Debug : temporaire
   boutonLogs = false;
