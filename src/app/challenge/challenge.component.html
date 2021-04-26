@@ -21,7 +21,10 @@
 <h2>Défis</h2>
 
 <!-- Les afficher -->
-  <table *ngIf="defisObs | async as defis">
+<div *ngIf="defisObs | async as defis">
+
+  <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+  <table>
     <tr>
       <th>Défi</th>
       <th>Titre</th>
@@ -37,19 +40,38 @@
       <td>{{defi.datedecreation}}</td>
     </tr>
   </table>
+</div>
 
 
-
-
-<!-- LOGS D'AUTHENTIFICATION -->
+<br /><br /><br /><br /><br />
 
 
 <!-- CARTE -->
 <h2>Carte du composant</h2>
-<yaga-map [lng]="5.724524" [lat]="45.188529" [zoom]="13">
-  <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
-  <yaga-marker [lng]="5.724524" [lat]="45.188529" [display]="true" [opacity]="1">
-    <yaga-icon [iconUrl]="iconMarker"></yaga-icon>
-  </yaga-marker>
-</yaga-map>
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      ici
+    </td>
+    <td colspan="3">
+      <yaga-map [lng]="5.724524" [lat]="45.188529" [zoom]="13">
+        <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
+        <yaga-marker [lng]="5.724524" [lat]="45.188529" [display]="true" [opacity]="1">
+          <yaga-icon [iconUrl]="iconMarker"></yaga-icon>
+        </yaga-marker>
+      </yaga-map>
+    </td>
+  </tr>
+</table>
+
 <br />
+
+<pre>
+  {{defisObs | async | json}}
+</pre>

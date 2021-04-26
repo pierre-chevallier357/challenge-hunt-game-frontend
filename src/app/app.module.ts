@@ -1,6 +1,8 @@
+import { MatPaginator } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
 import { YagaModule } from '@yaga/leaflet-ng2';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -20,12 +23,10 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { IdeaComponent } from './idea/idea.component';
-
+import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
+import { PageProfilComponent } from './page-profil/page-profil.component';
 
 import "leaflet/dist/images/marker-shadow.png";
-
-import { PageProfilComponent } from './page-profil/page-profil.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     MyChallengesComponent,
     ChallengeComponent,
     IdeaComponent,
-    PageProfilComponent
+    PageProfilComponent,
+    TableChallengeComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -52,7 +54,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatMenuModule,
     YagaModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
