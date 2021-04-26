@@ -4,6 +4,22 @@ import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 
 import firebase from 'firebase/app';
 
+export interface ErrorManager {
+  ChamisTableErrror : boolean,
+  DefisTableErrror : boolean,
+}
+export interface Chamis {
+  login: string,
+  age: number,
+  nb_defis: number
+}
+export interface Defi {
+  id: string,
+  titre: string,
+  auteur: string,
+  description: string,
+  datedecreation: string
+}
 
 @Component({
   selector: 'app-root',
@@ -18,12 +34,14 @@ export class AppComponent {
   tileLayerUrl = OSM_TILE_LAYER_URL;
 
 
-
   title: any; //debug visualcode
 
   constructor(public auth: AngularFireAuth) {
 
   }
+
+
+
 
   login(): void {
     const provider = new firebase.auth.GoogleAuthProvider();

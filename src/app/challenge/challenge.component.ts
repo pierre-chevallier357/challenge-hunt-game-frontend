@@ -1,6 +1,8 @@
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
+
+import { HttpClient } from '@angular/common/http';
 
 export interface ErrorManager {
   ChamisTableErrror : boolean,
@@ -18,6 +20,10 @@ export interface Defi {
   description: string,
   datedecreation: string
 }
+export interface SearchResultsChamis {
+  total: number;
+  results: Array<Chamis>;
+}
 
 
 @Component({
@@ -26,12 +32,13 @@ export interface Defi {
   styleUrls: ['../app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChallengeComponent {
+export class ChallengeComponent{
   iconMarker = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
   tileLayerUrl = OSM_TILE_LAYER_URL;
 
-  chamis : Chamis[] = [];
-  defis : Defi[] = [];
+
+  chamisObs = this.http.get<Chamis[]>('https://ttg-xi.herokuapp.com/api/chamis/');
+  defisObs = this.http.get<Defi[]>('https://ttg-xi.herokuapp.com/api/defis/');
 
   @Input() auth!: AngularFireAuth;
 
@@ -45,27 +52,8 @@ export class ChallengeComponent {
   title: any;
 
 
-  constructor() {
-    this.getChamis();
-    this.getDefis();
+  constructor(private http: HttpClient) {
   }
 
-  getChamis(): void {
-      fetch('https://ttg-xi.herokuapp.com/api/chamis/')
-      .then(response => response.json())
-      .then(chamisFromServer => {this.chamis = chamisFromServer })
-      .catch(error           => {this.errorManager.ChamisTableErrror = true  ; console.log(error)  });
-  }
-
-  getDefis(): void {
-    fetch('https://ttg-xi.herokuapp.com/api/defis/')
-    .then(response => response.json())
-    .then(defisFromServer => {this.defis = defisFromServer })
-    .catch(error          => {this.errorManager.DefisTableErrror = true  ; console.log(error) });
-  }
-  //Debug : temporaire
-  afficherLogs(): void {
-    this.boutonLogs = !this.boutonLogs;
-  }
 
 }
