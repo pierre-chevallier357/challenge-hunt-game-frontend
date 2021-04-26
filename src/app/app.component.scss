@@ -9,7 +9,7 @@
       transition: transform .3s;
     }
     > mat-icon:hover {
-      transform: scale(1.1);
+      transform: scale(1.3);
     }
 
     img {
@@ -34,6 +34,7 @@
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    table-layout: auto;
   }
 
   th {
