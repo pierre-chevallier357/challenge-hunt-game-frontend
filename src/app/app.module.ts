@@ -21,6 +21,8 @@ import { ChallengeComponent } from './challenge/challenge.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { IdeaComponent } from './idea/idea.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import "leaflet/dist/images/marker-shadow.png";
 
 import { PageProfilComponent } from './page-profil/page-profil.component';
@@ -50,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatSelectModule,
     MatMenuModule,
-    YagaModule
+    YagaModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

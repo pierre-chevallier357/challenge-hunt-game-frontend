@@ -1,64 +1,42 @@
 <!-- TABLE DES CHAMIS -->
 <h2>Chamis</h2>
-<div *ngIf="chamis.length > 0;then TABLE_CHAMIS else TABLE_CHAMIS_UNLOADED"></div>
-<ng-template #TABLE_CHAMIS>
-  <table>
-    <tr><th>Auteur</th><th>Âge</th><th>Défis créés</th></tr>
-    <tr *ngFor="let chami of chamis">
-      <td>{{chami.login}}</td>
-      <td>{{chami.age}}</td>
-      <td>{{chami.nb_defis}}</td>
-    </tr>
-  </table>
-</ng-template>
-<ng-template #TABLE_CHAMIS_UNLOADED>
-  <div *ngIf="!errorManager.ChamisTableErrror ;then TABLE_CHAMIS_LOADING else TABLE_CHAMIS_ERROR"></div>
-  <ng-template #TABLE_CHAMIS_LOADING>
-    [CHAMIS TABLE] - Chargement des données...
-  </ng-template>
-  <ng-template #TABLE_CHAMIS_ERROR>
-    - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
-    [CHAMIS TABLE] - Communication avec le serveur impossible - Error 502, please check the console <br><br>
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
-  </ng-template>
-</ng-template>
-<br/><br/>
+
+<table *ngIf="chamisObs | async as chamis">
+  <tr>
+    <th>Auteur</th>
+    <th>Âge</th>
+    <th>Défis créés</th>
+  </tr>
+  <tr *ngFor="let chami of chamis">
+    <td>{{chami.login}}</td>
+    <td>{{chami.age}}</td>
+    <td>{{chami.nb_defis}}</td>
+  </tr>
+</table>
+
+<br /><br />
 
 
 <!-- TABLE DES DEFIS -->
 <h2>Défis</h2>
-<!-- S'il y a des défis -->
-<div *ngIf="defis.length > 0;then TABLE_DEFIS else TABLE_DEFIS_UNLOADED"></div>
-  <!-- Les afficher -->
-  <ng-template #TABLE_DEFIS>
-    <table>
-      <tr><th>Défi</th><th>Titre</th><th>Auteur</th><th>Description</th><th>Date de création</th></tr>
-      <tr *ngFor="let defi of defis">
-        <td>{{defi.id}}</td>
-        <td>{{defi.titre}}</td>
-        <td>{{defi.auteur}}</td>
-        <td>{{defi.description}}</td>
-        <td>{{defi.datedecreation}}</td>
-      </tr>
-    </table>
-  </ng-template>
-<!-- Sinon -->
-<ng-template #TABLE_DEFIS_UNLOADED>
-  <!-- S'il n'y a pas d'erreur-->
-  <div *ngIf="!errorManager.DefisTableErrror ;then TABLE_CHAMIS_LOADING else TABLE_CHAMIS_ERROR"></div>
-    <!-- Afficher un chargement -->
-    <ng-template #TABLE_CHAMIS_LOADING>
-      [DEFIS TABLE] - Chargement des données...
-    </ng-template>
-  <!-- Sinon -->
-    <!-- Afficher une erreur -->
-    <ng-template #TABLE_CHAMIS_ERROR>
-      - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
-      [DEFIS TABLE] - Communication avec le serveur impossible - Error 502, please check the console <br><br>
-      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
-    </ng-template>
-</ng-template>
-<br/><br/>
+
+<!-- Les afficher -->
+  <table *ngIf="defisObs | async as defis">
+    <tr>
+      <th>Défi</th>
+      <th>Titre</th>
+      <th>Auteur</th>
+      <th>Description</th>
+      <th>Date de création</th>
+    </tr>
+    <tr *ngFor="let defi of defis">
+      <td>{{defi.id}}</td>
+      <td>{{defi.titre}}</td>
+      <td>{{defi.auteur}}</td>
+      <td>{{defi.description}}</td>
+      <td>{{defi.datedecreation}}</td>
+    </tr>
+  </table>
 
 
 
@@ -70,12 +48,8 @@
 <h2>Carte du composant</h2>
 <yaga-map [lng]="5.724524" [lat]="45.188529" [zoom]="13">
   <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
-  <yaga-marker  [lng] = "5.724524"
-                [lat] = "45.188529"
-                [display] = "true"
-                [opacity] = "1"
-                >
+  <yaga-marker [lng]="5.724524" [lat]="45.188529" [display]="true" [opacity]="1">
     <yaga-icon [iconUrl]="iconMarker"></yaga-icon>
   </yaga-marker>
 </yaga-map>
-<br/>
+<br />
