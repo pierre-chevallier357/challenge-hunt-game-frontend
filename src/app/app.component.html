@@ -54,40 +54,19 @@
 </mat-toolbar>
 
 <mat-drawer-container class="example-container">
+
   <!-- MENU LATÉRAL -->
   <mat-drawer #drawer mode="side">
 
-        <!-- HOME -->
-        <button mat-menu-item (click)="drawer.toggle()"
-                              [routerLink]="'/'">
-          <mat-icon>home</mat-icon>
-          <span [routerLink]="'/'">Page d'accueil</span>
-        </button>
-
-        <!-- TRENDING -->
-        <button mat-menu-item>
-          <mat-icon>trending_up</mat-icon>
-          <span>Leaderboard</span>
-        </button>
-
-        <!-- DEFIS -->
-        <button mat-menu-item (click)="drawer.toggle()"
-                              [routerLink]="'/challenge'">
-          <mat-icon>explore</mat-icon>
-          <span><b>Chercher un défi</b></span>
-        </button>
-
-        <!-- MES VISITES -->
-        <button mat-menu-item>
-          <mat-icon>contact_page</mat-icon>
-          <span>Mes Visites & Défis</span>
-        </button>
-
-        <!-- IDEE -->
-        <button mat-menu-item>
-          <mat-icon>lightbulb</mat-icon>
-          <span>Soumettre une idée aux Devs</span>
-        </button>
+    <!-- HOME -->
+    <div *ngFor="let button of sidebar">
+      <button mat-menu-item
+              (click)="drawer.toggle()"
+              [routerLink]="button.rooterLink">
+        <mat-icon>{{button.logo}}</mat-icon>
+        <span>{{button.title}}</span>
+      </button>
+    </div>
 
   </mat-drawer>
   <mat-drawer-content>
