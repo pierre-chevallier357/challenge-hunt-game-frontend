@@ -6,11 +6,14 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PageProfilComponent } from "../app/page-profil/page-profil.component"
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'challenge', component: ChallengeComponent },
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'idea', component: IdeaComponent },
+  { path: 'profil', component: PageProfilComponent },
 
 
 

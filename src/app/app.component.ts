@@ -1,6 +1,7 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
+import { Router } from '@angular/router';
 
 import firebase from 'firebase/app';
 
@@ -61,16 +62,11 @@ export class AppComponent {
     }
   ]
 
-
-
   title: any; //debug visualcode
 
-  constructor(public auth: AngularFireAuth) {
+  constructor(public auth: AngularFireAuth, private router: Router) {
 
   }
-
-
-
 
   login(): void {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -88,11 +84,8 @@ export class AppComponent {
     this.auth.signOut();
   }
 
-
-
-
   loadProfil() {
-
+    this.router.navigate(['profil']);
   }
 
   loadSettings(){}
