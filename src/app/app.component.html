@@ -14,89 +14,80 @@
 
   <!-- MENU DE CONNEXION -->
   <!-- Si connecté -->
-  <mat-icon [matMenuTriggerFor]="menuDisconnect"
-            *ngIf="auth.user | async as user; else menuConnexion">
-    <img [src]="user.photoURL"/>
+  <mat-icon [matMenuTriggerFor]="menuDisconnect" *ngIf="auth.user | async as user; else menuConnexion">
+    <img [src]="user.photoURL" />
   </mat-icon>
-    <!-- Afficher menu deconnexion -->
-    <mat-menu #menuDisconnect="matMenu">
-      <!-- PROFIL -->
-      <button mat-menu-item
-              (click)="loadProfil()">
-        <mat-icon>account_circle</mat-icon>
-        <span>Profil</span>
-      </button>
+  <!-- Afficher menu deconnexion -->
+  <mat-menu #menuDisconnect="matMenu">
+    <!-- PROFIL -->
+    <button mat-menu-item (click)="loadProfil()">
+      <mat-icon>account_circle</mat-icon>
+      <span>Profil</span>
+    </button>
 
-      <!-- SETTINGS -->
-      <button mat-menu-item
-              (click)="loadSettings()">
-        <mat-icon>settings</mat-icon>
-        <span>Paramètres</span>
-      </button>
+    <!-- SETTINGS -->
+    <button mat-menu-item (click)="loadSettings()">
+      <mat-icon>settings</mat-icon>
+      <span>Paramètres</span>
+    </button>
 
-      <!-- DECONEXION-->
-      <button mat-menu-item
-              (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Déconnexion</span>
-      </button>
-    </mat-menu>
+    <!-- DECONEXION-->
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Déconnexion</span>
+    </button>
+  </mat-menu>
   <!-- Sinon -->
-    <!-- Afficher menu connexion -->
-    <ng-template #menuConnexion>
-      <mat-icon [matMenuTriggerFor]="menuConnect">
-        account_circle
-      </mat-icon>
-    </ng-template>
-    <mat-menu #menuConnect="matMenu">
-      <button mat-menu-item
-              (click)="login()">
-        <img [src]="dataIconGoogle" width="24" height="24"/>
-        &nbsp;
-        <span>Compte Google</span>
-      </button>
-    </mat-menu>
+  <!-- Afficher menu connexion -->
+  <ng-template #menuConnexion>
+    <mat-icon [matMenuTriggerFor]="menuConnect">
+      account_circle
+    </mat-icon>
+  </ng-template>
+  <mat-menu #menuConnect="matMenu">
+    <button mat-menu-item (click)="login()">
+      <img [src]="dataIconGoogle" width="24" height="24" />
+      &nbsp;
+      <span>Compte Google</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
-
 
 <mat-drawer-container class="example-container">
   <!-- MENU LATÉRAL -->
-  <mat-drawer #drawer [mode]="mode.value">
+  <mat-drawer #drawer mode="side">
 
-      <!-- HOME -->
-      <button mat-menu-item
-              (click)="loadProfil()">
-        <mat-icon>home</mat-icon>
-        <span>Page d'accueil</span>
-      </button>
+        <!-- HOME -->
+        <button mat-menu-item (click)="drawer.toggle()"
+                              [routerLink]="'/'">
+          <mat-icon>home</mat-icon>
+          <span [routerLink]="'/'">Page d'accueil</span>
+        </button>
 
-      <!-- TRENDING -->
-      <button mat-menu-item
-              (click)="loadProfil()">
-        <mat-icon>trending_up</mat-icon>
-        <span>Defis les mieux notés</span>
-      </button>
+        <!-- TRENDING -->
+        <button mat-menu-item>
+          <mat-icon>trending_up</mat-icon>
+          <span>Leaderboard</span>
+        </button>
 
-      <!-- DEFIS -->
-      <button mat-menu-item
-              (click)="loadProfil()">
-        <mat-icon>explore</mat-icon>
-        <span>Chercher un défi</span>
-      </button>
+        <!-- DEFIS -->
+        <button mat-menu-item (click)="drawer.toggle()"
+                              [routerLink]="'/challenge'">
+          <mat-icon>explore</mat-icon>
+          <span><b>Chercher un défi</b></span>
+        </button>
 
-      <!-- MES VISITES -->
-      <button mat-menu-item
-              (click)="loadProfil()">
-        <mat-icon>contact_page</mat-icon>
-        <span>Mes Visites</span>
-      </button>
+        <!-- MES VISITES -->
+        <button mat-menu-item>
+          <mat-icon>contact_page</mat-icon>
+          <span>Mes Visites & Défis</span>
+        </button>
 
-      <!-- IDEE -->
-      <button mat-menu-item
-              (click)="loadProfil()">
-        <mat-icon>lightbulb</mat-icon>
-        <span>Soumettre une idée aux Devs</span>
-      </button>
+        <!-- IDEE -->
+        <button mat-menu-item>
+          <mat-icon>lightbulb</mat-icon>
+          <span>Soumettre une idée aux Devs</span>
+        </button>
 
   </mat-drawer>
   <mat-drawer-content>
@@ -114,103 +105,22 @@
 
     <!-- SIDENAV MODE -->
     <mat-form-field>
-      <h2><mat-label>Sidenav mode</mat-label></h2>
+      <h2>
+        <mat-label>Sidenav mode</mat-label>
+      </h2>
       <mat-select #mode value="push">
         <mat-option value="side">Side</mat-option>
         <mat-option value="over">Over</mat-option>
         <mat-option value="push">Push</mat-option>
       </mat-select>
     </mat-form-field>
-    <br/><br/>
-
-
-    <!-- TABLE DES CHAMIS -->
-    <h2>Chamis</h2>
-    <div *ngIf="chamis.length > 0;then TABLE_CHAMIS else TABLE_CHAMIS_UNLOADED"></div>
-    <ng-template #TABLE_CHAMIS>
-      <table border="1">
-        <tr><th>Auteur</th><th>Âge</th><th>Défis créés</th></tr>
-        <tr *ngFor="let chami of chamis">
-          <td>{{chami.login}}</td>
-          <td>{{chami.age}}</td>
-          <td>{{chami.nb_defis}}</td>
-        </tr>
-      </table>
-    </ng-template>
-    <ng-template #TABLE_CHAMIS_UNLOADED>
-      <div *ngIf="!errorManager.ChamisTableErrror ;then TABLE_CHAMIS_LOADING else TABLE_CHAMIS_ERROR"></div>
-      <ng-template #TABLE_CHAMIS_LOADING>
-        [CHAMIS TABLE] - Chargement des données...
-      </ng-template>
-      <ng-template #TABLE_CHAMIS_ERROR>
-        - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
-        [CHAMIS TABLE] - Communication avec le serveur impossible - Error 502, please check the console <br><br>
-        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
-      </ng-template>
-    </ng-template>
-    <br/><br/>
-
-
-    <!-- TABLE DES DEFIS -->
-    <h2>Défis</h2>
-    <!-- S'il y a des défis -->
-    <div *ngIf="defis.length > 0;then TABLE_DEFIS else TABLE_DEFIS_UNLOADED"></div>
-      <!-- Les afficher -->
-      <ng-template #TABLE_DEFIS>
-        <table border="1">
-          <tr><th>Défi</th><th>Titre</th><th>Auteur</th><th>Description</th><th>Date de création</th></tr>
-          <tr *ngFor="let defi of defis">
-            <td>{{defi.id}}</td>
-            <td>{{defi.titre}}</td>
-            <td>{{defi.auteur}}</td>
-            <td>{{defi.description}}</td>
-            <td>{{defi.datedecreation}}</td>
-          </tr>
-        </table>
-      </ng-template>
-    <!-- Sinon -->
-    <ng-template #TABLE_DEFIS_UNLOADED>
-      <!-- S'il n'y a pas d'erreur-->
-      <div *ngIf="!errorManager.DefisTableErrror ;then TABLE_CHAMIS_LOADING else TABLE_CHAMIS_ERROR"></div>
-        <!-- Afficher un chargement -->
-        <ng-template #TABLE_CHAMIS_LOADING>
-          [DEFIS TABLE] - Chargement des données...
-        </ng-template>
-      <!-- Sinon -->
-        <!-- Afficher une erreur -->
-        <ng-template #TABLE_CHAMIS_ERROR>
-          - - - - - - - - - - - - - - - - - - - - - -  ERROR  - - - - - - - - - - - - - - - - - - - - - - - <br><br>
-          [DEFIS TABLE] - Communication avec le serveur impossible - Error 502, please check the console <br><br>
-          - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
-        </ng-template>
-    </ng-template>
-    <br/><br/>
-
+    <br /><br />
 
     <!-- CARTE -->
-    <h2>Carte</h2>
-    <yaga-map [lng]="5.724524" [lat]="45.188529" [zoom]="12">
-      <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
-      <yaga-marker  [lng] = "5.724524"
-                    [lat] = "45.188529"
-                    [display] = "true"
-                    [opacity] = "1"
-                    >
-        <yaga-icon [iconUrl]="iconMarker"></yaga-icon>
-      </yaga-marker>
-    </yaga-map>
-    <br/>
 
 
-    <!-- LOGS D'AUTHENTIFICATION -->
-    <!-- DEBUG TEMPORAIRE -->
+    <router-outlet></router-outlet>
 
-    <pre>
-      <a *ngIf="auth.user | async as obs">
-        <button (click)="afficherLogs()">Logs d'authentification</button>
-        <div *ngIf="boutonLogs">{{ obs | json }}</div>
-      </a>
-    </pre>
 
   </mat-drawer-content>
 </mat-drawer-container>

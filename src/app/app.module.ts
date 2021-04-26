@@ -15,10 +15,23 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
+import { HomeComponent } from './home/home.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { ChallengeComponent } from './challenge/challenge.component';
+import { MyChallengesComponent } from './my-challenges/my-challenges.component';
+import { IdeaComponent } from './idea/idea.component';
+
+import "leaflet/dist/images/marker-shadow.png";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LeaderboardComponent,
+    MyChallengesComponent,
+    ChallengeComponent,
+    IdeaComponent
   ],
   imports: [
     AngularFireAuthModule,
