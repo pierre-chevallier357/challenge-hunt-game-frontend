@@ -44,7 +44,9 @@ export class AppComponent {
 
 
 
-  loadProfil(){}
+  loadProfil() {
+
+  }
 
   loadSettings(){}
 }

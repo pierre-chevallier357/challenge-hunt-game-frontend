@@ -23,6 +23,8 @@ import { IdeaComponent } from './idea/idea.component';
 
 import "leaflet/dist/images/marker-shadow.png";
 
+import { PageProfilComponent } from './page-profil/page-profil.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import "leaflet/dist/images/marker-shadow.png";
     LeaderboardComponent,
     MyChallengesComponent,
     ChallengeComponent,
-    IdeaComponent
+    IdeaComponent,
+    PageProfilComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -39,6 +42,7 @@ import "leaflet/dist/images/marker-shadow.png";
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
