@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PageProfilComponent } from "../app/page-profil/page-profil.component"
+import { PageProfilComponent } from '../app/page-profil/page-profil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,9 +15,7 @@ const routes: Routes = [
   { path: 'idea', component: IdeaComponent },
   { path: 'profil', component: PageProfilComponent },
 
-
-
-  //sinon rediriger vers
+  // sinon rediriger vers
   {path: '**', redirectTo: ''}
 ];
 
