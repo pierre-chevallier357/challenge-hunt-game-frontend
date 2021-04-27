@@ -8,6 +8,6 @@ export interface Visite{
   note: number;
   score: number;
   commentaire: string;
-  indiceUtiliseListe: [number];
-  ReponseDonner: [string];
+  indiceUtiliseListe: number[];
+  ReponseDonner: string[];
 }
