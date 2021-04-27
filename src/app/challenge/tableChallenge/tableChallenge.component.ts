@@ -1,16 +1,9 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {Defi} from '../../defi';
 
 /**
  * @title Table with pagination
  */
-
-export interface Defi {
-  id: string;
-  titre: string;
-  auteur: string;
-  description: string;
-  datedecreation: string;
-}
 
 @Component({
   selector: 'table-challenge',
