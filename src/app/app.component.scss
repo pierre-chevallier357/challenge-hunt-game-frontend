@@ -16,7 +16,6 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      border: solid black 3px;
     }
   }
 
@@ -53,17 +52,5 @@
 
   tr:nth-child(even) {
     background-color: #dddddd;
-  }
-
-  .connecte {
-    margin:1%;
-    float:right;
-    color: #00dd00;
-  }
-
-  .deconnecte {
-    margin:1%;
-    float:right;
-    color: #dd0000;
   }
 }

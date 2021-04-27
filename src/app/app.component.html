@@ -63,16 +63,5 @@
       </button>
     </div>
   </mat-drawer>
-
-  <!-- ÉTAT DE CONNEXION -->
-  <mat-drawer-content>
-    <div *ngIf="auth.user | async as obs; then connecte else deconnecte"></div>
-    <ng-template #connecte>
-      <p class="connecte">Connecté</p>
-    </ng-template>
-    <ng-template #deconnecte>
-      <p class="deconnecte">Déconnecté</p>
-    </ng-template>
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
+  <router-outlet></router-outlet>
 </mat-drawer-container>
