@@ -5,5 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class IndiceService {
 
-  constructor() { }
+  private indiceUrl = 'https://ttg-xi.herokuapp.com/api/indice/';
+
+  constructor(private http: HttpClient) {
+  }
+
+  getIndiceByidIndice(idIndice: number) {
+    const url = `${this.indiceUrl}${idIndice}`;
+
+    return this.http.get<Indice>(url);
+  }
+
+  getAllArret() {
+    return this.http.get<Indice[]>(this.indiceUrl);
+  }
 }

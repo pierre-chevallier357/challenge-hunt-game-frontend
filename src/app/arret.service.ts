@@ -10,13 +10,13 @@ export class ArretService {
   constructor(private http: HttpClient) {
   }
 
-  getarretByidArret(idArret: number) {
+  getArretByidArret(idArret: number) {
     const url = `${this.defiUrl}${idArret}`;
 
     return this.http.get<Arret>(url);
   }
 
   getAllArret() {
-    return this.http.get<arret[]>(this.arretUrl);
+    return this.http.get<Arret[]>(this.arretUrl);
   }
 }
