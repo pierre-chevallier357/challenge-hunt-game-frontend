@@ -10,7 +10,7 @@ export class DefisService {
   constructor(private http: HttpClient) {
   }
 
-  getPrivateByUid(idDefi: string) {
+  getDefisByidDefi(idDefi: string) {
     const url = `${this.defisUrl}${idDefi}`;
 
     return this.http.get<Defi>(url);
