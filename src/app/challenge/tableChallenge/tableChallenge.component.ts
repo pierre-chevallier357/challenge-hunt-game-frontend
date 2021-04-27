@@ -1,8 +1,9 @@
 import { Defi } from '../../defi';
 import { AfterViewInit, Component, Input, ViewChild, OnInit } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
+
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator }  from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 /**
  * @title Table with pagination
@@ -20,12 +21,12 @@ export class TableChallengeComponent implements AfterViewInit,OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['id', 'titre', 'auteur', 'description','datedecreation'];
+  displayedColumns: string[] = ['idDefi', 'titre', 'motsClefs', 'description','duree'];
   dataSource !:MatTableDataSource<Defi>;
 
   //Données chargés une suel fois lors de l'instantiation du composant (rafraichir la page pour des nouvelles donnees)
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE)
+    this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);
   }
 
   ngAfterViewInit() {

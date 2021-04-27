@@ -1,3 +1,4 @@
+import { MatSortModule } from '@angular/material/sort';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -17,6 +18,7 @@ import { YagaModule } from '@yaga/leaflet-ng2';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { ChamiService } from './chami.service';
@@ -58,7 +60,8 @@ import 'leaflet/dist/images/marker-shadow.png';
     YagaModule,
     HttpClientModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]
