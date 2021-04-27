@@ -1,11 +1,11 @@
-import { IdeaComponent } from './idea/idea.component';
-import { MyChallengesComponent } from './my-challenges/my-challenges.component';
-import { ChallengeComponent } from './challenge/challenge.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ChallengeComponent } from './challenge/challenge.component';
+import { HomeComponent } from './home/home.component';
+import { IdeaComponent } from './idea/idea.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { PageProfilComponent } from '../app/page-profil/page-profil.component';
 
 const routes: Routes = [
@@ -14,8 +14,7 @@ const routes: Routes = [
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'idea', component: IdeaComponent },
   { path: 'profil', component: PageProfilComponent },
-
-  // sinon rediriger vers
+  // Sinon rediriger vers la page principale
   {path: '**', redirectTo: ''}
 ];
 
@@ -23,4 +22,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {}

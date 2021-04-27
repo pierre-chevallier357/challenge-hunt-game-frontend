@@ -11,12 +11,12 @@ import { Defi } from '../defi';
   templateUrl: './page-profil.component.html',
   styleUrls: ['./page-profil.component.scss']
 })
+
 export class PageProfilComponent implements OnInit {
   chami!: Chami;
   defi = this.http.get<Defi>('https://ttg-xi.herokuapp.com/api/defis/');
 
-  constructor(private chamiService: ChamiService, private defiService: DefiService, private http: HttpClient) {
-  }
+  constructor(private chamiService: ChamiService, private defiService: DefiService, private http: HttpClient) {}
 
   ngOnInit(): void {
     // TODO: décommenter lorsque les routes seront fonctionnelles
