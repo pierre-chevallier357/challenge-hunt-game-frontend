@@ -5,5 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class VisiteService {
 
-  constructor() { }
+  private visiteUrl = 'https://ttg-xi.herokuapp.com/api/visite/';
+
+  constructor(private http: HttpClient) {
+  }
+
+  getVisiteByidVisite(idVisite: number) {
+    const url = `${this.visiteUrl}${idVisite}`;
+
+    return this.http.get<Visite>(url);
+  }
+
+  getAllArret() {
+    return this.http.get<Visite[]>(this.visiteUrl);
+  }
 }
