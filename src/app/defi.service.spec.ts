@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DefisService } from './defis.service';
+import { DefiService } from './defi.service';
 
-describe('DefisService', () => {
-  let service: DefisService;
+describe('DefiService', () => {
+  let service: DefiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
