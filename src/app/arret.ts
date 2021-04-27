@@ -1,3 +1,7 @@
 export interface arret {
-  idArret: number
+  idArret: number;
+  idDefi: string;
+  nom: string;
+  code: string;
+  lienMap: string;
 }
