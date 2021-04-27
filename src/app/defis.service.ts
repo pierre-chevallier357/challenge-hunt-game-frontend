@@ -5,5 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class DefisService {
 
-  constructor() { }
+  private defisUrl = 'https://ttg-xi.herokuapp.com/api/defis/';
+
+  constructor(private http: HttpClient) {
+  }
+
+  getPrivateByUid(idDefi: string) {
+    const url = `${this.defisUrl}${idDefi}`;
+
+    return this.http.get<Defi>(url);
+  }
+
+  getAllDefis() {
+    return this.http.get<Defi[]>(this.defisUrl);
+  }
 }
