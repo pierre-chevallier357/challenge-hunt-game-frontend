@@ -12,11 +12,9 @@
 <div *ngIf="defisObs | async as defis">
 
   <table-challenge [DATA_SOURCE]="defis"></table-challenge>
-  <table>
     <pre>
       {{ defis | json}}
     </pre>
-  </table>
 </div>
 <br/><br/><br/><br/><br/>
 
