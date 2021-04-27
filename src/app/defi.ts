@@ -7,7 +7,7 @@ enum DefiType{
 }
 
 export interface Defi {
-  idDefi: string
+  idDefi: string;
   uid: number;
   titre: string;
   defiType: DefiType;
