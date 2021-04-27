@@ -1,19 +1,14 @@
 <!-- TABLE DES CHAMIS -->
 <h2>Chamis</h2>
-
 <table *ngIf="chamisObs | async as chamis">
   <pre>
     {{ chamis | json}}
   </pre>
 </table>
-
-<br /><br />
-
+<br/><br/>
 
 <!-- TABLE DES DEFIS -->
 <h2>Défis</h2>
-
-<!-- Les afficher -->
 <div *ngIf="defisObs | async as defis">
 
   <table-challenge [DATA_SOURCE]="defis"></table-challenge>
@@ -23,10 +18,7 @@
     </pre>
   </table>
 </div>
-
-
-<br /><br /><br /><br /><br />
-
+<br/><br/><br/><br/><br/>
 
 <!-- CARTE -->
 <h2>Carte du composant</h2>
@@ -51,9 +43,9 @@
     </td>
   </tr>
 </table>
+<br/>
 
-<br />
-
+<!-- DEBUG TEMPORAIRE -->
 <pre>
   {{defisObs | async | json}}
 </pre>
