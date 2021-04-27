@@ -11,7 +11,7 @@ export class ArretService {
   }
 
   getArretByidArret(idArret: number) {
-    const url = `${this.defiUrl}${idArret}`;
+    const url = `${this.arretUrl}${idArret}`;
 
     return this.http.get<Arret>(url);
   }
