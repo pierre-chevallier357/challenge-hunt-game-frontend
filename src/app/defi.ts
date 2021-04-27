@@ -1,4 +1,4 @@
-enum defiType{
+enum DefiType{
 	fun,
 	enigme,
 	challenge,
