@@ -4,15 +4,11 @@ import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 import { Router } from '@angular/router';
 
 import firebase from 'firebase/app';
+import { Chamis } from './chamis';
 
 export interface ErrorManager {
   ChamisTableErrror : boolean,
   DefisTableErrror : boolean,
-}
-export interface Chamis {
-  login: string,
-  age: number,
-  nb_defis: number
 }
 export interface Defi {
   id: string,

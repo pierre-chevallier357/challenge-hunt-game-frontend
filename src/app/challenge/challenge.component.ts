@@ -3,17 +3,18 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 
-import { DefiService } from '../defi.service';
-import { Defi } from '../defi';
+import { Chamis } from '../chamis';
 
 export interface ErrorManager {
   ChamisTableErrror : boolean,
   DefisTableErrror : boolean,
 }
-export interface Chamis {
-  login: string,
-  age: number,
-  nb_defis: number
+export interface Defi {
+  id: string,
+  titre: string,
+  auteur: string,
+  description: string,
+  datedecreation: string
 }
 export interface SearchResultsChamis {
   total: number;
@@ -50,7 +51,7 @@ export class ChallengeComponent{
   title: any;
 
 
-  constructor(private defiService: DefiService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
 
