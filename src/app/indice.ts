@@ -1,4 +1,4 @@
-export interface indice {
+export interface Indice {
   idIndice: number;
   idDefi: string;
   numero: number;

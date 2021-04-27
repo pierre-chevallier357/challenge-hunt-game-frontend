@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { YagaModule } from '@yaga/leaflet-ng2';
 
 import { environment } from '../environments/environment';
@@ -56,7 +57,8 @@ import 'leaflet/dist/images/marker-shadow.png';
     MatMenuModule,
     YagaModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]
