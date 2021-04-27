@@ -6,7 +6,7 @@ enum DefiType{
 	franchement_mec
 }
 
-export interface Chami {
+export interface Defi {
   idDefi: string
   uid: number;
   titre: string;
