@@ -3,11 +3,14 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 
-import { Chamis } from '../chamis';
-
 export interface ErrorManager {
-  ChamisTableErrror : boolean,
-  DefisTableErrror : boolean,
+  ChamisTableError : boolean,
+  DefisTableError : boolean,
+}
+export interface Chamis {
+  login: string,
+  age: number,
+  nb_defis: number
 }
 export interface Defi {
   id: string,
@@ -39,8 +42,8 @@ export class ChallengeComponent{
   @Input() auth!: AngularFireAuth;
 
   errorManager: ErrorManager = ({
-    ChamisTableErrror : false,
-    DefisTableErrror : false
+    ChamisTableError : false,
+    DefisTableError : false
   });
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
