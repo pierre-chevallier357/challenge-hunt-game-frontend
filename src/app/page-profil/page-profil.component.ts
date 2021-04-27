@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { ChamiService } from '../chami.service';
 import { Chami } from '../chami';
+import { DefiService } from '../defi.service';
+import { Defi } from '../defi';
 
 @Component({
   selector: 'app-page-profil',
@@ -9,8 +13,9 @@ import { Chami } from '../chami';
 })
 export class PageProfilComponent implements OnInit {
   chami!: Chami;
+  defi = this.http.get<Defi>('https://ttg-xi.herokuapp.com/api/defis/');
 
-  constructor(private chamiService: ChamiService) {
+  constructor(private chamiService: ChamiService, private defiService: DefiService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -22,5 +27,6 @@ export class PageProfilComponent implements OnInit {
       .subscribe(chami => this.chami = chami);*/
     this.chamiService.getChamiByUid(1)
       .subscribe(chami => this.chami = chami); // TODO: à remplacer par le code au dessus
+    this.defi = this.defiService.getDefiByUid(1);
   }
 }

@@ -18,6 +18,11 @@ export class DefiService {
     return this.http.get<Defi>(url);
   }
 
+  getDefiByUid(uid: number) {
+    const url = `${this.defiUrl}${uid}`;
+    return this.http.get<Defi>(url);
+  }
+
   getAllDefi() {
     return this.http.get<Defi[]>(this.defiUrl);
   }
