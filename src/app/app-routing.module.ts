@@ -6,14 +6,14 @@ import { HomeComponent } from './home/home.component';
 import { IdeaComponent } from './idea/idea.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
-import { PageProfilComponent } from '../app/page-profil/page-profil.component';
+import { PageProfilComponent } from './page-profil/page-profil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'challenge', component: ChallengeComponent },
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'idea', component: IdeaComponent },
-  { path: 'profil', component: PageProfilComponent },
+  { path: 'profil/:uid', component: PageProfilComponent },
   // Sinon rediriger vers la page principale
   {path: '**', redirectTo: ''}
 ];
