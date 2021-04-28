@@ -14,3 +14,8 @@
     Rule number 2: A moving target is harder to kill <br>
   </tr>
 </table>
+
+<h2>Défis</h2>
+<div *ngIf="defisObs | async as defis">
+  <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+</div>
