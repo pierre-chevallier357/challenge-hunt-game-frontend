@@ -1,1 +1,15 @@
 <h1 *ngIf="chami">Profil de {{ chami.pseudo }}</h1>
+<div *ngIf="defisObs | async as defis">
+  <p>SALUT</p>
+  <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+  <table border="1">
+    <tr><th>Id</th><th>Titre</th><th>Mots clés</th><th>Description</th><th>Durée</th></tr>
+    <tr *ngFor="let defi of defis">
+      <td>{{defi.idDefi}}</td>
+      <td>{{defi.titre}}</td>
+      <td>{{defi.motsClefs}}</td>
+      <td>{{defi.description}}</td>
+      <td>{{defi.duree}}</td>
+    </tr>
+  </table>
+</div>
