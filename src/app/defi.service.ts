@@ -8,19 +8,19 @@ import { Defi } from './defi';
 export class DefiService {
 
   private defiUrl = 'https://ttg-xi.herokuapp.com/api/defis/';
+  private chamisUrl = 'https://ttg-xi.herokuapp.com/api/chamis/';
 
   constructor(private http: HttpClient) {
   }
 
   getDefiByidDefi(idDefi: string) {
     const url = `${this.defiUrl}${idDefi}`;
-
     return this.http.get<Defi>(url);
   }
 
   getDefiByUid(uid: number) {
-    const url = `${this.defiUrl}${uid}`;
-    return this.http.get<Defi>(url);
+    const url = `${this.chamisUrl}${uid}`+`/defis`;
+    return this.http.get<Defi[]>(url);
   }
 
   getAllDefi() {

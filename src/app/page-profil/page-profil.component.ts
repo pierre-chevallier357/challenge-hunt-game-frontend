@@ -5,6 +5,7 @@ import { ChamiService } from '../chami.service';
 import { Chami } from '../chami';
 import { DefiService } from '../defi.service';
 import { Defi } from '../defi';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-page-profil',
@@ -14,7 +15,7 @@ import { Defi } from '../defi';
 
 export class PageProfilComponent implements OnInit {
   chami!: Chami;
-  defi = this.http.get<Defi>('https://ttg-xi.herokuapp.com/api/defis/');
+  defisObs:Observable<Defi[]> = this.defiService.getAllDefi();
 
   constructor(private chamiService: ChamiService, private defiService: DefiService, private http: HttpClient) {}
 
@@ -27,6 +28,6 @@ export class PageProfilComponent implements OnInit {
       .subscribe(chami => this.chami = chami);*/
     this.chamiService.getChamiByUid(1)
       .subscribe(chami => this.chami = chami); // TODO: à remplacer par le code au dessus
-    this.defi = this.defiService.getDefiByUid(1);
+    this.defisObs = this.defiService.getDefiByUid(1);
   }
 }

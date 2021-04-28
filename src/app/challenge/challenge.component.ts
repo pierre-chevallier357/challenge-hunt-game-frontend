@@ -8,12 +8,10 @@ import { Chami } from '../chami';
 import { Defi } from '../defi';
 import { Observable } from 'rxjs';
 
-
 export interface SearchResultsChamis {
   total: number;
   results: Array<Chami>;
 }
-
 
 @Component({
   selector: 'app-challenge',
@@ -27,10 +25,10 @@ export class ChallengeComponent {
   tileLayerUrl = OSM_TILE_LAYER_URL;
 
   chamisObs:Observable<Chami[]> = this.chamiService.getAllChamis();
-  defisObs:Observable<Defi[]> = this.defisService.getAllDefi();
-
-  constructor(private defisService : DefiService, private chamiService : ChamiService) {
-  }
+  defisObs:Observable<Defi[]> = this.defiService.getAllDefi();
 
   @Input() auth!: AngularFireAuth;
+
+  constructor(private defiService : DefiService, private chamiService : ChamiService) {
+  }
 }

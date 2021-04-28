@@ -10,7 +10,6 @@
 <!-- TABLE DES DEFIS -->
 <h2>Défis</h2>
 <div *ngIf="defisObs | async as defis">
-
   <table-challenge [DATA_SOURCE]="defis"></table-challenge>
     <pre>
       {{ defis | json}}
