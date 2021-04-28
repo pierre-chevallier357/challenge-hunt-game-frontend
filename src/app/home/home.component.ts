@@ -10,7 +10,7 @@ import { Defi } from '../interface/defi';
 
 export class HomeComponent implements OnInit {
 
-  defisObs:Observable<Defi[]> = this.defiService.getAllDefi();
+  defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
 
   constructor(private defiService : DefiService) {}
 

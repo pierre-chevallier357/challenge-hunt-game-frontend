@@ -1,4 +1,5 @@
 <h2 *ngIf="chami">Profil de {{ chami.pseudo }}</h2>
+
 <div *ngIf="defisObs | async as defis">
   <table-challenge [DATA_SOURCE]="defis"></table-challenge>
 </div>

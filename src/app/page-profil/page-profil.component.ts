@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { ChamiService } from '../service/chami.service';
@@ -5,7 +6,6 @@ import { Chami } from '../interface/chami';
 import { DefiService } from '../service/defi.service';
 import { Defi } from '../interface/defi';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page-profil',
@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PageProfilComponent implements OnInit {
   chami!: Chami;
-  defisObs: Observable<Defi[]> = this.defiService.getAllDefi();
+  defisObs: Observable<Defi[]> = this.defiService.getAllDefis();
 
   constructor(private chamiService: ChamiService, private defiService: DefiService, private route: ActivatedRoute) {}
 

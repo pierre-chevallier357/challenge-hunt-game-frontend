@@ -19,7 +19,7 @@ export class TableChallengeComponent implements AfterViewInit {
 
   @Input() DATA_SOURCE:Defi[] = [];
   @ViewChild(MatSort) sort!: MatSort;
-   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
    ngOnInit() {
     this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);

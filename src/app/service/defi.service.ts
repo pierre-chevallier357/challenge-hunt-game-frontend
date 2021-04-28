@@ -23,7 +23,7 @@ export class DefiService {
     return this.http.get<Defi[]>(url);
   }
 
-  getAllDefi() {
+  getAllDefis() {
     return this.http.get<Defi[]>(this.defiUrl);
   }
 }

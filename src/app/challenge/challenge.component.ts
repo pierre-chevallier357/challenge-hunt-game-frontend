@@ -25,7 +25,7 @@ export class ChallengeComponent {
   tileLayerUrl = OSM_TILE_LAYER_URL;
 
   chamisObs:Observable<Chami[]> = this.chamiService.getAllChamis();
-  defisObs:Observable<Defi[]> = this.defiService.getAllDefi();
+  defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
 
   @Input() auth!: AngularFireAuth;
 
