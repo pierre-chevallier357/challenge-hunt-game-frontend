@@ -48,5 +48,3 @@ Thumbs.db
 
 # Cache identifiants Firebase
 /src/environments
-package-lock.json
-package.json
