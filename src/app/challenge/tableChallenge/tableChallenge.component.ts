@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator }  from '@angular/material/paginator';
 import { Input } from '@angular/core';
 
-import { Defi } from 'src/app/defi';
+import { Defi } from 'src/app/interface/defi';
 
 @Component({
   selector: 'table-challenge',

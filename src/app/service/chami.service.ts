@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Chami } from './chami';
+import { Chami } from '../interface/chami';
 
 @Injectable({
   providedIn: 'root'

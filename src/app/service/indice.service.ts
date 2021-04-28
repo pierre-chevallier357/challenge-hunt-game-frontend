@@ -1,4 +1,4 @@
-import { Indice } from './indice';
+import { Indice } from '../interface/indice';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

@@ -20,8 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ChallengeComponent } from './challenge/challenge.component';
-import { ChamiService } from './chami.service';
-import { DefiService } from './defi.service';
+import { ChamiService } from './service/chami.service';
+import { DefiService } from './service/defi.service';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { IdeaComponent } from './idea/idea.component';

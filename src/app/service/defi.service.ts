@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Defi } from './defi';
+import { Defi } from '../interface/defi';
 
 @Injectable({
   providedIn: 'root'

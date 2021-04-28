@@ -1,11 +1,11 @@
-import { ChamiService } from './../chami.service';
-import { DefiService } from './../defi.service';
+import { ChamiService } from '../service/chami.service';
+import { DefiService } from '../service/defi.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
 
-import { Chami } from '../chami';
-import { Defi } from '../defi';
+import { Chami } from '../interface/chami';
+import { Defi } from '../interface/defi';
 import { Observable } from 'rxjs';
 
 export interface SearchResultsChamis {
