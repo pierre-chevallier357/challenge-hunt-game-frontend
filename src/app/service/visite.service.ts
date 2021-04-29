@@ -19,7 +19,7 @@ export class VisiteService {
   }
 
     getVisiteByIdDefi(IdDefi: string) {
-    const url = `${this.defiUrl}${IdDefi}`+`/visite`;
+    const url = `${this.defiUrl}${IdDefi}`+`/visites`;
     return this.http.get<Visite[]>(url);
   }
 
