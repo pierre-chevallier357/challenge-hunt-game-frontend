@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'idea', component: IdeaComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
+  { path: 'defi/:id', component: DefiDetails },
   // Sinon rediriger vers la page principale
   {path: '**', redirectTo: ''}
 ];
