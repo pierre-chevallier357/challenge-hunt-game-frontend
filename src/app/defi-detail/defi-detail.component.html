@@ -2,9 +2,9 @@
 <h2 >Defi  {{ defi.idDefi }}</h2>
 <h3 >Defi  {{ defi.titre }}</h3>
 
-<p>
+<p *ngIf="chami">
 Type: {{defi.defiType}} <br>
-Auteur: {{defi.uid}} <br>
+Auteur: {{chami.pseudo}} <br>
 Date de creation: {{defi.dateCreation}} <br>
 Date de modification: {{defi.dateModification}} <br>
 Version: {{defi.versionD}} <br>
