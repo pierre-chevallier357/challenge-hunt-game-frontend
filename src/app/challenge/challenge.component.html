@@ -16,34 +16,10 @@
       {{ defis | json}}
     </pre>
 </div>
-<br/><br/><br/><br/><br/>
-
-<!-- CARTE -->
-<h2>Carte du composant</h2>
-<table>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>
-      ici
-    </td>
-    <td colspan="3">
-      <yaga-map [lng]="5.724524" [lat]="45.188529" [zoom]="13">
-        <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
-        <yaga-marker [lng]="5.724524" [lat]="45.188529" [display]="true" [opacity]="1">
-          <yaga-icon [iconUrl]="iconMarker"></yaga-icon>
-        </yaga-marker>
-      </yaga-map>
-    </td>
-  </tr>
-</table>
 <br/>
 
-<!-- DEBUG TEMPORAIRE -->
-<pre>
-  {{defisObs | async | json}}
-</pre>
+<!-- CARTE -->
+<h2>Carte</h2>
+
+<app-map></app-map>
+<br/>

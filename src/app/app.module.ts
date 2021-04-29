@@ -26,6 +26,7 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { IdeaComponent } from './idea/idea.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { MapComponent } from './map/map.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { PageProfilComponent } from './page-profil/page-profil.component';
 import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
@@ -43,6 +44,7 @@ import { DefiDetailComponent } from './defi-detail/defi-detail.component';
     IdeaComponent,
     PageProfilComponent,
     TableChallengeComponent,
+    MapComponent,
     DefiDetailComponent
   ],
   imports: [
