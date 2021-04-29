@@ -21,11 +21,10 @@ Duree: {{defi.duree}} min <br>
 <br>
 <h4 >Avis</h4>
 <div *ngIf="visiteObs | async as visites">
-<table *ngFor="let visite of visites">
-
+<table *ngFor="let visite of visites" border="2">
 
   <tr>
-    <td>{{visite.note}}</td>
+    <td>{{visite.note}}/5</td>
     <td>{{visite.commentaire}}</td>
     <td>{{visite.dateVisite}}</td>
   </tr>
