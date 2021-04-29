@@ -18,3 +18,16 @@ Duree: {{defi.duree}} <br>
 -  {{defi.prologue}}
 </p>
 </div>
+<br>
+<h4 >Avis</h4>
+<div *ngIf="visiteObs | async as visites">
+<table *ngFor="let visite of visites">
+
+
+  <tr>
+    <td>{{visite.note}}</td>
+    <td>{{visite.commentaire}}</td>
+    <td>{{visite.dateVisite}}</td>
+  </tr>
+</table>
+</div>
