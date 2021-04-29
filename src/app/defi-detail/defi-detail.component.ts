@@ -27,8 +27,9 @@ export class DefiDetailComponent implements OnInit {
     const idDefi = String(routeParams.get('id'));
     this.defiService.getDefiByidDefi(idDefi).subscribe(defi => {
       this.defi = defi;
-      this.chamiService.getChamiByUid(defi.uid).subscribe(chami => this.chami = chami);});
+      this.chamiService.getChamiByUid(defi.uid).subscribe(chami => this.chami = chami);
       this.visiteObs = this.visiteService.getVisiteByIdDefi(this.defi.idDefi);
+    });
   }
 
 }
