@@ -1,7 +1,8 @@
-import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { ChallengeComponent } from './challenge/challenge.component';
+import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { HomeComponent } from './home/home.component';
 import { IdeaComponent } from './idea/idea.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'profil/:uid', component: PageProfilComponent },
   { path: 'defi/:id', component: DefiDetailComponent },
   // Sinon rediriger vers la page principale
-  {path: '**', redirectTo: ''}
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

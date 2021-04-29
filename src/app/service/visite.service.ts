@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Visite } from '../interface/visite';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VisiteService {
 
+export class VisiteService {
   private visiteUrl = 'https://ttg-xi.herokuapp.com/api/visite/';
   private defiUrl = 'https://ttg-xi.herokuapp.com/api/defis/';
 
@@ -18,7 +19,7 @@ export class VisiteService {
     return this.http.get<Visite>(url);
   }
 
-    getVisiteByIdDefi(IdDefi: string) {
+  getVisiteByIdDefi(IdDefi: string) {
     const url = `${this.defiUrl}${IdDefi}`+`/visites`;
     return this.http.get<Visite[]>(url);
   }

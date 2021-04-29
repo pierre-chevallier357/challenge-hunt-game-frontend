@@ -1,6 +1,7 @@
-import { Indice } from '../interface/indice';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { Indice } from '../interface/indice';
 
 @Injectable({
   providedIn: 'root'

@@ -6,7 +6,6 @@ import { MatPaginator }  from '@angular/material/paginator';
 import { Router, ActivatedRoute, NavigationExtras  } from '@angular/router';
 
 import { Defi } from 'src/app/interface/defi';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'table-challenge',
@@ -23,11 +22,7 @@ export class TableChallengeComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    ) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);
@@ -40,16 +35,11 @@ export class TableChallengeComponent implements AfterViewInit {
 
   // TODO - mettre en service
   async ouvrirPageDefi(idDefi: string): Promise<void> {
-    /*
-    this.router.navigateByUrl("defis/"+idDefi);
-    console.log("ca marche");
-    */
     await this.router.navigate([`/defi/${idDefi}`], { relativeTo: this.route });
-    //await this.router.navigateByUrl('https://ttg-xi.herokuapp.com/defi/'+idDefi);s
   }
 
   // TODO - mettre en service
-  async ouvrirPageProfil(idProfil: string): Promise<void>{
+  async ouvrirPageProfil(idProfil: string): Promise<void> {
     await this.router.navigate([`/profil/${idProfil}`], { relativeTo: this.route });
   }
 }

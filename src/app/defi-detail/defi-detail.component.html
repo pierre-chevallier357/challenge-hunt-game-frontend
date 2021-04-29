@@ -1,37 +1,3 @@
-<!--
-<div *ngIf="defi">
-<h2 >Defi  {{ defi.idDefi }}</h2>
-<h3 >Defi  {{ defi.titre }}</h3>
-
-<p *ngIf="chami">
-Type: {{defi.defiType}} <br>
-Auteur: {{chami.pseudo}} <br>
-Date de creation: {{defi.dateCreation}} <br>
-Date de modification: {{defi.dateModification}} <br>
-Version: {{defi.versionD}} <br>
-Arret: {{defi.idArret}} <br>
-Mots clefs: {{defi.motsClefs}} <br>
-Points: {{defi.points}} <br>
-Duree: {{defi.duree}} min <br>
-</p>
-<p>
-  Prologue:<br>
--  {{defi.prologue}}
-</p>
-</div>
-<br>
-<h4 >Avis</h4>
-<div *ngIf="visiteObs | async as visites">
-<table *ngFor="let visite of visites" border="2">
-
-  <tr>
-    <td>{{visite.note}}/5</td>
-    <td>{{visite.commentaire}}</td>
-    <td>{{visite.dateVisite}}</td>
-  </tr>
-</table>
-</div>
--->
 <div *ngIf="defiDetail$ | async as defiDetailObs">
 
   <h2>Defi {{ defiDetailObs.defi.idDefi }}</h2>

@@ -42,9 +42,9 @@ import 'leaflet/dist/images/marker-shadow.png';
     MyChallengesComponent,
     ChallengeComponent,
     IdeaComponent,
+    MapComponent,
     PageProfilComponent,
-    TableChallengeComponent,
-    MapComponent
+    TableChallengeComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -53,18 +53,17 @@ import 'leaflet/dist/images/marker-shadow.png';
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatIconModule,
     MatInputModule,
-    MatSelectModule,
-    MatMenuModule,
-    YagaModule,
-    HttpClientModule,
-    MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatMenuModule,
+    YagaModule
   ],
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]
