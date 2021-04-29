@@ -33,6 +33,7 @@ export class TableChallengeComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator
   }
 
+  // NE MARCHE PAS ENCORE
   ouvrirPageDefi(idDefi: string): void {
     /*
     this.router.navigateByUrl("defis/"+idDefi);

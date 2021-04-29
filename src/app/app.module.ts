@@ -9,18 +9,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { YagaModule } from '@yaga/leaflet-ng2';
 
-import { MatSortModule } from '@angular/material/sort';
-import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { ChamiService } from './service/chami.service';
+import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { DefiService } from './service/defi.service';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
@@ -32,11 +32,11 @@ import { PageProfilComponent } from './page-profil/page-profil.component';
 import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
 
 import 'leaflet/dist/images/marker-shadow.png';
-import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DefiDetailComponent,
     HomeComponent,
     LeaderboardComponent,
     MyChallengesComponent,
@@ -44,8 +44,7 @@ import { DefiDetailComponent } from './defi-detail/defi-detail.component';
     IdeaComponent,
     PageProfilComponent,
     TableChallengeComponent,
-    MapComponent,
-    DefiDetailComponent
+    MapComponent
   ],
   imports: [
     AngularFireAuthModule,
