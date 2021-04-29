@@ -17,7 +17,7 @@ export class DefiDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const idDefi = String(routeParams.get('idDefi'));
+    const idDefi = String(routeParams.get('id'));
     this.defiService.getDefiByidDefi(idDefi).subscribe(defi => this.defi = defi);
   }
 
