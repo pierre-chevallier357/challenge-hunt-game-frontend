@@ -1,6 +1,6 @@
+import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { ChallengeComponent } from './challenge/challenge.component';
 import { HomeComponent } from './home/home.component';
 import { IdeaComponent } from './idea/idea.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'idea', component: IdeaComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
-  { path: 'defi/:id', component: DefiDetails },
+  { path: 'defi/:id', component: DefiDetailComponent },
   // Sinon rediriger vers la page principale
   {path: '**', redirectTo: ''}
 ];

@@ -1,1 +1,18 @@
-<p>defi-detail works!</p>
+<h2 *ngIf="defi">Defi  {{ defi.idDefi }}</h2>
+<h3 *ngIf="defi">Defi  {{ defi.titre }}</h3>
+
+<p>
+Type: {{defi.defiType}} <br>
+Auteur: {{defi.uid}} <br>
+Date de creation: {{defi.dateCreation}} <br>
+Date de modification: {{defi.dateModification}} <br>
+Version: {{defi.versionD}} <br>
+Arret: {{defi.idArret}} <br>
+Mots clefs: {{defi.motsClefs}} <br>
+Points: {{defi.points}} <br>
+Duree: {{defi.duree}} <br>
+</p>
+<p>
+  Prologue:<br>
+-  {{defi.prologue}}
+</p>
