@@ -1,5 +1,6 @@
-<h2 *ngIf="defi">Defi  {{ defi.idDefi }}</h2>
-<h3 *ngIf="defi">Defi  {{ defi.titre }}</h3>
+<div *ngIf="defi">
+<h2 >Defi  {{ defi.idDefi }}</h2>
+<h3 >Defi  {{ defi.titre }}</h3>
 
 <p>
 Type: {{defi.defiType}} <br>
@@ -16,3 +17,4 @@ Duree: {{defi.duree}} <br>
   Prologue:<br>
 -  {{defi.prologue}}
 </p>
+</div>
