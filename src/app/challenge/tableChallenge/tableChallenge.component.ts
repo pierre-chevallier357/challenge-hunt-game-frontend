@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 })
 
 export class TableChallengeComponent implements AfterViewInit {
-  displayedColumns: string[] = ['idDefi', 'titre', 'motsClefs', 'description','duree', 'tenter'];
+  displayedColumns: string[] = ['uid', 'titre', 'motsClefs', 'description','duree', 'tenter'];
 
   dataSource !:MatTableDataSource<Defi>;
 
@@ -38,15 +38,18 @@ export class TableChallengeComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator
   }
 
-  // NE MARCHE PAS ENCORE
+  // TODO - mettre en service
   async ouvrirPageDefi(idDefi: string): Promise<void> {
     /*
     this.router.navigateByUrl("defis/"+idDefi);
     console.log("ca marche");
     */
-    const url : string = '/defi/'+ idDefi;
     await this.router.navigate([`/defi/${idDefi}`], { relativeTo: this.route });
-    //await this.router.navigateByUrl('https://ttg-xi.herokuapp.com/defi/'+idDefi);
-    console.log("ca marche");
+    //await this.router.navigateByUrl('https://ttg-xi.herokuapp.com/defi/'+idDefi);s
+  }
+
+  // TODO - mettre en service
+  async ouvrirPageProfil(idProfil: string): Promise<void>{
+    await this.router.navigate([`/profil/${idProfil}`], { relativeTo: this.route });
   }
 }

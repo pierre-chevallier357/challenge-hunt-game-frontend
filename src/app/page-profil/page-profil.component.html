@@ -1,5 +1,10 @@
-<h2 *ngIf="chami">Profil de {{ chami.pseudo }}</h2>
 
-<div *ngIf="defisObs | async as defis">
-  <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+<div *ngIf="profilDetail$ | async as profilObs">
+  <!-- chamis du UID-->
+  <h2> de {{ profilObs.chami.pseudo }}</h2>
+
+  <!-- DEFIS cree? par le UID-->
+  <div *ngIf="profilObs.defi$ | async as defis">
+    <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+  </div>
 </div>
