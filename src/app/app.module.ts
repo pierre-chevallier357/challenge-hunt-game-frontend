@@ -31,6 +31,7 @@ import { PageProfilComponent } from './page-profil/page-profil.component';
 import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
 
 import 'leaflet/dist/images/marker-shadow.png';
+import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import 'leaflet/dist/images/marker-shadow.png';
     ChallengeComponent,
     IdeaComponent,
     PageProfilComponent,
-    TableChallengeComponent
+    TableChallengeComponent,
+    DefiDetailComponent
   ],
   imports: [
     AngularFireAuthModule,
