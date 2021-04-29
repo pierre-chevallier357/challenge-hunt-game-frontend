@@ -16,6 +16,7 @@ export class QuestionService {
     const url = `${this.questionUrl}${idQuestion}`;
 
     return this.http.get<Question>(url);
+
   }
 
   getAllQuestion() {
