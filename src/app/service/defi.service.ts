@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Defi } from '../interface/defi';
 
 @Injectable({
@@ -13,17 +14,17 @@ export class DefiService {
   constructor(private http: HttpClient) {
   }
 
-  getDefiByidDefi(idDefi: string) {
+  getDefiByidDefi(idDefi: string):Observable<Defi> {
     const url = `${this.defiUrl}${idDefi}`;
     return this.http.get<Defi>(url);
   }
 
-  getDefiByUid(uid: number) {
+  getDefiByUid(uid: number):Observable<Defi[]> {
     const url = `${this.chamisUrl}${uid}`+`/defis`;
     return this.http.get<Defi[]>(url);
   }
 
-  getAllDefis() {
+  getAllDefis() :Observable<Defi[]>{
     return this.http.get<Defi[]>(this.defiUrl);
   }
 }

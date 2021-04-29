@@ -35,7 +35,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>TENTER DÉFI</th>
       <td mat-cell *matCellDef="let element">
         <!-- NE MARCHE PAS ENCORE -->
-        <button type="button" class="btn btn-primary-outline pull-right" (click)="ouvrirPageDefi(element.idDefi);"><i class="fa fa-plus"></i>Jouer</button>
+        <button type="button" class="btn btn-primary-outline pull-right" (click)="ouvrirPageDefi(element.idDefi);"><i class="fa fa-plus"></i>Jouer {{element.idDefi}}</button>
       </td>
     </ng-container>
 

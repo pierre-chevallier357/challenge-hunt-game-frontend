@@ -3,9 +3,10 @@ import { Input } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator }  from '@angular/material/paginator';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras  } from '@angular/router';
 
 import { Defi } from 'src/app/interface/defi';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'table-challenge',
@@ -22,7 +23,11 @@ export class TableChallengeComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private router: Router) {}
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    ) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);
@@ -34,11 +39,14 @@ export class TableChallengeComponent implements AfterViewInit {
   }
 
   // NE MARCHE PAS ENCORE
-  ouvrirPageDefi(idDefi: string): void {
+  async ouvrirPageDefi(idDefi: string): Promise<void> {
     /*
     this.router.navigateByUrl("defis/"+idDefi);
     console.log("ca marche");
     */
-    this.router.navigateByUrl('https://ttg-xi.herokuapp.com/api/defis/'+idDefi);
+    const url : string = '/defi/'+ idDefi;
+    await this.router.navigate([`/defi/${idDefi}`], { relativeTo: this.route });
+    //await this.router.navigateByUrl('https://ttg-xi.herokuapp.com/defi/'+idDefi);
+    console.log("ca marche");
   }
 }
