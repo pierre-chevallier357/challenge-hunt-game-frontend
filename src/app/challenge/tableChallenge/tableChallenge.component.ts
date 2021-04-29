@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Input } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator }  from '@angular/material/paginator';
-import { Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Defi } from 'src/app/interface/defi';
 
@@ -13,7 +14,7 @@ import { Defi } from 'src/app/interface/defi';
 })
 
 export class TableChallengeComponent implements AfterViewInit {
-  displayedColumns: string[] = ['idDefi', 'titre', 'motsClefs', 'description','duree'];
+  displayedColumns: string[] = ['idDefi', 'titre', 'motsClefs', 'description','duree', 'tenter'];
 
   dataSource !:MatTableDataSource<Defi>;
 
@@ -21,12 +22,22 @@ export class TableChallengeComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-   ngOnInit() {
+  constructor(private router: Router) {}
+
+  ngOnInit() {
     this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator
+  }
+
+  ouvrirPageDefi(idDefi: string): void {
+    /*
+    this.router.navigateByUrl("defis/"+idDefi);
+    console.log("ca marche");
+    */
+    this.router.navigateByUrl('https://ttg-xi.herokuapp.com/api/defis/'+idDefi);
   }
 }

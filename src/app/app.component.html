@@ -57,7 +57,7 @@
     <div *ngFor="let button of sidebar">
       <button mat-menu-item
               (click)="drawer.toggle()"
-              [routerLink]="button.rooterLink">
+              [routerLink]="button.routerLink">
         <mat-icon>{{button.logo}}</mat-icon>
         <span>{{button.title}}</span>
       </button>

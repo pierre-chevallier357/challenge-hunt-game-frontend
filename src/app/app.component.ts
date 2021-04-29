@@ -13,7 +13,7 @@ export interface ErrorManager {
 export interface SidebarButton {
   title: string;
   logo: string;
-  rooterLink: string;
+  routerLink: string;
 }
 
 @Component({
@@ -32,22 +32,22 @@ export class AppComponent {
     {
       title : 'Page d\'accueil',
       logo: 'home',
-      rooterLink: '/'
+      routerLink: '/'
     },
     {
       title : 'Chercher un défi',
       logo: 'explore',
-      rooterLink: '/challenge'
+      routerLink: '/challenge'
     },
     {
       title : 'Mes visites & défis',
       logo: 'contact_page',
-      rooterLink: '/myChallenges'
+      routerLink: '/myChallenges'
     },
     {
       title : 'Soumettre une idée aux devs',
       logo: 'lightbulb',
-      rooterLink: '/idea'
+      routerLink: '/idea'
     }
   ];
 
@@ -55,8 +55,7 @@ export class AppComponent {
   events: string[] = [];
   opened!: boolean;
 
-  constructor(public auth: AngularFireAuth, private router: Router) {
-  }
+  constructor(public auth: AngularFireAuth, private router: Router) {}
 
   login(): void {
     const provider = new firebase.auth.GoogleAuthProvider();

@@ -30,6 +30,18 @@
       <td mat-cell *matCellDef="let element">{{element.duree}} min</td>
     </ng-container>
 
+    <!-- TENTER DEFI -->
+    <ng-container matColumnDef="tenter">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>TENTER DÉFI</th>
+      <td mat-cell *matCellDef="let element">
+        <!--
+        <button
+        (click)="ouvrirPageDefi(element.idDefi)"
+        [routerLink]="'/challenge'">Jouer</button>-->
+        <button type="button" class="btn btn-primary-outline pull-right" (click)="ouvrirPageDefi(element.idDefi);"><i class="fa fa-plus"></i>Jouer</button>
+      </td>
+    </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
