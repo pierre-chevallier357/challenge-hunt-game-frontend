@@ -24,6 +24,9 @@ export class ChallengeAcceptedComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const idDefi = String(routeParams.get('id'));
     this.defiService.getDefiByidDefi(idDefi).subscribe(defi => this.defi = defi);
-    this.questionObs = this.questionService.getQuestionByidDefi(this.defi.idDefi);
+    this.questionObs = this.questionService.getQuestionByidDefi(idDefi);
+  }
+
+  onSubmit(reponse: string){
   }
 }
