@@ -68,4 +68,4 @@ import 'leaflet/dist/images/marker-shadow.png';
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,10 +1,11 @@
-import { ChamiService } from '../service/chami.service';
-import { DefiService } from '../service/defi.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Chami } from '../interface/chami';
+import { ChamiService } from '../service/chami.service';
 import { Defi } from '../interface/defi';
+import { DefiService } from '../service/defi.service';
+
 import { Observable } from 'rxjs';
 
 export interface SearchResultsChamis {

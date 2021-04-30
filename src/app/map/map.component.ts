@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MultiLineString, FeatureCollection } from 'geojson';
 import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
+
+import { MultiLineString, FeatureCollection } from 'geojson';
 
 @Component({
   selector: 'app-map',

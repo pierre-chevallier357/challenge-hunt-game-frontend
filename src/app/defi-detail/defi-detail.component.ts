@@ -1,4 +1,3 @@
-import { VisiteService } from './../service/visite.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -6,9 +5,11 @@ import { ChamiService } from '../service/chami.service';
 import { Chami } from '../interface/chami';
 import { DefiService } from '../service/defi.service';
 import { Defi } from '../interface/defi';
+import { Visite } from '../interface/visite';
+import { VisiteService } from './../service/visite.service';
+
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
-import { Visite } from '../interface/visite';
 
 export interface DefiDetail {
   defi : Defi,
