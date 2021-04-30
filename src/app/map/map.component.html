@@ -1,11 +1,7 @@
-<yaga-map *ngIf="geoJSON" [lng]="5.724524" [lat]="45.188529" [zoom]="13">
+<yaga-map [lng]="5.726389" [lat]="45.186944" [zoom]="13">
   <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
-  <yaga-marker [lng]="5.724524" [lat]="45.188529" [display]="true" [opacity]="1">
-    <yaga-icon [iconUrl]="iconMarker"></yaga-icon>
-  </yaga-marker>
-  <!-- TODO: Assigner la bonne couleur pour chaque ligne -->
-  <yaga-polyline *ngFor="let feature of geoJSON.features"
-                 [color] = "'rgb(' + color + ')'"
+  <yaga-polyline *ngFor="let feature of (geoJSON | async)!.features"
+                 [color] = "'rgb(' + feature.properties!['COULEUR'] + ')'"
                  [geoJSON] = "feature">
   </yaga-polyline>
 </yaga-map>
