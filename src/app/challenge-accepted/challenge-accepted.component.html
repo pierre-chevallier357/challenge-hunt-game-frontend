@@ -1,1 +1,13 @@
-<p>challenge-accepted works!</p>
+<h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
+<p>
+  {{defi.description}} <br>
+</p>
+<br>
+<div *ngIf="questionObs | async as questions">
+<ul *ngFor="let question of questions">
+{{question.question}} <br>
+<form (ngSubmit)="onSubmit(reponse.value)" >
+  <input #reponse />
+</form>
+</ul>
+</div>
