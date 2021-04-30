@@ -1,1 +1,6 @@
-<p>my-challenges works!</p>
+  <!-- DEFIS crées par le UID-->
+  <div *ngIf="profilObsC.defi$ | async as defis">
+    <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+  </div>
+
+  <!-- AJOUTER VISITES -->

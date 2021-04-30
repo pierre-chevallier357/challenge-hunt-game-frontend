@@ -4,15 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { ChamiService } from '../service/chami.service';
 import { Chami } from '../interface/chami';
 import { DefiService } from '../service/defi.service';
-import { Defi } from '../interface/defi';
+import { Profil } from '../interface/profil';
 
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-
-export interface Profil {
-  chami : Chami,
-  defi$ : Observable<Defi[]>
-}
 
 @Component({
   selector: 'app-page-profil',

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Profil } from '../interface/profil';
 
 @Component({
   selector: 'app-my-challenges',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MyChallengesComponent implements OnInit {
+  @Input() profilObsC!:Profil;
 
   constructor() {}
 
