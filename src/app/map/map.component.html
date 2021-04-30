@@ -1,7 +1,6 @@
 <yaga-map [lng]="5.726389" [lat]="45.186944" [zoom]="13">
   <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
-  <yaga-polyline *ngFor="let feature of (geoJSON | async)?.features"
-                 [color] = "'rgb(' + feature.properties!['COULEUR'] + ')'"
-                 [geoJSON] = "feature">
-  </yaga-polyline>
+  <yaga-geojson *ngIf="geoJSON | async as geoJSON"
+                [data]="geoJSON" [styler]="styler">
+  </yaga-geojson>
 </yaga-map>

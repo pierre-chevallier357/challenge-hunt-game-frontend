@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
+import { OSM_TILE_LAYER_URL, PathOptions } from '@yaga/leaflet-ng2';
 
-import { MultiLineString, FeatureCollection } from 'geojson';
+import { MultiLineString, FeatureCollection, Feature } from 'geojson';
 
 @Component({
   selector: 'app-map',
@@ -18,5 +18,11 @@ export class MapComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+  }
+
+  styler(feature: Feature, pathOptions: PathOptions): PathOptions {
+    pathOptions.color = 'rgb(' + feature.properties?.COULEUR + ')';
+
+    return pathOptions;
   }
 }
