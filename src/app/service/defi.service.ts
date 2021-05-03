@@ -1,31 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { Defi } from '../interface/defi';
-import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DefiService {
 
-  private defiUrl = 'https://ttg-xi.herokuapp.com/api/defis/';
-  private chamisUrl = 'https://ttg-xi.herokuapp.com/api/chamis/';
+  private defiUrl = environment.apiUrl + '/defis/';
+  private chamisUrl = environment.apiUrl + '/chamis/';
 
   constructor(private http: HttpClient) {
   }
 
-  getDefiByidDefi(idDefi: string):Observable<Defi> {
+  getDefiByidDefi(idDefi: string): Observable<Defi> {
     const url = `${this.defiUrl}${idDefi}`;
     return this.http.get<Defi>(url);
   }
 
-  getDefiByUid(uid: number):Observable<Defi[]> {
-    const url = `${this.chamisUrl}${uid}`+`/defis`;
+  getDefiByUid(uid: number): Observable<Defi[]> {
+    const url = `${this.chamisUrl}${uid}` + `/defis`;
     return this.http.get<Defi[]>(url);
   }
 
-  getAllDefis() :Observable<Defi[]>{
+  getAllDefis(): Observable<Defi[]>{
     return this.http.get<Defi[]>(this.defiUrl);
   }
 }

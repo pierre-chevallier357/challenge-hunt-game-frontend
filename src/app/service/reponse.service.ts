@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { Reponse } from '../interface/reponse';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ReponseService {
-  private reponseUrl = 'https://ttg-xi.herokuapp.com/api/reponse/';
+  private reponseUrl = environment.apiUrl + '/reponse/';
 
   constructor(private http: HttpClient) {
   }
 
-  getReponseByquestion(question: number) {
+  getReponseByquestion(question: number): Observable<Reponse> {
     const url = `${this.reponseUrl}${question}`;
     return this.http.get<Reponse>(url);
   }
 
-  getAllArret() {
+  getAllArret(): Observable<Reponse[]> {
     return this.http.get<Reponse[]>(this.reponseUrl);
   }
 }
