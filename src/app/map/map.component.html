@@ -5,7 +5,7 @@
   </yaga-geojson>
 </yaga-map>
 
-<!-- TODO : exemple qui pourra être supprimer -->
+<!-- TODO : exemple qui pourra être supprimé -->
 <input #semStopsSearch (keyup.enter)="searchSemStops(semStopsSearch.value)">
 <ul *ngIf="semStops | async as geoJSON">
   <li *ngFor="let feature of geoJSON.features">
