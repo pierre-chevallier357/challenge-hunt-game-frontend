@@ -1,6 +1,10 @@
   <!-- DEFIS crées par le UID-->
-  <div *ngIf="profilObsC.defi$ | async as defis">
-    <table-challenge [DATA_SOURCE]="defis"></table-challenge>
+
+  <div *ngIf="profilObs$ | async as profil">
+    <pre>
+      {{ profil | json}}
+    </pre>
   </div>
+
 
   <!-- AJOUTER VISITES -->

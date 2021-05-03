@@ -41,11 +41,6 @@ export class AppComponent {
       title : 'Mes visites & défis',
       logo: 'contact_page',
       routerLink: '/myChallenges'
-    },
-    {
-      title : 'Soumettre une idée aux devs',
-      logo: 'lightbulb',
-      routerLink: '/idea'
     }
   ];
 
