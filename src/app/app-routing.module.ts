@@ -1,3 +1,4 @@
+import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
 import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'profil/:uid', component: PageProfilComponent },
   { path: 'defi/:id', component: DefiDetailComponent },
   { path: 'defion/:id', component: ChallengeAcceptedComponent },
+  { path: 'defimaker', component: DefiCreatorComponent },
   // Sinon rediriger vers la page principale
   { path: '**', redirectTo: '' }
 ];

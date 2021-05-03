@@ -1,4 +1,5 @@
 export interface Visite{
+  idVisite: number;
   uid: number;
   dateVisite: Date;
   temps: number;

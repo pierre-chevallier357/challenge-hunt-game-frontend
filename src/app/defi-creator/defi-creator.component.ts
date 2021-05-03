@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-defi-creator',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefiCreatorComponent implements OnInit {
 
-  constructor() { }
 
   ngOnInit(): void {
   }
+
+  idDefi: number = Math.floor(Math.random() * (10000-100) + 100);
+
+  OnSubmit(){
+
+  }
+
 
 }

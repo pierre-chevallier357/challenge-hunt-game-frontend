@@ -1,6 +1,6 @@
 export interface Question{
   idQuestion: number;
-  idDefi: string;
+  idDefi: number;
   numero: number;
   question: string;
   secret: string;

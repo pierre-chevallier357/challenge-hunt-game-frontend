@@ -1,6 +1,6 @@
 export interface Indice {
   idIndice: number;
-  idDefi: string;
+  idDefi: number;
   numero: number;
   description: string;
   points: number;
