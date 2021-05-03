@@ -33,6 +33,8 @@ import { TableChallengeComponent } from './challenge/tableChallenge/tableChallen
 
 import 'leaflet/dist/images/marker-shadow.png';
 import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
+import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accep
     MapComponent,
     PageProfilComponent,
     TableChallengeComponent,
-    ChallengeAcceptedComponent
+    ChallengeAcceptedComponent,
+    DefiCreatorComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -65,7 +68,9 @@ import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accep
     MatTableModule,
     MatToolbarModule,
     MatMenuModule,
-    YagaModule
+    YagaModule,
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]
