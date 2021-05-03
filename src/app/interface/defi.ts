@@ -1,4 +1,4 @@
-enum DefiType{
+export enum DefiType{
 	fun,
 	enigme,
 	challenge,

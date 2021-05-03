@@ -36,7 +36,7 @@ export class DefiDetailComponent implements OnInit {
   ngOnInit(): void {
     this.defiDetail$ = this.route.paramMap.pipe(
       switchMap(params =>
-         this.defiService.getDefiByidDefi(String(params.get('id'))).pipe(
+         this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
           map((defi:Defi):DefiDetail => ({
             defi: defi,
             chami$ : this.chamiService.getChamiByUid(defi.uid),

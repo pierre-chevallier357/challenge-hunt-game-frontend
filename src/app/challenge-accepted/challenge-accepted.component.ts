@@ -22,7 +22,7 @@ export class ChallengeAcceptedComponent implements OnInit {
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const idDefi = String(routeParams.get('id'));
+    const idDefi = Number(routeParams.get('id'));
     this.defiService.getDefiByidDefi(idDefi).subscribe(defi => this.defi = defi);
     this.questionObs = this.questionService.getQuestionByidDefi(idDefi);
   }
