@@ -48,3 +48,4 @@ Thumbs.db
 
 # Cache identifiants Firebase
 /src/environments
+!/src/environments/environment.ts.exemple
