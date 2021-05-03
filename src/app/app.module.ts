@@ -35,9 +35,10 @@ import 'leaflet/dist/images/marker-shadow.png';
 import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
 import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyProfilComponent } from './my-Profil/my-Profil.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     DefiDetailComponent,
     HomeComponent,
@@ -49,8 +50,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PageProfilComponent,
     TableChallengeComponent,
     ChallengeAcceptedComponent,
-    DefiCreatorComponent
-  ],
+    DefiCreatorComponent,
+      MyProfilComponent
+   ],
   imports: [
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),

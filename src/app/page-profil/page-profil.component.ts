@@ -17,7 +17,6 @@ import { map, switchMap } from 'rxjs/operators';
 
 export class PageProfilComponent implements OnInit {
   profilDetail$ !:Observable<Profil>;
-  selectedId !: number;
 
   constructor(private chamiService: ChamiService, private defiService: DefiService, private route: ActivatedRoute) {}
 

@@ -1,6 +1,9 @@
 <div *ngIf="profilDetail$ | async as profilObs">
   <!-- Chamis du UID-->
   <h2> de {{ profilObs.chami.pseudo }}</h2>
+  <pre>
+    {{profilObs | json}}
+  </pre>
 
   <app-my-challenges [profilObsC]="profilObs"></app-my-challenges>
 </div>
