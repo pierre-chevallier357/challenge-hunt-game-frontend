@@ -1,9 +1,9 @@
 export enum DefiType{
-	fun,
-	enigme,
-	challenge,
-	hardcore,
-	franchement_mec
+	fun = "fun",
+	enigme = "enigme",
+	challenge = "challenge",
+	hardcore = "hardcore",
+	franchement_mec = "franchement_mec"
 }
 
 export interface Defi {
