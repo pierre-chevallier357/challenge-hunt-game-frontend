@@ -16,7 +16,7 @@ export class DefiService {
   constructor(private http: HttpClient) {
   }
 
-  getDefiByidDefi(idDefi: string): Observable<Defi> {
+  getDefiByidDefi(idDefi: number): Observable<Defi> {
     const url = `${this.defiUrl}${idDefi}`;
     return this.http.get<Defi>(url);
   }

@@ -22,7 +22,7 @@ export class QuestionService {
     return this.http.get<Question>(url);
   }
 
-  getQuestionByidDefi(idDefi: string): Observable<Question[]> {
+  getQuestionByidDefi(idDefi: number): Observable<Question[]> {
     const url = `${this.defiUrl}${idDefi}` + `/questions`;
     return this.http.get<Question[]>(url);
   }

@@ -21,7 +21,7 @@ export class VisiteService {
     return this.http.get<Visite>(url);
   }
 
-  getVisiteByIdDefi(IdDefi: string): Observable<Visite[]> {
+  getVisiteByIdDefi(IdDefi: number): Observable<Visite[]> {
     const url = `${this.defiUrl}${IdDefi}` + `/visites`;
     return this.http.get<Visite[]>(url);
   }
