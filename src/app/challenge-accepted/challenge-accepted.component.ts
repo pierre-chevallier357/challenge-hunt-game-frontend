@@ -1,11 +1,10 @@
-import { QuestionService } from './../service/question.service';
+import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
 import { Defi } from '../interface/defi';
 import { Observable } from 'rxjs';
 import { DefiService } from '../service/defi.service';
 import { ActivatedRoute } from '@angular/router';
 import { Question } from '../interface/question';
-
 
 
 @Component({
@@ -18,7 +17,7 @@ export class ChallengeAcceptedComponent implements OnInit {
   defi!: Defi;
   questionObs: Observable<Question[]> = this.questionService.getAllQuestion();
 
-  constructor(private questionService: QuestionService,private defiService: DefiService, private route: ActivatedRoute) { }
+  constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -27,6 +26,6 @@ export class ChallengeAcceptedComponent implements OnInit {
     this.questionObs = this.questionService.getQuestionByidDefi(idDefi);
   }
 
-  onSubmit(reponse: string){
+  onSubmit(reponse: string): void {
   }
 }
