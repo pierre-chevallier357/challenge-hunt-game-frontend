@@ -14,20 +14,24 @@ export class DefiCreatorComponent implements OnInit {
   defiForm!: FormGroup;
   submitted: Boolean= true;
   DefiType = DefiType;
+  contenuePrologue!: string;
+  contenueDescription!: string;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.defiForm = this.formBuilder.group({
-    //  titre: ['', Validators.required],
+      titre: ['', Validators.required],
       type:  ['', Validators.required],
-   //   auteur: ['', Validators.required],
-   //   arrêt: ['', Validators.required],
-   //   motsClefs: ['', Validators.required],
-   //   duree: ['', Validators.pattern('[1-9]')],
-   //   prologue: ['', Validators.required],
-   //   description: ['', Validators.required],
-    })
+      auteur: ['', Validators.required],
+      arret: ['', Validators.required],
+      motsClefs: ['', Validators.required],
+      duree: ['', Validators.required],
+      prologue: ['', Validators.required],
+      description: ['', Validators.required],
+    }
+    )
+    this.onReset();
   }
 
   idDefi: number = Math.floor(Math.random() * (10000-100) + 100);
