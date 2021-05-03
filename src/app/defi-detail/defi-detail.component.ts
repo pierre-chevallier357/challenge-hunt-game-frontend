@@ -6,15 +6,15 @@ import { Chami } from '../interface/chami';
 import { DefiService } from '../service/defi.service';
 import { Defi } from '../interface/defi';
 import { Visite } from '../interface/visite';
-import { VisiteService } from './../service/visite.service';
+import { VisiteService } from '../service/visite.service';
 
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 export interface DefiDetail {
-  defi : Defi,
-  chami$:Observable<Chami>,
-  visite$ :Observable<Visite[]>
+  defi: Defi;
+  chami$: Observable<Chami>;
+  visite$: Observable<Visite[]>;
 }
 
 @Component({
@@ -28,17 +28,20 @@ export class DefiDetailComponent implements OnInit {
   chami!: Chami;
   visiteObs: Observable<Visite[]> = this.visiteService.getAllVisite();
 
-  defiDetail$ !:Observable<DefiDetail>;
+  defiDetail$ !: Observable<DefiDetail>;
   selectedId !: string;
 
-  constructor(private chamiService: ChamiService, private defiService: DefiService, private visiteService: VisiteService, private route: ActivatedRoute) {}
+  constructor(private chamiService: ChamiService,
+              private defiService: DefiService,
+              private visiteService: VisiteService,
+              private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.defiDetail$ = this.route.paramMap.pipe(
       switchMap(params =>
-         this.defiService.getDefiByidDefi(String(params.get('id'))).pipe(
-          map((defi:Defi):DefiDetail => ({
-            defi: defi,
+         this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
+          map((defi: Defi): DefiDetail => ({
+            defi,
             chami$ : this.chamiService.getChamiByUid(defi.uid),
             visite$ : this.visiteService.getVisiteByIdDefi(defi.idDefi)
           }))
