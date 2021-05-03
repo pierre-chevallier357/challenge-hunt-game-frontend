@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
@@ -22,7 +23,9 @@ export class TableChallengeComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);

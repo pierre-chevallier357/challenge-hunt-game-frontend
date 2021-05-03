@@ -18,14 +18,9 @@
   <!-- Afficher menu deconnexion -->
   <mat-menu #menuDisconnect="matMenu">
     <!-- PROFIL -->
-    <button mat-menu-item (click)="loadProfil()">
+    <button mat-menu-item [routerLink]="'/myProfil'">
       <mat-icon>account_circle</mat-icon>
       <span>Profil</span>
-    </button>
-    <!-- PARAMETRES -->
-    <button mat-menu-item (click)="loadSettings()">
-      <mat-icon>settings</mat-icon>
-      <span>Paramètres</span>
     </button>
     <!-- DECONNEXION-->
     <button mat-menu-item (click)="logout()">

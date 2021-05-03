@@ -1,0 +1,44 @@
+<form class="example-form" >
+  <mat-form-field class="example-full-width">
+    <mat-label>email (disabled)</mat-label>
+    <input matInput disabled value="async email">
+  </mat-form-field>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Pseudo</mat-label>
+      <input matInput #pseudo>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>age</mat-label>
+      <input matInput #age>
+    </mat-form-field></td>
+  </tr></table>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>ville</mat-label>
+      <input matInput #ville placeholder="Ex. Grenoble">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput #description placeholder="Qui etes vous ?"></textarea>
+    </mat-form-field>
+  </p>
+  <button type="submit" (click)="creation({
+      uid: 0,
+      email: 's',
+      pseudo: pseudo.value,
+      age: integer(age.value),
+      ville: ville.value,
+      description: description.value,
+      nbDefis: 0
+    })">SUBMIT</button>
+</form>
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

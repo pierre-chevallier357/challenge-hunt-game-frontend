@@ -24,8 +24,11 @@ export class ChallengeComponent {
   chamisObs:Observable<Chami[]> = this.chamiService.getAllChamis();
   defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
 
-  @Input() auth!: AngularFireAuth;
+  constructor(
+    private defiService : DefiService,
+    private chamiService : ChamiService,
+    public auth: AngularFireAuth) {}
 
-  constructor(private defiService : DefiService, private chamiService : ChamiService) {
-  }
+
+
 }
