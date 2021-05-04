@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <h2>Profil</h2>
 <br/>
 
@@ -32,10 +33,21 @@
 
   <!-- Description -->
   <p>
+=======
+
+
+<div *ngIf="authObs | async as user">
+  <h2>
+    <ng-template #CREATION_PROFIL>Création de mon nouveau</ng-template>
+    Profil
+  </h2>
+  <form class="example-form">
+>>>>>>> Stashed changes
     <mat-form-field class="example-full-width">
-      <mat-label>Description</mat-label>
-      <textarea matInput #description placeholder="Qui etes vous ?"></textarea>
+      <mat-label>Adresse e-mail : {{user.email}}</mat-label>
+      <input matInput disabled>
     </mat-form-field>
+<<<<<<< Updated upstream
   </p>
 
   <!-- Bouton enregistrer -->
@@ -49,3 +61,60 @@
       nbDefis: 0
     })">Enregistrer</button>
 </form>
+=======
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Pseudo</mat-label>
+            <input matInput #pseudo required value="" maxlength="30">
+            <mat-hint align="start"><i>Votre pseudo public</i> </mat-hint>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Age</mat-label>
+            <input matInput #age required value="" maxlength="2">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Ville</mat-label>
+        <input matInput #ville placeholder="Ex. Grenoble" required value="" maxlength="30">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <input matInput #description maxlength="256" placeholder="Bonjour, j'aime les defis...">
+        <mat-hint align="start"><i>Ne divulguez pas d'informations personnelles</i> </mat-hint>
+        <mat-hint align="end">{{description.value.length}} / 256</mat-hint>
+      </mat-form-field>
+    </p>
+
+  </form>
+
+
+  <div *ngIf="profilObs$ | async as chami;else CREATION_PROFIL">
+    <button>SAUVEGARDER MON PROFIL</button>
+  </div>
+  <ng-template #CREATION_PROFIL></ng-template>
+  <ng-template #CREATION_PROFIL>
+    <button (click)="submitCreate({
+    uid: 1001,
+    email: 'michel-test@test.io',
+    pseudo: pseudo.value,
+    age: integer(age.value),
+    ville: ville.value,
+    description: description.value,
+    nbDefis: 0
+  })">ENREGISTER MON NOUVEAU PROFIL</button>
+  </ng-template>
+
+
+</div>
+>>>>>>> Stashed changes
