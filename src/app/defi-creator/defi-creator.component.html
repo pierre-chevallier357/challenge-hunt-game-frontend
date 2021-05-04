@@ -17,8 +17,8 @@
     class="form-control"
     [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
   >
-    <option *ngFor="let enum of DefiType | keyvalue" value="{{ enum.key }}">
-      {{ enum.value }}
+    <option *ngFor="let type of DefiType | keyvalue" value="{{ type.key }}">
+      {{ type.value }}
     </option>
   </select>
   <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
@@ -37,13 +37,14 @@
   </div>
   <br>
   <label>Arrêt</label>
-  <select
-    formControlName="arret"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.arret.errors }"
+  <input #semStopsSearch (keyup.enter)="searchSemStops(semStopsSearch.value)"/>
+  <select *ngIf="semStops | async as geoJSON"
+          formControlName="arret"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.arret.errors }"
   >
-    <option *ngFor="let enum of DefiType | keyvalue" value="{{ enum.key }}">
-      {{ enum.value }}
+    <option *ngFor="let feature of geoJSON.features" [ngValue]="feature">
+      {{ feature.properties!['LIBELLE'] }}
     </option>
   </select>
   <div *ngIf="submitted && f.arret.errors" class="invalid-feedback">
@@ -76,56 +77,54 @@
   <br>
   <label>Prologue</label>
   <textarea
-    formControlName = "prologue"
+    formControlName="prologue"
     class="form-control"
     [ngClass]="{ 'is-invalid': submitted && f.prologue.errors }"
     rows="3"
     cols="150"
   >Veuillez saisir votre texte...</textarea>
-    <div *ngIf="submitted && f.prologue.errors" class="invalid-feedback">
+  <div *ngIf="submitted && f.prologue.errors" class="invalid-feedback">
     <div *ngIf="f.prologue.errors.required">Durée is required</div>
   </div>
   <br>
   <label>Description</label>
   <textarea
-  formControlName = "description"
-  class="form-control"
-  [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
-  rows="3"
-  cols="150"
->Veuillez saisir votre texte...</textarea>
+    formControlName="description"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
   <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-  <div *ngIf="f.description.errors.required">Durée is required</div>
-</div>
-<br>
-<label>Epilogue</label>
-<textarea
-formControlName = "epilogue"
-class="form-control"
-[ngClass]="{ 'is-invalid': submitted && f.epilogue.errors }"
-rows="3"
-cols="150"
->Veuillez saisir votre texte...</textarea>
-<div *ngIf="submitted && f.epilogue.errors" class="invalid-feedback">
-<div *ngIf="f.epilogue.errors.required">Durée is required</div>
-</div>
-<br>
-<label>Commentaire</label>
-<textarea
-formControlName = "commentaire"
-class="form-control"
-[ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }"
-rows="3"
-cols="150"
->Veuillez saisir votre texte...</textarea>
-<div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
-<div *ngIf="f.commentaire.errors.required">Durée is required</div>
-</div>
+    <div *ngIf="f.description.errors.required">Durée is required</div>
+  </div>
+  <br>
+  <label>Epilogue</label>
+  <textarea
+    formControlName="epilogue"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.epilogue.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
+  <div *ngIf="submitted && f.epilogue.errors" class="invalid-feedback">
+    <div *ngIf="f.epilogue.errors.required">Durée is required</div>
+  </div>
+  <br>
+  <label>Commentaire</label>
+  <textarea
+    formControlName="commentaire"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
+  <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
+    <div *ngIf="f.commentaire.errors.required">Durée is required</div>
+  </div>
 </form>
 <br>
 <br>
-
-
 
 
 <form [formGroup]="questionForm" (ngSubmit)="OnSubmitTwo()">
@@ -142,15 +141,15 @@ cols="150"
   <br>
   <label>Points de la question</label>
   <input
-  type="number"
-  formControlName="pointsqss"
-  min="0"
-  class="form-control"
-  [ngClass]="{ 'is-invalid': submitted && g.pointsqss.errors }"
-/>
-<div *ngIf="submitted && g.pointsqss.errors" class="invalid-feedback">
-  <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question is required</div>
-</div>
+    type="number"
+    formControlName="pointsqss"
+    min="0"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.pointsqss.errors }"
+  />
+  <div *ngIf="submitted && g.pointsqss.errors" class="invalid-feedback">
+    <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question is required</div>
+  </div>
   <br>
   <label>Reponse</label>
   <input
@@ -176,20 +175,20 @@ cols="150"
   <br>
   <label>Points indice</label>
   <input
-  type="number"
-  formControlName="pointsi"
-  min="0"
-  class="form-control"
-  [ngClass]="{ 'is-invalid': submitted && g.pointsi.errors }"
-/>
-<div *ngIf="submitted && g.pointsi.errors" class="invalid-feedback">
-  <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice' is required</div>
-</div>
+    type="number"
+    formControlName="pointsi"
+    min="0"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.pointsi.errors }"
+  />
+  <div *ngIf="submitted && g.pointsi.errors" class="invalid-feedback">
+    <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice' is required</div>
+  </div>
   <br>
   <br>
   <br>
   <div class="text-center">
-    <button class="btn btn-primary mr-1" > Ajouter la question </button>
+    <button class="btn btn-primary mr-1"> Ajouter la question</button>
     <button class="btn btn-secondary" type="reset" (click)="onResetTwo()">Cancel</button>
   </div>
 </form>
@@ -203,7 +202,7 @@ cols="150"
 </div>
 <br>
 <div style="text-align:center">
-<h1> DEBUG </h1>
+  <h1> DEBUG </h1>
 </div>
 <h5>listeQuestion</h5>
 <p>

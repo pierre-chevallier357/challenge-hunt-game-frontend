@@ -1,8 +1,11 @@
-import { Indice } from './../interface/indice';
-import { Question } from './../interface/question';
-import { Defi,DefiType } from 'src/app/interface/defi';
+import { Indice } from '../interface/indice';
+import { Question } from '../interface/question';
+import { Defi, DefiType } from 'src/app/interface/defi';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ArretService} from '../service/arret.service';
+import {Observable} from 'rxjs';
+import {FeatureCollection, Point} from 'geojson';
 
 
 @Component({
@@ -14,21 +17,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DefiCreatorComponent implements OnInit {
 
   defiForm!: FormGroup;
-  questionForm!: FormGroup
-  submitted: Boolean= false;
-  submitedTwo: Boolean= false;
+  questionForm!: FormGroup;
+  submitted = false;
+  submitedTwo = false;
   DefiType = DefiType;
   listeQuestion: Partial<Question>[] = [];
   listeIndice: Partial<Indice>[] = [];
   leDefi!: Partial<Defi>;
-  incrementation: number=0;
+  incrementation = 0;
   laQuestion!: Partial<Question>;
   lIndice!: Partial<Indice>;
+  semStops!: Observable<FeatureCollection<Point>>;
 
   show!: string;
-  sum: number = 0;
+  sum = 0;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private arretService: ArretService) {}
 
   ngOnInit(): void {
     this.defiForm = this.formBuilder.group({
@@ -50,7 +54,7 @@ export class DefiCreatorComponent implements OnInit {
       indice: ['', Validators.required],
       pointsi: ['', Validators.required],
     }
-    )
+    );
     this.onReset();
   }
 
@@ -65,6 +69,9 @@ export class DefiCreatorComponent implements OnInit {
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.defiForm.value, null, 4));
 
+    const arret = this.arretService.featureToArret(this.defiForm.get('arret')?.value);
+    // TODO: Vérifier la présence de l'arrêt dans la BDD et l'ajouter si il n'existe pas.
+
     this.leDefi = {
       titre: this.defiForm.get('titre')?.value,
       uid: '12', // RECUPERER SUR LA PAGE
@@ -72,15 +79,16 @@ export class DefiCreatorComponent implements OnInit {
       dateCreation: new Date(),
       dateModification: new Date(),
       versionD: 1,
-      points: this.sum,                                                   //A CALCULER A LA FIN
+      points: this.sum, // A CALCULER A LA FIN
       motsClefs: this.defiForm.get('motsClefs')?.value,
       duree: this.defiForm.get('duree')?.value,
-      idArret: 1,                                                   //GET WITH API
+      idArret: arret.idArret, // TODO: GET WITH API
       description: this.defiForm.get('descritpion')?.value,
       prologue: this.defiForm.get('prologue')?.value,
       epilogue: this.defiForm.get('epilogue')?.value,
       commentaire: this.defiForm.get('commentaire')?.value,
-    };}
+    };
+  }
 
   OnSubmitTwo(){
     this.submitedTwo = true;
@@ -96,7 +104,7 @@ export class DefiCreatorComponent implements OnInit {
       numero: this.incrementation,
     };
 
-   this.lIndice =  {
+    this.lIndice =  {
       description: this.questionForm.get('question')?.value,
       points: this.questionForm.get('pointsi')?.value,
       numero: this.incrementation,
@@ -104,7 +112,7 @@ export class DefiCreatorComponent implements OnInit {
     this.listeIndice.push(this.lIndice);
     this.listeQuestion.push(this.laQuestion);
 
-    this.sum =this.sum + this.questionForm.get('pointsqss')?.value;
+    this.sum = this.sum + this.questionForm.get('pointsqss')?.value;
   }
 
   onReset() {
@@ -115,5 +123,9 @@ export class DefiCreatorComponent implements OnInit {
   onResetTwo(){
     this.submitedTwo = false;
     this.questionForm.reset();
+  }
+
+  searchSemStops(query: string): void {
+    this.semStops = this.arretService.searchSemStops(query);
   }
 }

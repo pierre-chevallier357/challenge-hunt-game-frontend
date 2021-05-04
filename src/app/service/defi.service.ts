@@ -29,4 +29,8 @@ export class DefiService {
   getAllDefis(): Observable<Defi[]>{
     return this.http.get<Defi[]>(this.defiUrl);
   }
+
+  createDefi(defi: Defi): Observable<Defi> {
+    return this.http.post<Defi>(this.defiUrl, defi);
+  }
 }

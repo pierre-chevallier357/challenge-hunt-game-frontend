@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Arret } from '../interface/arret';
 import { environment } from '../../environments/environment';
-import { FeatureCollection, Point } from 'geojson';
+import { Feature, FeatureCollection, Point } from 'geojson';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,14 @@ export class ArretService {
   searchSemStops(query: string): Observable<FeatureCollection<Point>> {
     console.log('oui');
     return this.http.get<FeatureCollection<Point>>('https://data.mobilites-m.fr/api/findType/json?types=arret&query=' + query);
+  }
+
+  featureToArret(feature: Feature<Point>): Partial<Arret> {
+    return {
+      nom: feature.properties?.LIBELLE,
+      code: feature.properties?.CODE,
+      latitude: feature.geometry.coordinates[0],
+      longitude: feature.geometry.coordinates[1]
+    };
   }
 }
