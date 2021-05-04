@@ -1,4 +1,4 @@
-export interface Visite{
+export interface Visite {
   idVisite: number;
   uid: number;
   dateVisite: Date;

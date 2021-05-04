@@ -5,6 +5,7 @@ import { ChamiService } from '../service/chami.service';
 import { Chami } from '../interface/chami';
 import { DefiService } from '../service/defi.service';
 import { Profil } from '../interface/profil';
+import { VisiteService } from './../service/visite.service';
 
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -18,7 +19,7 @@ import { map, switchMap } from 'rxjs/operators';
 export class PageProfilComponent implements OnInit {
   profilDetail$ !:Observable<Profil>;
 
-  constructor(private chamiService: ChamiService, private defiService: DefiService, private route: ActivatedRoute) {}
+  constructor(private chamiService: ChamiService, private defiService: DefiService, private route: ActivatedRoute, private visiteService: VisiteService) {}
 
   ngOnInit(): void {
     this.profilDetail$ = this.route.paramMap.pipe(
@@ -26,7 +27,8 @@ export class PageProfilComponent implements OnInit {
          this.chamiService.getChamiByUid(Number(params.get('uid'))).pipe(
           map((chami:Chami):Profil => ({
             chami : chami,
-            defi$ : this.defiService.getDefiByUid(chami.uid)
+            defi$ : this.defiService.getDefiByUid(chami.uid),
+            visite$ : this.visiteService.getVisiteByUid(chami.uid)
           }))
         ))
     );

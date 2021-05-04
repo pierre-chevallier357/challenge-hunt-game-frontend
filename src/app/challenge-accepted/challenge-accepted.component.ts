@@ -17,7 +17,7 @@ export class ChallengeAcceptedComponent implements OnInit {
   defi!: Defi;
   questionObs: Observable<Question[]> = this.questionService.getAllQuestion();
 
-  constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) { }
+  constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;

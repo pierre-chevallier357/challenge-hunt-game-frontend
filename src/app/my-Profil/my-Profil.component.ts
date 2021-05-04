@@ -12,13 +12,13 @@ import { ChamiService } from './../service/chami.service';
 export class MyProfilComponent implements OnInit {
   profil!: Chami ;
 
-  constructor(private chamiService: ChamiService, private auth: AngularFireAuth) { }
+  constructor(private chamiService: ChamiService, private auth: AngularFireAuth) {}
 
-  creation(chami: Chami): void { }
+  ngOnInit() {}
+
+  creation(chami: Chami): void {}
 
   integer(s: string): number {
     return Number(s);
   }
-
-  ngOnInit() { }
 }

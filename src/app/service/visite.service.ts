@@ -12,6 +12,7 @@ import { environment } from '../../environments/environment';
 export class VisiteService {
   private visiteUrl = environment.apiUrl + '/visite/';
   private defiUrl = environment.apiUrl + '/defis/';
+  private chamisUrl = environment.apiUrl + '/chamis/';
 
   constructor(private http: HttpClient) {
   }
@@ -23,6 +24,11 @@ export class VisiteService {
 
   getVisiteByIdDefi(IdDefi: number): Observable<Visite[]> {
     const url = `${this.defiUrl}${IdDefi}` + `/visites`;
+    return this.http.get<Visite[]>(url);
+  }
+
+  getVisiteByUid(uid: number): Observable<Visite[]> {
+    const url = `${this.chamisUrl}${uid}` + `/visites`;
     return this.http.get<Visite[]>(url);
   }
 

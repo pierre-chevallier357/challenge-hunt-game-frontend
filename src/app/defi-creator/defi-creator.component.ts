@@ -28,7 +28,7 @@ export class DefiCreatorComponent implements OnInit {
   show!: string;
   sum: number = 0;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.defiForm = this.formBuilder.group({

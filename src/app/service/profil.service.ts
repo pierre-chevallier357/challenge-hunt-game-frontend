@@ -8,6 +8,6 @@ import { Chami } from '../interface/chami';
 })
 export class ProfilService {
 
-  constructor() { }
+  constructor() {}
 
 }
