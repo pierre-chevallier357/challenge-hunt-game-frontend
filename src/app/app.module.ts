@@ -18,8 +18,10 @@ import { YagaModule } from '@yaga/leaflet-ng2';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { ChamiService } from './service/chami.service';
+import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
 import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { DefiService } from './service/defi.service';
 import { environment } from '../environments/environment';
@@ -28,30 +30,28 @@ import { IdeaComponent } from './idea/idea.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MapComponent } from './map/map.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
+import { MyProfilComponent } from './my-Profil/my-Profil.component';
 import { PageProfilComponent } from './page-profil/page-profil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
 
 import 'leaflet/dist/images/marker-shadow.png';
-import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
-import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MyProfilComponent } from './my-Profil/my-Profil.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
+    ChallengeAcceptedComponent,
+    ChallengeComponent,
+    DefiCreatorComponent,
     DefiDetailComponent,
     HomeComponent,
+    IdeaComponent,
     LeaderboardComponent,
     MyChallengesComponent,
-    ChallengeComponent,
-    IdeaComponent,
+    MyProfilComponent,
     MapComponent,
     PageProfilComponent,
-    TableChallengeComponent,
-    ChallengeAcceptedComponent,
-    DefiCreatorComponent,
-      MyProfilComponent
+    TableChallengeComponent
    ],
   imports: [
     AngularFireAuthModule,
@@ -70,9 +70,8 @@ import { MyProfilComponent } from './my-Profil/my-Profil.component';
     MatTableModule,
     MatToolbarModule,
     MatMenuModule,
-    YagaModule,
-    BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    YagaModule
   ],
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]

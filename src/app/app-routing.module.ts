@@ -7,7 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { HomeComponent } from './home/home.component';
-import { IdeaComponent } from './idea/idea.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { PageProfilComponent } from './page-profil/page-profil.component';
 
