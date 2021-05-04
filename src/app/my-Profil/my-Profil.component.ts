@@ -29,7 +29,7 @@ export class MyProfilComponent implements OnInit {
     private html:HttpClient) {
       this.profilObs$ = this.auth.user.pipe(
         switchMap((user) =>
-          this.chamiService.getChamiByUid(1001).pipe(
+          this.chamiService.getChamiByUid('1').pipe(
             map((chami:Chami)=>{
               this.pseudoInput.nativeElement.value = chami.pseudo;
               this.ageInput.nativeElement.value = chami.age;

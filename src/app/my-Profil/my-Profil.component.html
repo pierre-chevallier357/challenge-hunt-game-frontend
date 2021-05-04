@@ -1,67 +1,17 @@
-<<<<<<< Updated upstream
+
 <h2>Profil</h2>
 <br/>
-
-<form class="example-form" >
-  <!-- Adresse e-mail -->
-  <mat-form-field class="example-full-width">
-    <mat-label>Adresse e-mail (disabled)</mat-label>
-    <input matInput disabled value="async email">
-  </mat-form-field>
-
-  <table class="example-full-width" cellspacing="0"><tr>
-      <!-- Pseudo -->
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Pseudo</mat-label>
-      <input matInput #pseudo>
-    </mat-form-field></td>
-
-    <!-- Âge -->
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Âge</mat-label>
-      <input matInput #age>
-    </mat-form-field></td>
-  </tr></table>
-
-  <!-- Ville -->
-  <p>
-    <mat-form-field class="example-full-width">
-      <mat-label>Ville</mat-label>
-      <input matInput #ville placeholder="Ex. Grenoble">
-    </mat-form-field>
-  </p>
-
-  <!-- Description -->
-  <p>
-=======
 
 
 <div *ngIf="authObs | async as user">
   <h2>
-    <ng-template #CREATION_PROFIL>Création de mon nouveau</ng-template>
     Profil
   </h2>
   <form class="example-form">
->>>>>>> Stashed changes
     <mat-form-field class="example-full-width">
       <mat-label>Adresse e-mail : {{user.email}}</mat-label>
       <input matInput disabled>
     </mat-form-field>
-<<<<<<< Updated upstream
-  </p>
-
-  <!-- Bouton enregistrer -->
-  <button type="submit" (click)="creation({
-      uid: '0',
-      email: 's',
-      pseudo: pseudo.value,
-      age: integer(age.value),
-      ville: ville.value,
-      description: description.value,
-      nbDefis: 0
-    })">Enregistrer</button>
-</form>
-=======
 
     <table class="example-full-width" cellspacing="0">
       <tr>
@@ -102,10 +52,10 @@
   <div *ngIf="profilObs$ | async as chami;else CREATION_PROFIL">
     <button>SAUVEGARDER MON PROFIL</button>
   </div>
-  <ng-template #CREATION_PROFIL></ng-template>
+
   <ng-template #CREATION_PROFIL>
     <button (click)="submitCreate({
-    uid: 1001,
+    uid: '1001',
     email: 'michel-test@test.io',
     pseudo: pseudo.value,
     age: integer(age.value),
@@ -117,4 +67,3 @@
 
 
 </div>
->>>>>>> Stashed changes
