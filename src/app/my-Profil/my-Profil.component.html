@@ -2,34 +2,43 @@
 <br/>
 
 <form class="example-form" >
+  <!-- Adresse e-mail -->
   <mat-form-field class="example-full-width">
     <mat-label>Adresse e-mail (disabled)</mat-label>
     <input matInput disabled value="async email">
   </mat-form-field>
 
   <table class="example-full-width" cellspacing="0"><tr>
+      <!-- Pseudo -->
     <td><mat-form-field class="example-full-width">
       <mat-label>Pseudo</mat-label>
       <input matInput #pseudo>
     </mat-form-field></td>
+
+    <!-- Âge -->
     <td><mat-form-field class="example-full-width">
       <mat-label>Âge</mat-label>
       <input matInput #age>
     </mat-form-field></td>
   </tr></table>
 
+  <!-- Ville -->
   <p>
     <mat-form-field class="example-full-width">
       <mat-label>Ville</mat-label>
       <input matInput #ville placeholder="Ex. Grenoble">
     </mat-form-field>
   </p>
+
+  <!-- Description -->
   <p>
     <mat-form-field class="example-full-width">
       <mat-label>Description</mat-label>
       <textarea matInput #description placeholder="Qui etes vous ?"></textarea>
     </mat-form-field>
   </p>
+
+  <!-- Bouton enregistrer -->
   <button type="submit" (click)="creation({
       uid: '0',
       email: 's',
