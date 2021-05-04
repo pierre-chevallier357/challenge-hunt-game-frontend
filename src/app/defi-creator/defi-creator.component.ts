@@ -16,6 +16,7 @@ export class DefiCreatorComponent implements OnInit {
   defiForm!: FormGroup;
   questionForm!: FormGroup
   submitted: Boolean= false;
+  submitedTwo: Boolean= false;
   DefiType = DefiType;
   listeQuestion: Partial<Question>[] = [];
   listeIndice: Partial<Indice>[] = [];
@@ -23,10 +24,9 @@ export class DefiCreatorComponent implements OnInit {
   incrementation: number=0;
   laQuestion!: Partial<Question>;
   lIndice!: Partial<Indice>;
-  submitedTwo: Boolean= false;
-  show!: string;
-  elem: number = 0;
 
+  show!: string;
+  sum: number = 0;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -62,7 +62,9 @@ export class DefiCreatorComponent implements OnInit {
     if (this.defiForm.invalid){
       return;
     }
+
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.defiForm.value, null, 4));
+
     this.leDefi = {
       titre: this.defiForm.get('titre')?.value,
       uid: 12,                                                       // RECUPERER SUR LA PAGE
@@ -70,7 +72,7 @@ export class DefiCreatorComponent implements OnInit {
       dateCreation: new Date(),
       dateModification: new Date(),
       versionD: 1,
-      points: 10,                                                   //A CALCULER A LA FIN
+      points: this.sum,                                                   //A CALCULER A LA FIN
       motsClefs: this.defiForm.get('motsClefs')?.value,
       duree: this.defiForm.get('duree')?.value,
       idArret: 1,                                                   //GET WITH API
@@ -78,9 +80,7 @@ export class DefiCreatorComponent implements OnInit {
       prologue: this.defiForm.get('prologue')?.value,
       epilogue: this.defiForm.get('epilogue')?.value,
       commentaire: this.defiForm.get('commentaire')?.value,
-    };
-    }
-
+    };}
 
   OnSubmitTwo(){
     this.submitedTwo = true;
@@ -103,8 +103,8 @@ export class DefiCreatorComponent implements OnInit {
     };
     this.listeIndice.push(this.lIndice);
     this.listeQuestion.push(this.laQuestion);
-    console.log(this.listeQuestion);
-    this.elem = this.listeIndice.length;
+
+    this.sum =this.sum + this.questionForm.get('pointsqss')?.value;
   }
 
   onReset() {
