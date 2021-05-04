@@ -23,7 +23,7 @@ export class MyChallengesComponent implements OnInit {
   constructor(private auth: AngularFireAuth, private defiService: DefiService, private chamiService: ChamiService, private visiteService: VisiteService) {
       this.profilObs$ = this.auth.user.pipe(
         switchMap((user) =>
-          this.chamiService.getChamiByUid(1).pipe(
+          this.chamiService.getChamiByUid('1').pipe(
             map((chami:Chami):Profil=> ({
               chami: chami,
               defi$ : this.defiService.getDefiByUid(chami.uid),
@@ -40,10 +40,10 @@ export class MyChallengesComponent implements OnInit {
     }
 
     get DefiObs(){
-      return this.defiService.getDefiByUid(2);
+      return this.defiService.getDefiByUid('2');
     }
 
     get visiteObs(){
-      return this.visiteService.getVisiteByUid(2);
+      return this.visiteService.getVisiteByUid('2');
     }
 }

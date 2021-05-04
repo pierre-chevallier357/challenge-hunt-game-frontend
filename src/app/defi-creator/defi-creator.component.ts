@@ -67,7 +67,7 @@ export class DefiCreatorComponent implements OnInit {
 
     this.leDefi = {
       titre: this.defiForm.get('titre')?.value,
-      uid: 12,                                                       // RECUPERER SUR LA PAGE
+      uid: '12', // RECUPERER SUR LA PAGE
       defiType: this.defiForm.get('type')?.value,
       dateCreation: new Date(),
       dateModification: new Date(),

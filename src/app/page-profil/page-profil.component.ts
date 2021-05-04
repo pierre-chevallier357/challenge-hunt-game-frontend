@@ -24,7 +24,7 @@ export class PageProfilComponent implements OnInit {
   ngOnInit(): void {
     this.profilDetail$ = this.route.paramMap.pipe(
       switchMap(params =>
-         this.chamiService.getChamiByUid(Number(params.get('uid'))).pipe(
+         this.chamiService.getChamiByUid(String(params.get('uid'))).pipe(
           map((chami:Chami):Profil => ({
             chami : chami,
             defi$ : this.defiService.getDefiByUid(chami.uid),

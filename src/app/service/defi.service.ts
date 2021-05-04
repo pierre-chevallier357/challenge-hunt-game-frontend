@@ -21,7 +21,7 @@ export class DefiService {
     return this.http.get<Defi>(url);
   }
 
-  getDefiByUid(uid: number): Observable<Defi[]> {
+  getDefiByUid(uid: string): Observable<Defi[]> {
     const url = `${this.chamisUrl}${uid}` + `/defis`;
     return this.http.get<Defi[]>(url);
   }

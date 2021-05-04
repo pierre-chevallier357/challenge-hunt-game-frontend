@@ -15,7 +15,7 @@ export class ChamiService {
   constructor(private http: HttpClient) {
   }
 
-  getChamiByUid(uid: number): Observable<Chami> {
+  getChamiByUid(uid: string): Observable<Chami> {
     const url = `${this.chamiUrl}${uid}`;
 
     return this.http.get<Chami>(url);

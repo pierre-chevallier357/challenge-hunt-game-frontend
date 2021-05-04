@@ -9,7 +9,7 @@ export enum DefiType{
 export interface Defi {
   idDefi: number;
   idArret: number;
-  uid: number;
+  uid: string;
   titre: string;
   defiType: DefiType;
   dateCreation: Date;

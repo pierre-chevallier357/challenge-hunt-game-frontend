@@ -27,7 +27,7 @@ export class VisiteService {
     return this.http.get<Visite[]>(url);
   }
 
-  getVisiteByUid(uid: number): Observable<Visite[]> {
+  getVisiteByUid(uid: string): Observable<Visite[]> {
     const url = `${this.chamisUrl}${uid}` + `/visites`;
     return this.http.get<Visite[]>(url);
   }

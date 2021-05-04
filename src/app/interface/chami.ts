@@ -1,5 +1,5 @@
 export interface Chami {
-  uid: number;
+  uid: string;
   email: string;
   pseudo: string;
   age: number;

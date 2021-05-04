@@ -1,6 +1,6 @@
 export interface Visite {
   idVisite: number;
-  uid: number;
+  uid: string;
   dateVisite: Date;
   temps: number;
   version: number;
