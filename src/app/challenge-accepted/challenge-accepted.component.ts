@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { DefiService } from '../service/defi.service';
 import { ActivatedRoute } from '@angular/router';
 import { Question } from '../interface/question';
+import { Reponse } from '../interface/reponse';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { Question } from '../interface/question';
 export class ChallengeAcceptedComponent implements OnInit {
 
   defi!: Defi;
+  listeReponse!: Partial<Reponse>[];
+  reponsePartial!: Partial<Reponse>;
   questionObs: Observable<Question[]> = this.questionService.getAllQuestion();
 
   constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) {}
@@ -26,6 +29,15 @@ export class ChallengeAcceptedComponent implements OnInit {
     this.questionObs = this.questionService.getQuestionByidDefi(idDefi);
   }
 
-  onSubmit(reponse: string): void {
+  onSubmit(reponse: string,idQuestion: number): void {
+      this.reponsePartial = {
+        question: idQuestion,
+        reponse: reponse,
+      }
+      this.listeReponse.push(this.reponsePartial);
+  }
+
+  onSubmitValidey(): void{
+
   }
 }

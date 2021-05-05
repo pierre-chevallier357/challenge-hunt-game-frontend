@@ -6,8 +6,15 @@
 <div *ngIf="questionObs | async as questions">
 <ul *ngFor="let question of questions">
 {{question.question}} <br>
-<form (ngSubmit)="onSubmit(reponse.value)" >
+<form >
   <input #reponse />
+  <button (click)="onSubmit(reponse.value,question.idQuestion)">TRY ME BI**H</button>
 </form>
 </ul>
+</div>
+
+<button (click)="onSubmitValidey()">LATER BI**H</button>
+<h3>DEBUG</h3>
+<div>
+  {{reponsePartial | json}}
 </div>
