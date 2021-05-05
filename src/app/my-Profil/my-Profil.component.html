@@ -1,12 +1,17 @@
-
-<h2>Profil</h2>
-<br/>
-
-
 <div *ngIf="authObs | async as user">
+  <div *ngIf="connected">
+    <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-12">
+      <p class="connect-barrer">
+        Votre compte est bien <b>inscrit</b> en tant que {{user.email}}
+      </p>
+    </div>
+  </div>
+
   <h2>
     Profil
   </h2>
+
+
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Adresse e-mail : {{user.email}}</mat-label>
@@ -40,7 +45,7 @@
     <p>
       <mat-form-field class="example-full-width">
         <mat-label>Description</mat-label>
-        <input matInput #description maxlength="256" placeholder="Bonjour, j'aime les defis...">
+        <textarea matInput #description maxlength="256" placeholder="Bonjour, j'aime les defis..."></textarea>
         <mat-hint align="start"><i>Ne divulguez pas d'informations personnelles</i> </mat-hint>
         <mat-hint align="end">{{description.value.length}} / 256</mat-hint>
       </mat-form-field>
@@ -50,13 +55,21 @@
 
 
   <div *ngIf="profilObs$ | async as chami;else CREATION_PROFIL">
-    <button>SAUVEGARDER MON PROFIL</button>
+    <button (click)="submitUpdate({
+      uid: user.uid,
+      email: user.email,
+      pseudo: pseudo.value,
+      age: integer(age.value),
+      ville: ville.value,
+      description: description.value,
+      nbDefis: chami.nbDefis
+    })">SAUVEGARDER MON PROFIL</button>
   </div>
 
   <ng-template #CREATION_PROFIL>
     <button (click)="submitCreate({
-    uid: '1001',
-    email: 'michel-test@test.io',
+    uid: user.uid,
+    email: user.email,
     pseudo: pseudo.value,
     age: integer(age.value),
     ville: ville.value,
