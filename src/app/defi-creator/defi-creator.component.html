@@ -84,7 +84,7 @@
     cols="150"
   >Veuillez saisir votre texte...</textarea>
   <div *ngIf="submitted && f.prologue.errors" class="invalid-feedback">
-    <div *ngIf="f.prologue.errors.required">Durée is required</div>
+    <div *ngIf="f.prologue.errors.required">Prologue is required</div>
   </div>
   <br>
   <label>Description</label>
@@ -96,7 +96,7 @@
     cols="150"
   >Veuillez saisir votre texte...</textarea>
   <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-    <div *ngIf="f.description.errors.required">Durée is required</div>
+    <div *ngIf="f.description.errors.required">Description is required</div>
   </div>
   <br>
   <label>Epilogue</label>
@@ -108,7 +108,7 @@
     cols="150"
   >Veuillez saisir votre texte...</textarea>
   <div *ngIf="submitted && f.epilogue.errors" class="invalid-feedback">
-    <div *ngIf="f.epilogue.errors.required">Durée is required</div>
+    <div *ngIf="f.epilogue.errors.required">Epilogue is required</div>
   </div>
   <br>
   <label>Commentaire</label>
@@ -120,7 +120,7 @@
     cols="150"
   >Veuillez saisir votre texte...</textarea>
   <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
-    <div *ngIf="f.commentaire.errors.required">Durée is required</div>
+    <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
   </div>
 </form>
 <br>

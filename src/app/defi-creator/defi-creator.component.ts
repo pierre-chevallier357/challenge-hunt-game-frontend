@@ -58,7 +58,7 @@ export class DefiCreatorComponent implements OnInit {
       pointsi: ['', Validators.required],
     }
     );
-    this.onReset();
+    this.defiForm.controls['titre'].setValue('Swag');
   }
 
   get f() { return this.defiForm.controls; }
