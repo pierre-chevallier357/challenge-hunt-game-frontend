@@ -25,7 +25,7 @@ export interface SidebarButton {
 })
 
 export class AppComponent implements OnInit{
-  unConnected:boolean = true
+
   dataIconGoogle = 'assets/images/iconGoogle.png';
   iconMarker = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
 
@@ -50,7 +50,12 @@ export class AppComponent implements OnInit{
   title: any; // Debug Visual Studio Code
   events: string[] = [];
   opened!: boolean;
+
   userConnect$: any;
+  unConnected:boolean = true
+
+  profilConnect$: any;
+  accountNotCreated:boolean = true
 
   constructor(
     public auth: AngularFireAuth,
@@ -61,8 +66,16 @@ export class AppComponent implements OnInit{
     this.userConnect$ = this.auth.user.pipe(
       map((user)=>{
         !user? this.unConnected=true:this.unConnected=false;
-      })
-    )
+      }));
+
+    this.profilConnect$ = this.auth.user.pipe(
+        switchMap((user) =>
+          this.chamiService.getChamiByUid(user!.uid).pipe(
+            map(()=>{
+              this.accountNotCreated = false;
+              console.log(this.accountNotCreated)
+            }))));
+
   }
 
   login(): void {

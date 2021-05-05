@@ -1,9 +1,8 @@
-
 <div *ngIf="authObs | async as user">
   <div *ngIf="connected">
     <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-12">
       <p class="connect-barrer">
-      Votre compte est bien <b>inscrit</b> en tant que {{user.email}}
+        Votre compte est bien <b>inscrit</b> en tant que {{user.email}}
       </p>
     </div>
   </div>
@@ -81,4 +80,3 @@
 
 
 </div>
-
