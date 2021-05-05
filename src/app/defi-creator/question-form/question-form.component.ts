@@ -28,11 +28,22 @@ export class QuestionFormComponent implements OnInit {
       indice: ['', Validators.required],
       pointsi: ['', Validators.required],
     });
+
+    if (this.questionIndiceInput) {
+      this.laQuestion = this.questionIndiceInput.question;
+      this.lIndice = this.questionIndiceInput.indice;
+
+      this.questionForm.controls.question.setValue(this.laQuestion.question);
+      this.questionForm.controls.pointsqss.setValue(this.laQuestion.points);
+      this.questionForm.controls.reponse.setValue(this.laQuestion.secret);
+      this.questionForm.controls.indice.setValue(this.lIndice.description);
+      this.questionForm.controls.pointsi.setValue(this.lIndice.points);
+    }
   }
 
   get g() { return this.questionForm.controls; }
 
-  OnSubmit(){
+  OnSubmit(): void {
     this.submitted = true;
     if (this.questionForm.invalid){
       return;
@@ -43,21 +54,21 @@ export class QuestionFormComponent implements OnInit {
     this.laQuestion = {
       question: this.questionForm.get('question')?.value,
       points: this.questionForm.get('pointsqss')?.value,
-      secret: this.questionForm.get('question')?.value
+      secret: this.questionForm.get('reponse')?.value
     };
 
     this.lIndice =  {
-      description: this.questionForm.get('question')?.value,
+      description: this.questionForm.get('indice')?.value,
       points: this.questionForm.get('pointsi')?.value,
     };
 
     this.questionIndiceOutput.emit({
       question: this.laQuestion,
       indice: this.lIndice
-    })
+    });
   }
 
-  onReset() {
+  onReset(): void {
     this.submitted = false;
     this.questionForm.reset();
   }

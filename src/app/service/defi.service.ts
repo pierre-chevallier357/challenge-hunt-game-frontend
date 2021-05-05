@@ -36,7 +36,12 @@ export class DefiService {
     return this.http.get<Defi[]>(this.defiUrl);
   }
 
-  createDefi(defi: Partial<Defi>): Observable<Defi> {
+  create(defi: Partial<Defi>): Observable<Defi> {
     return this.http.post<Defi>(this.defiUrl, defi);
+  }
+
+  update(idDefi: number, defi: Defi): Observable<Defi> {
+    const url = `${this.defiUrl}${idDefi}`;
+    return this.http.put<Defi>(url, defi);
   }
 }

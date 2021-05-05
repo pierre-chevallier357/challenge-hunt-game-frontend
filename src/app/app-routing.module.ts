@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'defi/:id', component: DefiDetailComponent },
   { path: 'defion/:id', component: ChallengeAcceptedComponent },
   { path: 'defimaker', component: DefiCreatorComponent },
+  { path: 'defimaker/:id', component: DefiCreatorComponent },
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'myProfil', component: MyProfilComponent },
   { path: 'profil/:uid', component: PageProfilComponent },

@@ -1,4 +1,3 @@
-<p>defi-form works!</p>
 <form [formGroup]="defiForm" (ngSubmit)="OnSubmit()">
   <label>Titre</label>
   <input
@@ -23,17 +22,6 @@
   </select>
   <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
     <div *ngIf="f.type.errors.required">Type is required</div>
-  </div>
-  <br>
-  <label>Auteur</label>
-  <input
-    type="text"
-    formControlName="auteur"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.auteur.errors }"
-  />
-  <div *ngIf="submitted && f.auteur.errors" class="invalid-feedback">
-    <div *ngIf="f.auteur.errors.required">Auteur is required</div>
   </div>
   <br>
   <label>Arrêt</label>
@@ -121,5 +109,16 @@
   >Veuillez saisir votre texte...</textarea>
   <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
     <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
+  </div>
+
+  <div *ngIf="!defiInput">
+    <h3>Questions et indices</h3>
+    <app-question-form (questionIndiceOutput)="questionIndice($event)"></app-question-form>
+    <br>
+  </div>
+
+  <div class="text-center">
+    <button class="btn btn-primary mr-1">Confirmer</button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
   </div>
 </form>

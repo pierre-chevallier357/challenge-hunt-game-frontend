@@ -1,11 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DefiType, Defi } from 'src/app/interface/defi';
 import { ArretService } from 'src/app/service/arret.service';
 import { FeatureCollection, Point } from 'geojson';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Arret } from 'src/app/interface/arret';
+import {QuestionIndice} from '../question-form/question-indice';
+import {Question} from '../../interface/question';
+import {Indice} from '../../interface/indice';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Arret} from '../../interface/arret';
+import {DefiService} from '../../service/defi.service';
+import {QuestionService} from '../../service/question.service';
+import {IndiceService} from '../../service/indice.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-defi-form',
@@ -14,24 +21,29 @@ import { Arret } from 'src/app/interface/arret';
 })
 export class DefiFormComponent implements OnInit {
   defiForm!: FormGroup;
-  submitted = false;
   DefiType = DefiType;
   leDefi!: Partial<Defi>;
+  listeQuestion: Partial<Question>[] = [];
+  listeIndice: Partial<Indice>[] = [];
   semStops!: Observable<FeatureCollection<Point>>;
 
+  submitted = false;
+  incrementation = 0;
   sum = 0;
 
   @Input() defiInput!: Defi;
-  @Output() defiOutput = new EventEmitter<Partial<Defi>>();
 
   constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private defiService: DefiService,
+              private questionService: QuestionService,
+              private indiceService: IndiceService,
               private arretService: ArretService) {}
 
   ngOnInit(): void {
     this.defiForm = this.formBuilder.group({
       titre: ['', Validators.required],
       type:  ['', Validators.required],
-      auteur: ['', Validators.required],
       arret: ['', Validators.required],
       motsClefs: ['', Validators.required],
       duree: ['', Validators.required],
@@ -41,12 +53,23 @@ export class DefiFormComponent implements OnInit {
       commentaire: ['', Validators.required],
     });
 
-    this.defiForm.controls['titre'].setValue('Swag');
+    if (this.defiInput) {
+      this.leDefi = this.defiInput;
+
+      this.defiForm.controls.titre.setValue(this.leDefi.titre);
+      this.defiForm.controls.type.setValue(this.leDefi.defiType);
+      this.defiForm.controls.motsClefs.setValue(this.leDefi.motsClefs);
+      this.defiForm.controls.duree.setValue(this.leDefi.duree);
+      this.defiForm.controls.prologue.setValue(this.leDefi.prologue);
+      this.defiForm.controls.description.setValue(this.leDefi.description);
+      this.defiForm.controls.epilogue.setValue(this.leDefi.epilogue);
+      this.defiForm.controls.commentaire.setValue(this.leDefi.commentaire);
+    }
   }
 
   get f() { return this.defiForm.controls; }
 
-  OnSubmit(){
+  OnSubmit(): void {
     this.submitted = true;
     if (this.defiForm.invalid){
       return;
@@ -60,22 +83,74 @@ export class DefiFormComponent implements OnInit {
       titre: this.defiForm.get('titre')?.value,
       uid: '1', // TODO: RECUPERER SUR LA PAGE
       defiType: this.defiForm.get('type')?.value,
-      dateCreation: new Date(),
-      dateModification: new Date(),
-      versionD: 1,
       points: this.sum,
       motsClefs: this.defiForm.get('motsClefs')?.value,
       duree: this.defiForm.get('duree')?.value,
-      description: this.defiForm.get('descritpion')?.value,
+      description: this.defiForm.get('description')?.value,
       prologue: this.defiForm.get('prologue')?.value,
       epilogue: this.defiForm.get('epilogue')?.value,
       commentaire: this.defiForm.get('commentaire')?.value,
     };
 
-    this.defiOutput.emit(this.leDefi);
+    this.arretService.getArretByCode(selectedArret.code as string).subscribe(
+      arret => this.createOrUpdateDefi(arret),
+      (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.arretService.createArret(selectedArret).subscribe(
+            arret => this.createOrUpdateDefi(arret)
+          );
+        }
+      }
+    );
   }
 
-  onReset() {
+  createOrUpdateDefi(arret: Arret): void {
+    this.leDefi.idArret = arret.idArret;
+
+    if (this.defiInput) {
+      this.leDefi.idDefi = this.defiInput.idDefi;
+      this.leDefi.versionD = this.defiInput.versionD + 1;
+      this.leDefi.dateCreation = this.defiInput.dateCreation;
+      this.leDefi.dateModification = new Date();
+
+      this.defiService.update(this.leDefi.idDefi, this.leDefi as Defi).subscribe(defi => console.log(defi));
+    } else {
+      this.leDefi.dateCreation = new Date();
+
+      this.defiService.create(this.leDefi).subscribe(defi => {
+        console.log(defi);
+
+        for (const question of this.listeQuestion) {
+          question.idDefi = defi.idDefi;
+          this.questionService.create(question).subscribe();
+        }
+
+        for (const indice of this.listeIndice) {
+          indice.idDefi = defi.idDefi;
+          this.indiceService.create(indice).subscribe();
+        }
+
+        this.router.navigate(['defi', defi.idDefi]);
+      });
+    }
+  }
+
+  questionIndice(questionIndice: QuestionIndice): void {
+    this.incrementation += 1;
+
+    const question = questionIndice.question;
+    const indice = questionIndice.indice;
+
+    question.numero = this.incrementation;
+    indice.numero = this.incrementation;
+
+    this.listeQuestion.push(question);
+    this.listeIndice.push(indice);
+
+    this.sum += question.points ?? 0;
+  }
+
+  onReset(): void {
     this.submitted = false;
     this.defiForm.reset();
   }
