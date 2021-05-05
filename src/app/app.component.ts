@@ -1,8 +1,10 @@
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import firebase from 'firebase/app';
+import { map, switchMap } from 'rxjs/operators';
+import { ChamiService } from './service/chami.service';
 
 export interface ErrorManager {
   ChamisTableError: boolean;
@@ -22,7 +24,8 @@ export interface SidebarButton {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
+  unConnected:boolean = true
   dataIconGoogle = 'assets/images/iconGoogle.png';
   iconMarker = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
 
@@ -47,8 +50,20 @@ export class AppComponent {
   title: any; // Debug Visual Studio Code
   events: string[] = [];
   opened!: boolean;
+  userConnect$: any;
 
-  constructor(public auth: AngularFireAuth, private router: Router) {}
+  constructor(
+    public auth: AngularFireAuth,
+    private router: Router,
+    private chamiService: ChamiService,) {}
+
+  ngOnInit(){
+    this.userConnect$ = this.auth.user.pipe(
+      map((user)=>{
+        !user? this.unConnected=true:this.unConnected=false;
+      })
+    )
+  }
 
   login(): void {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -67,5 +82,4 @@ export class AppComponent {
     this.router.navigate(['profil']);
   }
 
-  loadSettings() {}
 }

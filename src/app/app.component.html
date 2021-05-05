@@ -50,14 +50,24 @@
   <mat-drawer #drawer mode="over">
     <!-- BOUTONS -->
     <div *ngFor="let button of sidebar">
-      <button mat-menu-item
-              (click)="drawer.toggle()"
-              [routerLink]="button.routerLink">
+      <button mat-menu-item (click)="drawer.toggle()" [routerLink]="button.routerLink">
         <mat-icon>{{button.logo}}</mat-icon>
         <span>{{button.title}}</span>
       </button>
     </div>
   </mat-drawer>
+
+
+  <div *ngIf="userConnect$ | async"></div>
+  <div *ngIf="unConnected">
+      <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-12">
+        <p class="connect-barrer">
+          Connectez puis <b>inscrivez vous</b> pour acceder à la plateforme
+        </p>
+      </div>
+    </div>
+
+
 
   <!-- BALISE QUI CHANGE EN FONCTION DU LIEN-->
   <router-outlet></router-outlet>

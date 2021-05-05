@@ -6,7 +6,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chami } from './../interface/chami';
 import { ChamiService } from './../service/chami.service';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ResourceLoader } from '@angular/compiler';
+
+
 
 @Component({
   selector: 'app-my-Profil',
@@ -14,7 +17,7 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./my-Profil.component.scss']
 })
 export class MyProfilComponent implements OnInit {
-  profil!: Chami ;
+
   profilObs$!:Observable<Chami>
 
   @ViewChild('pseudo') pseudoInput!:ElementRef;
@@ -22,26 +25,29 @@ export class MyProfilComponent implements OnInit {
   @ViewChild('ville') villeInput!:ElementRef;
   @ViewChild('description') descriptionInput!:ElementRef;
 
+  ville:string = 'toto';
+  connected: boolean=false;
+
 
   constructor(
     private chamiService: ChamiService,
     private auth: AngularFireAuth,
-    private html:HttpClient) {
-      this.profilObs$ = this.auth.user.pipe(
-        switchMap((user) =>
-          this.chamiService.getChamiByUid('1').pipe(
-            map((chami:Chami)=>{
-              this.pseudoInput.nativeElement.value = chami.pseudo;
-              this.ageInput.nativeElement.value = chami.age;
-              this.villeInput.nativeElement.value = chami.ville;
-              this.descriptionInput.nativeElement.value = chami.description;
-              return chami;
-            })
+    private html:HttpClient) {}
 
-          )));
-    }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.profilObs$ = this.auth.user.pipe(
+      switchMap((user) =>
+        this.chamiService.getChamiByUid(user!.uid).pipe(
+          catchError(()=>console.log),
+          map((chami:Chami)=>{
+            this.pseudoInput.nativeElement.value = chami.pseudo;
+            this.ageInput.nativeElement.value = chami.age;
+            this.villeInput.nativeElement.value = chami.ville;
+            this.descriptionInput.nativeElement.value = chami.description;
+            this.connected = true;
+            return chami;
+          }))));
+  }
 
   get authObs(){
     return this.auth.user;
@@ -52,8 +58,20 @@ export class MyProfilComponent implements OnInit {
     if (!chami.pseudo || !chami.age || !chami.ville){
       alert("mauvais arguments");
     } else {
-      this.profil = chami;
-      //this.html.post('https://ttg-xi.herokuapp.com/api/chami/',chami);
+      this.html.post('https://ttg-xi.herokuapp.com/api/chamis/',chami).subscribe(
+        ()=>document.location.reload(),
+        ()=>alert('erreur lors de la création du compte'));
+      console.log(chami);
+    }
+  }
+
+  submitUpdate(chami: Chami): void {
+    if (!chami.pseudo || !chami.age || !chami.ville){
+      alert("mauvais arguments");
+    } else {
+      this.html.put(`https://ttg-xi.herokuapp.com/api/chamis/${chami.uid}`,chami).subscribe(
+        ()=>document.location.reload(),
+        ()=>alert('erreur lors de la modification du compte'));
     }
   }
 
