@@ -9,6 +9,14 @@
 <form >
   <input #reponse />
   <button (click)="onSubmit(reponse.value,question.idQuestion)">TRY ME BI**H</button>
+  <br>
+  <div *ngIf="indiceObs | async as indices">
+    <div *ngFor="let indice of indices">
+      <div *ngIf="indice.idIndice === question.idQuestion">
+  <button (click)="indiceUsed(indice.description,indice.points,question.idQuestion,question.numero)">USE SOME HELP BRO</button>
+  </div>
+</div>
+</div>
 </form>
 </ul>
 </div>
@@ -18,3 +26,7 @@
 <div>
   {{reponsePartial | json}}
 </div>
+<div>
+  {{indicePartial | json}}
+</div>
+

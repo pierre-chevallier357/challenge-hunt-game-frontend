@@ -1,3 +1,5 @@
+import { IndiceService } from './../service/indice.service';
+import { Indice } from './../interface/indice';
 import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
 import { Defi } from '../interface/defi';
@@ -16,17 +18,21 @@ import { Reponse } from '../interface/reponse';
 export class ChallengeAcceptedComponent implements OnInit {
 
   defi!: Defi;
+  idDefi!: number;
   listeReponse!: Partial<Reponse>[];
   reponsePartial!: Partial<Reponse>;
+  listeIndice!: Partial<Indice>[];
+  indicePartial!: Partial<Indice>;
   questionObs: Observable<Question[]> = this.questionService.getAllQuestion();
+  indiceObs: Observable<Indice[]> = this.indiceService.getAll();
 
-  constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) {}
+  constructor(private questionService: QuestionService,private indiceService: IndiceService, private defiService: DefiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const idDefi = Number(routeParams.get('id'));
-    this.defiService.getDefiByidDefi(idDefi).subscribe(defi => this.defi = defi);
-    this.questionObs = this.questionService.getQuestionByidDefi(idDefi);
+    this.idDefi = Number(routeParams.get('id'));
+    this.defiService.getDefiByidDefi(this.idDefi).subscribe(defi => this.defi = defi);
+    this.questionObs = this.questionService.getQuestionByidDefi(this.idDefi);
   }
 
   onSubmit(reponse: string,idQuestion: number): void {
@@ -35,6 +41,18 @@ export class ChallengeAcceptedComponent implements OnInit {
         reponse: reponse,
       }
       this.listeReponse.push(this.reponsePartial);
+  }
+
+  indiceUsed(indice: string,points: number,id: number,numero: number):void{
+    this.indicePartial = {
+      idDefi: this.idDefi,
+      idIndice: id,
+      numero: numero,
+      description: indice,
+      points: points,
+    };
+    alert('VOus avez utilisez un indice: \n\n' + indice);
+    this.listeIndice.push(this.indicePartial);
   }
 
   onSubmitValidey(): void{
