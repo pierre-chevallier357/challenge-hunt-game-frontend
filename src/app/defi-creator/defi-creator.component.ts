@@ -9,6 +9,8 @@ import { FeatureCollection, Point } from 'geojson';
 import { HttpErrorResponse } from '@angular/common/http';
 import {Arret} from '../interface/arret';
 import {DefiService} from '../service/defi.service';
+import {QuestionService} from '../service/question.service';
+import {IndiceService} from '../service/indice.service';
 
 
 @Component({
@@ -35,7 +37,11 @@ export class DefiCreatorComponent implements OnInit {
   show!: string;
   sum = 0;
 
-  constructor(private formBuilder: FormBuilder, private defiService: DefiService, private arretService: ArretService) {}
+  constructor(private formBuilder: FormBuilder,
+              private defiService: DefiService,
+              private arretService: ArretService,
+              private questionService: QuestionService,
+              private indiceService: IndiceService) {}
 
   ngOnInit(): void {
     this.defiForm = this.formBuilder.group({
@@ -72,14 +78,14 @@ export class DefiCreatorComponent implements OnInit {
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.defiForm.value, null, 4));
 
-    const arret = this.arretService.featureToArret(this.defiForm.get('arret')?.value);
+    const selectedArret = this.arretService.featureToArret(this.defiForm.get('arret')?.value);
     // TODO: Vérifier la présence de l'arrêt dans la BDD et l'ajouter si il n'existe pas.
-    this.arretService.getArretByCode(arret.code as string).subscribe(
-      data => this.createDefi(data),
+    this.arretService.getArretByCode(selectedArret.code as string).subscribe(
+      arret => this.createDefi(arret),
       (error: HttpErrorResponse) => {
         if (error.status === 404) {
-          this.arretService.createArret(arret).subscribe(
-            data => this.createDefi(data)
+          this.arretService.createArret(selectedArret).subscribe(
+            arret => this.createDefi(arret)
           );
         }
       }
@@ -104,7 +110,19 @@ export class DefiCreatorComponent implements OnInit {
       commentaire: this.defiForm.get('commentaire')?.value,
     };
 
-    this.defiService.createDefi(this.leDefi).subscribe(data => console.log(data));
+    this.defiService.createDefi(this.leDefi).subscribe(defi => {
+      console.log(defi);
+
+      for (const question of this.listeQuestion) {
+        question.idDefi = defi.idDefi;
+        this.questionService.create(question).subscribe();
+      }
+
+      for (const indice of this.listeIndice) {
+        indice.idDefi = defi.idDefi;
+        this.indiceService.create(indice).subscribe();
+      }
+    });
   }
 
   OnSubmitTwo(){
@@ -112,8 +130,11 @@ export class DefiCreatorComponent implements OnInit {
     if (this.questionForm.invalid){
       return;
     }
+
     alert('SUCCESS TWO!! :-)\n\n' + JSON.stringify(this.questionForm.value, null, 4));
+
     this.incrementation += 1;
+
     this.laQuestion = {
       question: this.questionForm.get('question')?.value,
       points: this.questionForm.get('pointsqss')?.value,
@@ -126,6 +147,7 @@ export class DefiCreatorComponent implements OnInit {
       points: this.questionForm.get('pointsi')?.value,
       numero: this.incrementation,
     };
+
     this.listeIndice.push(this.lIndice);
     this.listeQuestion.push(this.laQuestion);
 
@@ -135,7 +157,6 @@ export class DefiCreatorComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.defiForm.reset();
-
 }
   onResetTwo(){
     this.submitedTwo = false;

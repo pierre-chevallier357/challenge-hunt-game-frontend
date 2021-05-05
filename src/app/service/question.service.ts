@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 
 export class QuestionService {
 
-  private questionUrl = environment.apiUrl + '/question/';
+  private questionUrl = environment.apiUrl + '/questions/';
   private defiUrl = environment.apiUrl + '/defis/';
 
   constructor(private http: HttpClient) {
@@ -29,5 +29,9 @@ export class QuestionService {
 
   getAllQuestion(): Observable<Question[]> {
     return this.http.get<Question[]>(this.questionUrl);
+  }
+
+  create(question: Partial<Question>): Observable<Question> {
+    return this.http.post<Question>(this.questionUrl, question);
   }
 }

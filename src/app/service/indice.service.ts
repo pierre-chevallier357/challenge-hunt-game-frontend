@@ -10,18 +10,22 @@ import { environment } from '../../environments/environment';
 })
 export class IndiceService {
 
-  private indiceUrl = environment.apiUrl + '/indice/';
+  private indiceUrl = environment.apiUrl + '/indices/';
 
   constructor(private http: HttpClient) {
   }
 
-  getIndiceByidIndice(idIndice: number): Observable<Indice> {
+  getByIdIndice(idIndice: number): Observable<Indice> {
     const url = `${this.indiceUrl}${idIndice}`;
 
     return this.http.get<Indice>(url);
   }
 
-  getAllArret(): Observable<Indice[]> {
+  getAll(): Observable<Indice[]> {
     return this.http.get<Indice[]>(this.indiceUrl);
+  }
+
+  create(indice: Partial<Indice>): Observable<Indice> {
+    return this.http.post<Indice>(this.indiceUrl, indice);
   }
 }
