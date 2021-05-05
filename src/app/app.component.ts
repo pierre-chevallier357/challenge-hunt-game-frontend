@@ -41,6 +41,11 @@ export class AppComponent implements OnInit{
       routerLink: '/challenge'
     },
     {
+      title : 'Créer un défi',
+      logo: 'add_circle',
+      routerLink: '/defimaker'
+    },
+    {
       title : 'Mes visites & défis',
       logo: 'contact_page',
       routerLink: '/myChallenges'
