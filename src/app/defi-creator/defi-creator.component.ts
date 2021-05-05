@@ -3,9 +3,12 @@ import { Question } from '../interface/question';
 import { Defi, DefiType } from 'src/app/interface/defi';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {ArretService} from '../service/arret.service';
-import {Observable} from 'rxjs';
-import {FeatureCollection, Point} from 'geojson';
+import { ArretService } from '../service/arret.service';
+import { Observable } from 'rxjs';
+import { FeatureCollection, Point } from 'geojson';
+import { HttpErrorResponse } from '@angular/common/http';
+import {Arret} from '../interface/arret';
+import {DefiService} from '../service/defi.service';
 
 
 @Component({
@@ -32,7 +35,7 @@ export class DefiCreatorComponent implements OnInit {
   show!: string;
   sum = 0;
 
-  constructor(private formBuilder: FormBuilder, private arretService: ArretService) {}
+  constructor(private formBuilder: FormBuilder, private defiService: DefiService, private arretService: ArretService) {}
 
   ngOnInit(): void {
     this.defiForm = this.formBuilder.group({
@@ -71,23 +74,37 @@ export class DefiCreatorComponent implements OnInit {
 
     const arret = this.arretService.featureToArret(this.defiForm.get('arret')?.value);
     // TODO: Vérifier la présence de l'arrêt dans la BDD et l'ajouter si il n'existe pas.
+    this.arretService.getArretByCode(arret.code as string).subscribe(
+      data => this.createDefi(data),
+      (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.arretService.createArret(arret).subscribe(
+            data => this.createDefi(data)
+          );
+        }
+      }
+    );
+  }
 
+  createDefi(arret: Arret): void {
     this.leDefi = {
       titre: this.defiForm.get('titre')?.value,
-      uid: '12', // RECUPERER SUR LA PAGE
+      uid: '1', // TODO: RECUPERER SUR LA PAGE
       defiType: this.defiForm.get('type')?.value,
       dateCreation: new Date(),
       dateModification: new Date(),
       versionD: 1,
-      points: this.sum, // A CALCULER A LA FIN
+      points: this.sum, // TODO: A CALCULER A LA FIN
       motsClefs: this.defiForm.get('motsClefs')?.value,
       duree: this.defiForm.get('duree')?.value,
-      idArret: arret.idArret, // TODO: GET WITH API
+      idArret: arret.idArret,
       description: this.defiForm.get('descritpion')?.value,
       prologue: this.defiForm.get('prologue')?.value,
       epilogue: this.defiForm.get('epilogue')?.value,
       commentaire: this.defiForm.get('commentaire')?.value,
     };
+
+    this.defiService.createDefi(this.leDefi).subscribe(data => console.log(data));
   }
 
   OnSubmitTwo(){

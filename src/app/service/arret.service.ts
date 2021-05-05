@@ -11,13 +11,19 @@ import { Feature, FeatureCollection, Point } from 'geojson';
 })
 export class ArretService {
 
-  private arretUrl = environment.apiUrl + '/arret/';
+  private arretUrl = environment.apiUrl + '/arrets/';
 
   constructor(private http: HttpClient) {
   }
 
-  getArretByidArret(idArret: number): Observable<Arret> {
+  getArretByIdArret(idArret: number): Observable<Arret> {
     const url = `${this.arretUrl}${idArret}`;
+
+    return this.http.get<Arret>(url);
+  }
+
+  getArretByCode(code: string): Observable<Arret> {
+    const url = `${this.arretUrl}code/${code}`;
 
     return this.http.get<Arret>(url);
   }
@@ -27,8 +33,11 @@ export class ArretService {
   }
 
   searchSemStops(query: string): Observable<FeatureCollection<Point>> {
-    console.log('oui');
     return this.http.get<FeatureCollection<Point>>('https://data.mobilites-m.fr/api/findType/json?types=arret&query=' + query);
+  }
+
+  createArret(arret: Partial<Arret>): Observable<Arret> {
+    return this.http.post<Arret>(this.arretUrl, arret);
   }
 
   featureToArret(feature: Feature<Point>): Partial<Arret> {
