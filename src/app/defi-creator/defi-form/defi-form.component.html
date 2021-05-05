@@ -1,1 +1,125 @@
 <p>defi-form works!</p>
+<form [formGroup]="defiForm" (ngSubmit)="OnSubmit()">
+  <label>Titre</label>
+  <input
+    type="text"
+    formControlName="titre"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.titre.errors }"
+  />
+  <div *ngIf="submitted && f.titre.errors" class="invalid-feedback">
+    <div *ngIf="f.titre.errors.required">Titre is required</div>
+  </div>
+  <br>
+  <label>Type</label>
+  <select
+    formControlName="type"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
+  >
+    <option *ngFor="let type of DefiType | keyvalue" value="{{ type.key }}">
+      {{ type.value }}
+    </option>
+  </select>
+  <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+    <div *ngIf="f.type.errors.required">Type is required</div>
+  </div>
+  <br>
+  <label>Auteur</label>
+  <input
+    type="text"
+    formControlName="auteur"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.auteur.errors }"
+  />
+  <div *ngIf="submitted && f.auteur.errors" class="invalid-feedback">
+    <div *ngIf="f.auteur.errors.required">Auteur is required</div>
+  </div>
+  <br>
+  <label>Arrêt</label>
+  <input #semStopsSearch (keyup.enter)="searchSemStops(semStopsSearch.value)"/>
+  <select *ngIf="semStops | async as geoJSON"
+          formControlName="arret"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.arret.errors }"
+  >
+    <option *ngFor="let feature of geoJSON.features" [ngValue]="feature">
+      {{ feature.properties!['LIBELLE'] }}
+    </option>
+  </select>
+  <div *ngIf="submitted && f.arret.errors" class="invalid-feedback">
+    <div *ngIf="f.arret.errors.required">Arrêt is required</div>
+  </div>
+  <br>
+  <label>Mots Clefs</label>
+  <input
+    type="text"
+    formControlName="motsClefs"
+    class="form-control"
+    maxlength="120"
+    [ngClass]="{ 'is-invalid': submitted && f.titre.errors }"
+  />
+  <div *ngIf="submitted && f.motsClefs.errors" class="invalid-feedback">
+    <div *ngIf="f.motsClefs.errors.required">Mots Clefs is required</div>
+  </div>
+  <br>
+  <label>Durée</label>
+  <input
+    type="number"
+    formControlName="duree"
+    min="0"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.duree.errors }"
+  />
+  <div *ngIf="submitted && f.duree.errors" class="invalid-feedback">
+    <div *ngIf="f.duree.errors.required">Durée is required</div>
+  </div>
+  <br>
+  <label>Prologue</label>
+  <textarea
+    formControlName="prologue"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.prologue.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
+  <div *ngIf="submitted && f.prologue.errors" class="invalid-feedback">
+    <div *ngIf="f.prologue.errors.required">Prologue is required</div>
+  </div>
+  <br>
+  <label>Description</label>
+  <textarea
+    formControlName="description"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
+  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+    <div *ngIf="f.description.errors.required">Description is required</div>
+  </div>
+  <br>
+  <label>Epilogue</label>
+  <textarea
+    formControlName="epilogue"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.epilogue.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
+  <div *ngIf="submitted && f.epilogue.errors" class="invalid-feedback">
+    <div *ngIf="f.epilogue.errors.required">Epilogue is required</div>
+  </div>
+  <br>
+  <label>Commentaire</label>
+  <textarea
+    formControlName="commentaire"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }"
+    rows="3"
+    cols="150"
+  >Veuillez saisir votre texte...</textarea>
+  <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
+    <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
+  </div>
+</form>
