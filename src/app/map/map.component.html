@@ -1,14 +1,9 @@
-<yaga-map [lng]="5.726389" [lat]="45.186944" [zoom]="13">
+<yaga-map [lat]="45.186944" [lng]="5.726389" [zoom]="13">
   <yaga-tile-layer [(url)]="tileLayerUrl"></yaga-tile-layer>
   <yaga-geojson *ngIf="semLines | async as geoJSON"
                 [data]="geoJSON" [styler]="styler">
   </yaga-geojson>
+  <yaga-marker *ngFor="let arret of arrets"
+               [title]="arret.idArret.toString()" [lat]="arret.latitude" [lng]="arret.longitude" (click)="onMarkerClick(arret)">
+  </yaga-marker>
 </yaga-map>
-
-<!-- TODO : exemple qui pourra être supprimé -->
-<input #semStopsSearch (keyup.enter)="searchSemStops(semStopsSearch.value)">
-<ul *ngIf="semStops | async as geoJSON">
-  <li *ngFor="let feature of geoJSON.features">
-    {{ feature.properties!['LIBELLE'] }}
-  </li>
-</ul>

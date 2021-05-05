@@ -51,42 +51,10 @@
     <div class="w3-col m6">
       <h3>Les Défis</h3>
       <p>Se balader en ville et trouver des indices pour répondre aux questions<br>Utilisez votre telephone pour prendre des photos, puis postez-les !</p>
-      <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> Bouton fonctionnel</a></p>
+      <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i>Bouton fonctionnel</a></p>
     </div>
     <div class="w3-col m6">
       <img class="w3-image w3-round-large" src="https://www.w3schools.com/w3images/phone_buildings.jpg" alt="Buildings" width="700" height="394">
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-<!-- RÈGLES DU SITE -->
-<h2>Présentation</h2>
-<table border="1">
-  <tr>BIENVENUE ETRANGER <br>
-    TU ES VENU ICI CAR TU ES PERDU, SACHE LE, LE MONDE ENTIER TE DETESTE ALORS CREVE STP <br>
-    YEEHAW <br>
-  </tr>
-</table>
-
-<h2>Règlement</h2>
-<table border="1">
-  <tr>Void rule <br>
-    Rule number 1: Don't die <br>
-    Rule number 2: A moving target is harder to kill <br>
-  </tr>
-</table>
-
-<h2>Défis</h2>
-<div *ngIf="defisObs | async as defis">
-  <table-challenge [DATA_SOURCE]="defis"></table-challenge>
-</div>
-
-<h2>Carte</h2>
-<app-map></app-map>

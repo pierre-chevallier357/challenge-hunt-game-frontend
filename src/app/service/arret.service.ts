@@ -44,8 +44,8 @@ export class ArretService {
     return {
       nom: feature.properties?.LIBELLE,
       code: feature.properties?.CODE,
-      latitude: feature.geometry.coordinates[0],
-      longitude: feature.geometry.coordinates[1]
+      latitude: feature.geometry.coordinates[1],
+      longitude: feature.geometry.coordinates[0]
     };
   }
 }

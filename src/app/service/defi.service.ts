@@ -12,6 +12,7 @@ export class DefiService {
 
   private defiUrl = environment.apiUrl + '/defis/';
   private chamisUrl = environment.apiUrl + '/chamis/';
+  private arretUrl = environment.apiUrl + '/arrets/';
 
   constructor(private http: HttpClient) {
   }
@@ -22,7 +23,12 @@ export class DefiService {
   }
 
   getDefiByUid(uid: string): Observable<Defi[]> {
-    const url = `${this.chamisUrl}${uid}` + `/defis`;
+    const url = `${this.chamisUrl}${uid}/defis`;
+    return this.http.get<Defi[]>(url);
+  }
+
+  getDefisByIdArret(idArret: number): Observable<Defi[]> {
+    const url = `${this.arretUrl}${idArret}/defis`;
     return this.http.get<Defi[]>(url);
   }
 

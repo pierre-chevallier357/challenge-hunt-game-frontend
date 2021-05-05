@@ -1,12 +1,12 @@
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Chami } from '../interface/chami';
 import { ChamiService } from '../service/chami.service';
-import { Defi } from '../interface/defi';
 import { DefiService } from '../service/defi.service';
 
-import { Observable } from 'rxjs';
+import { ArretService } from '../service/arret.service';
+import { Arret } from '../interface/arret';
 
 export interface SearchResultsChamis {
   total: number;
@@ -21,14 +21,17 @@ export interface SearchResultsChamis {
 })
 
 export class ChallengeComponent {
-  chamisObs:Observable<Chami[]> = this.chamiService.getAllChamis();
-  defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
+  chamisObs = this.chamiService.getAllChamis();
+  defisObs = this.defiService.getAllDefis();
+  arretsObs = this.arretService.getAllArret();
 
   constructor(
-    private defiService : DefiService,
-    private chamiService : ChamiService,
+    private defiService: DefiService,
+    private chamiService: ChamiService,
+    private arretService: ArretService,
     public auth: AngularFireAuth) {}
 
-
-
+  selectArret(arret: Arret): void {
+    this.defisObs = this.defiService.getDefisByIdArret(arret.idArret);
+  }
 }

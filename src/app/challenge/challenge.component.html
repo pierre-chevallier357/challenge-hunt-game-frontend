@@ -1,36 +1,11 @@
-<!-- TABLE DE l'auth -->
-<h2>Chamis</h2>
+<h2>Carte</h2>
 
-<table *ngIf="auth.user| async as auth">
-  <pre>
-    {{ auth | json}}
-  </pre>
-</table>
-<br/><br/>
+<div *ngIf="arretsObs | async as arrets">
+  <app-map [arrets]="arrets" (arret)="selectArret($event)"></app-map>
+</div>
 
-
-
-<!-- TABLE DES CHAMIS -->
-<h2>Chamis</h2>
-
-<table *ngIf="chamisObs | async as chamis">
-  <pre>
-    {{ chamis | json}}
-  </pre>
-</table>
-<br/><br/>
-
-<!-- TABLE DES DEFIS -->
 <h2>Défis</h2>
+
 <div *ngIf="defisObs | async as defis">
   <table-challenge [DATA_SOURCE]="defis"></table-challenge>
-    <pre>
-      {{ defis | json}}
-    </pre>
 </div>
-<br/>
-
-<!-- CARTE -->
-<h2>Carte</h2>
-<app-map></app-map>
-<br/>
