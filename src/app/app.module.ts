@@ -37,6 +37,7 @@ import { TableChallengeComponent } from './challenge/tableChallenge/tableChallen
 
 import 'leaflet/dist/images/marker-shadow.png';
 import { DefiFormComponent } from './defi-creator/defi-form/defi-form.component';
+import { QuestionFormComponent } from './defi-creator/question-form/question-form.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DefiFormComponent } from './defi-creator/defi-form/defi-form.component'
     MapComponent,
     PageProfilComponent,
     TableChallengeComponent,
-    DefiFormComponent
+    DefiFormComponent,
+    QuestionFormComponent
    ],
   imports: [
     AngularFireAuthModule,

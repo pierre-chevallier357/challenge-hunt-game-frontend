@@ -1,0 +1,65 @@
+<form [formGroup]="questionForm" (ngSubmit)="OnSubmit()">
+  <label>Question</label>
+  <input
+    type="text"
+    formControlName="question"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.question.errors }"
+  />
+  <div *ngIf="submitted && g.question.errors" class="invalid-feedback">
+    <div *ngIf="g.question.errors.required">Question is required</div>
+  </div>
+  <br>
+  <label>Points de la question</label>
+  <input
+    type="number"
+    formControlName="pointsqss"
+    min="0"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.pointsqss.errors }"
+  />
+  <div *ngIf="submitted && g.pointsqss.errors" class="invalid-feedback">
+    <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question is required</div>
+  </div>
+  <br>
+  <label>Reponse</label>
+  <input
+    type="text"
+    formControlName="reponse"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.reponse.errors }"
+  />
+  <div *ngIf="submitted && g.reponse.errors" class="invalid-feedback">
+    <div *ngIf="g.reponse.errors.required">Reponse is required</div>
+  </div>
+  <br>
+  <label>Indice</label>
+  <input
+    type="text"
+    formControlName="indice"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.indice.errors }"
+  />
+  <div *ngIf="submitted && g.indice.errors" class="invalid-feedback">
+    <div *ngIf="g.indice.errors.required">Indice is required</div>
+  </div>
+  <br>
+  <label>Points indice</label>
+  <input
+    type="number"
+    formControlName="pointsi"
+    min="0"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': submitted && g.pointsi.errors }"
+  />
+  <div *ngIf="submitted && g.pointsi.errors" class="invalid-feedback">
+    <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice' is required</div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="text-center">
+    <button class="btn btn-primary mr-1"> Ajouter la question</button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+  </div>
+</form>
