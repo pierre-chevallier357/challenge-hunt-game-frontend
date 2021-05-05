@@ -36,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
 
 import 'leaflet/dist/images/marker-shadow.png';
+import { DefiFormComponent } from './defi-creator/defi-form/defi-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import 'leaflet/dist/images/marker-shadow.png';
     MyProfilComponent,
     MapComponent,
     PageProfilComponent,
-    TableChallengeComponent
+    TableChallengeComponent,
+    DefiFormComponent
    ],
   imports: [
     AngularFireAuthModule,
