@@ -1,4 +1,4 @@
-<div *ngIf="defi | async as defi">
+<div *ngIf="defi$ | async as defi">
   <div *ngIf="!next; else nextPage">
     <h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
 
@@ -8,14 +8,16 @@
 
     <br>
 
-    <div *ngIf="questions">
-      <div *ngFor="let question of questions">
-        {{question.question}} <br>
+    <div *ngIf="questionsReponses">
+      <div *ngFor="let qr of questionsReponses">
+        {{qr.question.question}} <br>
         <input #reponse />
-        <button (click)="onSubmit(reponse.value,question.idQuestion)">Valider</button>
+        <button (click)="onSubmit(reponse.value, qr.question.idQuestion)">Valider</button>
         <br>
-        <button (click)="indiceUsed(question.idQuestion,question.numero)">Besoin d'aide?</button>
+        <button (click)="indiceUsed(qr.question.indice, qr.question.idQuestion)">Besoin d'aide?</button>
       </div>
+
+      {{ questionsReponses | json }}
     </div>
 
     <button (click)="onSubmitValidey()">Terminer</button>
@@ -31,15 +33,11 @@
     <h5>Votre score est selon le site: {{resultatCalc}}/{{defi.points}} </h5>
 
     <h5>Et maintenant la correction :)</h5>
-    <div *ngIf="questions">
-      <div *ngFor="let question of questions">
-        La question: {{question.question}} <br>
-        <div *ngFor="let reponse of listeReponse">
-          <div *ngIf="reponse.question === question.idQuestion">
-            Ta réponse: {{reponse.reponse}}<br>
-          </div>
-        </div>
-        La réponse attendue: {{question.secret}}
+    <div *ngIf="questionsReponses">
+      <div *ngFor="let qr of questionsReponses">
+        La question: {{qr.question.question}} <br>
+        Ta réponse: {{qr.reponse.reponse}}<br>
+        La réponse attendue: {{qr.question.secret}}
       </div>
     </div>
 
