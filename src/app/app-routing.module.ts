@@ -22,7 +22,6 @@ const routes: Routes = [
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'myProfil', component: MyProfilComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
-  { path: 'visite/:id', component: VisiteComponent },
   { path: 'about', component: AboutComponent },
 
   // Sinon rediriger vers la page principale

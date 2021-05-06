@@ -93,15 +93,11 @@ export class ChallengeAcceptedComponent implements OnInit {
   visite(visite: Partial<Visite>, version: number): void {
     visite.idDefi = this.idDefi;
     visite.version = version;
+    visite.reponses = [];
+    this.questionsReponses.map(qr => visite.reponses?.push(qr.reponse));
 
     this.visiteService.create(visite).subscribe(createdVisite => {
       console.log(createdVisite);
-
-      for (const qr of this.questionsReponses) {
-        const reponse = qr.reponse;
-        reponse.visite = visite.idVisite;
-        this.reponseService.create(reponse as Reponse).subscribe();
-      }
     });
   }
 }
