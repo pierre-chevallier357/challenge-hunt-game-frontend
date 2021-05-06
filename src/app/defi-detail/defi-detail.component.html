@@ -1,68 +1,87 @@
 <div *ngIf="auth.user | async as user">
   <div *ngIf="myDefiDetail$ | async as defiDetailObs">
     <div *ngIf="ownerDefi">
+      <!-- si c'est le défi de l'utilisateur, on charge la modif rapide-->
       <app-defi-form2 [defi]="defiDetailObs.defi"></app-defi-form2>
     </div>
     <div *ngIf="!ownerDefi">
+      <!-- on affiche le defi sinon -->
+      <div class="w3-container w3-light-grey" style="padding:28px 28px">
+        <div class="w3-row-padding">
+          <div class="w3-col m6">
+            <h2>Défi : {{ defiDetailObs.defi.titre }} <i>(no. {{ defiDetailObs.defi.idDefi }})</i></h2>
+            <p><b>Mots clefs :</b> {{defiDetailObs.defi.motsClefs}} </p>
+            <p><b>Arrêt :</b> {{defiDetailObs.defi.idArret}} </p>
+            <p><b>Type :</b> {{defiDetailObs.defi.defiType}} </p>
+            <p><b>points :</b> {{defiDetailObs.defi.points}} </p>
+            <p><b>Duree :</b> {{defiDetailObs.defi.duree}} </p>
 
-      <h2>Défi {{ defiDetailObs.defi.idDefi }}</h2>
-      <h3>Défi {{ defiDetailObs.defi.titre }}</h3>
-      <p>
-        Type : {{defiDetailObs.defi.defiType}} <br>
-        Date de création : {{defiDetailObs.defi.dateCreation}} <br>
-        Date de modification : {{defiDetailObs.defi.dateModification}} <br>
-        Version : {{defiDetailObs.defi.versionD}} <br>
-        Arrêt : {{defiDetailObs.defi.idArret}} <br>
-        Mots clefs : {{defiDetailObs.defi.motsClefs}} <br>
-        Points : {{defiDetailObs.defi.points}} <br>
-        Duree: {{defiDetailObs.defi.duree}} min <br>
-        Description : {{defiDetailObs.defi.description}} <br>
-        Commentaire de l'auteur : {{defiDetailObs.defi.commentaire}}<br>
-      </p>
-      <p>
-        Prologue :<br>
-        - {{defiDetailObs.defi.prologue}}
-      </p>
-      <button [routerLink]="['/defion', defiDetailObs.defi.idDefi]">Accepter ce défi</button>
+
+            <button class=" w3-button w3-black" [routerLink]="['/defion', defiDetailObs.defi.idDefi]">
+              <i class="fa fa-play"></i>
+              Accepter ce défi
+            </button>
+          </div>
+          <div class="w3-col m6">
+            <h4>Prologue :</h4>
+            <p>{{defiDetailObs.defi.prologue}}</p>
+          </div>
+        </div>
+      </div>
 
 
       <!-- Observable du CHAMIS createur du défi-->
       <div *ngIf="defiDetailObs.chami$ | async as chami">
-        <h3>À propos de l'auteur </h3>
-        Auteur : {{ chami.pseudo }} <br>
-        Ville : {{ chami.ville}} <br>
-        <button [routerLink]="['/profil', defiDetailObs.defi.uid]">Voir l'auteur</button>
+        <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-32">
+          <div class="w3-row-padding">
+            <div class="w3-col m6">
+              <h3>À propos de l'auteur </h3>
+              Auteur : {{ chami.pseudo }} <br>
+              Ville : {{ chami.ville}} <br>
+            </div>
+            <div class="w3-col m6">
+              <br>
+              <button class=" w3-button w3-black" [routerLink]="['/profil', defiDetailObs.defi.uid]">
+                <i class="fa fa-user"></i> Voir l'auteur
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
 
-      <!-- Observable des VISITES jouées pour le DEFI-->
-      <div *ngIf="defiDetailObs.visite$ | async as visites">
-        <div *ngIf="visites.length >= 0;else AucuneVisite">
-          <div *ngIf="defiObs$ |async as allDefis">
-            <div class="w3-container" >
-              <h2 class="w3-center">Visites du défi</h2>
-              <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
-                <div *ngFor="let visite of visites" class="w3-col l3 m6 w3-margin-bottom">
-                  <div class="w3-card">
-                    <div class="w3-container">
-                      <h3>{{nameIt(visite.note)}}</h3>
-                      <p>{{nameOfDefi(visite.idDefi,allDefis)}} - <i>statut : {{visite.status}}</i></p>
-                      <p class="w3-opacity">Note:{{visite.score}} <mat-icon>star</mat-icon> /
-                        temps : {{visite.temps}}min <br>
-                        score obtenu : {{visite.score}} - {{visite.modeD}} </p>
-                      <p>{{visite.commentaire}}</p>
-                      <p><button class="w3-button w3-light-grey w3-block"
-                                 (click)="ouvrirPageDefi(visite.idDefi)"><i class="fa fa-play"></i>Voir défi</button></p>
-                    </div>
+    <!-- Observable des VISITES jouées pour le DEFI-->
+    <div *ngIf="defiDetailObs.visite$ | async as visites">
+      <button *ngIf="visites.length > 0;else AucuneVisite">
+        <div *ngIf="defiObs$ |async as allDefis">
+          <div class="w3-container">
+            <h2 class="w3-center">Visites du défi</h2>
+            <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+              <div *ngFor="let visite of visites" class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-card">
+                  <div class="w3-container">
+                    <h3>{{nameIt(visite.note)}}</h3>
+                    <p>{{nameOfDefi(visite.idDefi,allDefis)}} - <i>statut : {{visite.status}}</i></p>
+                    <p class="w3-opacity">Note:{{visite.score}} <mat-icon>star</mat-icon> /
+                      temps : {{visite.temps}}min <br>
+                      score obtenu : {{visite.score}} - {{visite.modeD}} </p>
+                    <p>{{visite.commentaire}}</p>
+                    <p><button class="w3-button w3-light-grey w3-block" (click)="ouvrirPageDefi(visite.idDefi)"><i
+                          class="fa fa-play"></i>Voir défi</button></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <ng-template #AucuneVisite>
-          Vous n'avez effectué aucune visite
-        </ng-template>
-      </div>
+      </button>
+      <ng-template #AucuneVisite>
+        <h2 class="w3-center">Visites du défi</h2>
+        <h5 class="w3-center">Aucune visite pour ce défi</h5>
+      </ng-template>
     </div>
+  </div>
 </div>
