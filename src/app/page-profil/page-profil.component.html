@@ -1,5 +1,11 @@
 <div *ngIf="profilDetail$ | async as profilObs">
   <h2>Profil de {{ profilObs.chami.pseudo }}</h2>
+<p>
+  {{profilObs.chami.age}} ans<br>
+  {{profilObs.chami.ville}} <br>
+  <i>{{profilObs.chami.description}}</i> <br>
+</p>
+
   <!-- Défis et visites -->
   <div *ngIf="profilObs.defi$| async as defis">
     <div *ngIf="arretObs | async as arrets">
