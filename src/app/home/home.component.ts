@@ -17,4 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(private defiService : DefiService) {}
 
   ngOnInit(): void {}
+
+  RayanContact(){
+    alert('Voici le contact de KAILI Rayan: \n "pour vous servir.": \n\n kailirayan@mailoo.org');
+  }
 }
