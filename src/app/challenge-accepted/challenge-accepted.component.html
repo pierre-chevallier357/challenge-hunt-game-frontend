@@ -7,13 +7,13 @@
 <div *ngFor="let question of questions">
 {{question.question}} <br>
   <input #reponse />
-  <button (click)="onSubmit(reponse.value,question.idQuestion)">TRY ME BI**H</button>
+  <button (click)="onSubmit(reponse.value,question.idQuestion)">Valider</button>
   <br>
-  <button (click)="indiceUsed(question.idQuestion)">USE SOME HELP BRO</button>
+  <button (click)="indiceUsed(question.idQuestion,question.numero)">Besoin d'aide?</button>
 </div>
 </div>
 
-<button (click)="onSubmitValidey()">LATER BI**H</button>
+<button (click)="onSubmitValidey()">Terminer</button>
 <h3>DEBUG</h3>
 <div>
   {{ listeReponse | json}}

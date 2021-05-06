@@ -21,6 +21,7 @@ export class ChallengeAcceptedComponent implements OnInit {
   reponsePartial!: Partial<Reponse>;
   questions: Question[] = [];
 
+
   constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -32,7 +33,9 @@ export class ChallengeAcceptedComponent implements OnInit {
         this.questions = questions;
         questions.map(question => this.listeReponse.push({
           question: question.idQuestion
-        }));
+        }
+
+        ));
       }
     );
   }
@@ -42,10 +45,10 @@ export class ChallengeAcceptedComponent implements OnInit {
     if (reponse) { reponse.reponse = reponseValue; }
   }
 
-  indiceUsed(idQuestion: number): void {
+  indiceUsed(idQuestion: number,numero: number): void {
     const reponse = this.listeReponse.find(reponseFound => reponseFound.question = idQuestion);
     if (reponse) { reponse.indiceUtilise = true; }
-    alert('VOus avez utilisez un indice');
+    alert('Vous avez utilisez un indice: \n' + this.questions[numero-1].indice);
   }
 
   onSubmitValidey(): void{
