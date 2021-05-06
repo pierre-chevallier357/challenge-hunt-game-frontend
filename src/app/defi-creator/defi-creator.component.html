@@ -1,6 +1,8 @@
 <div *ngIf="defi$ | async as defi; else newDefi" >
-  <h2 class="card-header">Modification du défi n°{{ defi.idDefi }}</h2>
-  <app-defi-form [defiInput]="defi"></app-defi-form>
+  <div *ngIf="questions$ | async as questions">
+    <h2 class="card-header">Modification du défi n°{{ defi.idDefi }}</h2>
+    <app-defi-form [incrementation]="questions.length" [defiInput]="defi"></app-defi-form>
+  </div>
 </div>
 <ng-template #newDefi>
   <div>

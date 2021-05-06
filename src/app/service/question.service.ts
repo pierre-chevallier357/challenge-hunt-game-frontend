@@ -34,4 +34,9 @@ export class QuestionService {
   create(question: Partial<Question>): Observable<Question> {
     return this.http.post<Question>(this.questionUrl, question);
   }
+
+  update(idQuestion: number, question: Question): Observable<Question> {
+    const url = `${this.questionUrl}${idQuestion}`;
+    return this.http.put<Question>(url, question);
+  }
 }

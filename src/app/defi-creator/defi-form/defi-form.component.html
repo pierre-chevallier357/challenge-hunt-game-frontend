@@ -76,11 +76,13 @@
       <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
     </div>
 
-    <div *ngIf="!defiInput">
-      <h3>Questions et indices</h3>
-      <app-question-form (questionOutput)="question($event)"></app-question-form>
-      <br>
-    </div>
+  <h3>Nouvelle question</h3>
+  <app-question-form (questionOutput)="newQuestion($event)"></app-question-form>
+  <br>
+  <div *ngIf="questions">
+    <h3>Modifier les questions</h3>
+    <app-question-form *ngFor="let question of questions" [questionInput]="question" (questionOutput)="editQuestion($event)"></app-question-form>
+  </div>
 
     <div class="text-center">
       <button class="btn btn-primary mr-1">Confirmer</button>

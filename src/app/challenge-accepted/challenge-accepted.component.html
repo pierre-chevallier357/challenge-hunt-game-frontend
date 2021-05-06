@@ -1,17 +1,18 @@
-<h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
-<p>
-  {{defi.description}} <br>
-</p>
-<br>
-<div *ngIf="questions">
-<div *ngFor="let question of questions">
-{{question.question}} <br>
-  <input #reponse />
-  <button (click)="onSubmit(reponse.value,question.idQuestion)">Valider</button>
+<div *ngIf="defi | async as defi">
+  <h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
+  <p>
+    {{defi.description}} <br>
+  </p>
   <br>
-  <button (click)="indiceUsed(question.idQuestion,question.numero)">Besoin d'aide?</button>
-</div>
-</div>
+  <div *ngIf="questions">
+    <div *ngFor="let question of questions">
+      {{question.question}} <br>
+      <input #reponse />
+      <button (click)="onSubmit(reponse.value,question.idQuestion)">TRY ME BI**H</button>
+      <br>
+      <button (click)="indiceUsed(question.idQuestion)">USE SOME HELP BRO</button>
+    </div>
+  </div>
 
 <button (click)="onSubmitValidey()">Terminer</button>
 <h3>DEBUG</h3>

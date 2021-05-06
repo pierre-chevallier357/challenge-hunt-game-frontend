@@ -22,29 +22,29 @@ export class DefiFormComponent implements OnInit {
   defiForm!: FormGroup;
   DefiType = DefiType;
   leDefi!: Partial<Defi>;
-  listeQuestion: Partial<Question>[] = [];
+  questions: Partial<Question>[] = [];
   semStops!: Observable<FeatureCollection<Point>>;
 
   submitted = false;
-  incrementation = 0;
   sum = 0;
 
   @Input() defiInput!: Defi;
+  @Input() incrementation = 0;
 
   uidConnected!: string;
-  authObs$!:any;
+  authObs$!: any;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private defiService: DefiService,
               private questionService: QuestionService,
               private arretService: ArretService,
-              public auth:AngularFireAuth) {}
+              public auth: AngularFireAuth) {}
 
   ngOnInit(): void {
     this.authObs$ = this.auth.user.pipe(
-      map((user)=>this.uidConnected = user!.uid)
-    )
+      map((user) => this.uidConnected = user!.uid)
+    );
     this.defiForm = this.formBuilder.group({
       titre: ['', Validators.required],
       type:  ['', Validators.required],
@@ -59,6 +59,7 @@ export class DefiFormComponent implements OnInit {
 
     if (this.defiInput) {
       this.leDefi = this.defiInput;
+      this.questionService.getQuestionByidDefi(this.defiInput.idDefi).subscribe(questions => this.questions = questions);
 
       this.defiForm.controls.titre.setValue(this.leDefi.titre);
       this.defiForm.controls.type.setValue(this.leDefi.defiType);
@@ -85,7 +86,7 @@ export class DefiFormComponent implements OnInit {
 
     this.leDefi = {
       titre: this.defiForm.get('titre')?.value,
-      uid: this.uidConnected, // TODO: RECUPERER SUR LA PAGE
+      uid: this.uidConnected,
       defiType: this.defiForm.get('type')?.value,
       points: this.sum,
       motsClefs: this.defiForm.get('motsClefs')?.value,
@@ -117,14 +118,27 @@ export class DefiFormComponent implements OnInit {
       this.leDefi.dateCreation = this.defiInput.dateCreation;
       this.leDefi.dateModification = new Date();
 
-      this.defiService.update(this.leDefi.idDefi, this.leDefi as Defi).subscribe(defi => console.log(defi));
+      this.defiService.update(this.leDefi.idDefi, this.leDefi as Defi).subscribe(defi => {
+        console.log(defi);
+
+        for (const question of this.questions) {
+          if (question.idDefi) {
+            this.questionService.update(question.idDefi, question as Question).subscribe();
+          } else {
+            question.idDefi = defi.idDefi;
+            this.questionService.create(question).subscribe();
+          }
+        }
+
+        this.router.navigate(['defi', defi.idDefi]);
+      });
     } else {
       this.leDefi.dateCreation = new Date();
 
       this.defiService.create(this.leDefi).subscribe(defi => {
         console.log(defi);
 
-        for (const question of this.listeQuestion) {
+        for (const question of this.questions) {
           question.idDefi = defi.idDefi;
           this.questionService.create(question).subscribe();
         }
@@ -134,14 +148,24 @@ export class DefiFormComponent implements OnInit {
     }
   }
 
-  question(question: Partial<Question>): void {
+  newQuestion(question: Partial<Question>): void {
     this.incrementation += 1;
-
     question.numero = this.incrementation;
+    this.questions.push(question);
+  }
 
-    this.listeQuestion.push(question);
-
-    this.sum += question.pointsQuestion ?? 0;
+  editQuestion(editedQuestion: Partial<Question>): void {
+    const editedFullQuestion = editedQuestion as Question;
+    const questionFound = this.questions.find(question => question.numero === editedFullQuestion.numero);
+    if (questionFound) {
+      questionFound.question = editedFullQuestion.question;
+      questionFound.secret = editedFullQuestion.secret;
+      questionFound.pointsQuestion = editedFullQuestion.pointsQuestion;
+      questionFound.indice = editedFullQuestion.indice;
+      questionFound.pointsIndice = editedFullQuestion.pointsIndice;
+      console.log(questionFound);
+    }
+    console.log(this.questions);
   }
 
   onReset(): void {
