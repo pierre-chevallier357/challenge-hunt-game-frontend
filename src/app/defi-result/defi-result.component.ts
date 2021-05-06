@@ -14,9 +14,7 @@ import { QuestionService } from '../service/question.service';
 export class DefiResultComponent implements OnInit {
 
   defi!: Defi;
-  resultats: number[] = [];
   resultatCalc:number = 0;
-  resultatWriten!:number;
   questionObs: Observable<Question[]> = this.questionService.getAllQuestion();
 
 
@@ -29,9 +27,6 @@ export class DefiResultComponent implements OnInit {
     this.defiService.getDefiByidDefi(idDefi).subscribe(defi => this.defi = defi);
   }
 
-  send(result: string){
-    this.resultatWriten = Number(result);
-  }
   next(){
 
   }
