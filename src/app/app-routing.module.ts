@@ -1,3 +1,4 @@
+import { AboutComponent } from './about/about.component';
 import { VisiteComponent } from './visite/visite.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'myProfil', component: MyProfilComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
   { path: 'visite/:id', component: VisiteComponent },
+  {path: 'about', component: AboutComponent},
   // Sinon rediriger vers la page principale
   { path: '**', redirectTo: '' }
 ];
