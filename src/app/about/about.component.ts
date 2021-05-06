@@ -15,5 +15,8 @@ export class AboutComponent implements OnInit {
   RayanContact(){
     alert('Voici le contact de KAILI Rayan: "pour vous servir. ": \n\n kailirayan@mailoo.org');
   }
+  LeoContact(){
+    alert('Voici le contact de PELLET PELLET Léo: "Bonjour,je suis ingénieur informaticien. ": \n\n https://gitlab.com/Leeo97one');
+  }
 
 }
