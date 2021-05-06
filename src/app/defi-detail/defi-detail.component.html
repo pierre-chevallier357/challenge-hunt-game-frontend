@@ -1,16 +1,16 @@
 <div *ngIf="defiDetail$ | async as defiDetailObs">
 
-  <h2>Defi {{ defiDetailObs.defi.idDefi }}</h2>
-  <h3>Defi {{ defiDetailObs.defi.titre }}</h3>
+  <h2>Défi {{ defiDetailObs.defi.idDefi }}</h2>
+  <h3>Défi {{ defiDetailObs.defi.titre }}</h3>
   <p>
     Type: {{defiDetailObs.defi.defiType}} <br>
-    Date de creation: {{defiDetailObs.defi.dateCreation}} <br>
+    Date de création: {{defiDetailObs.defi.dateCreation}} <br>
     Date de modification: {{defiDetailObs.defi.dateModification}} <br>
     Version: {{defiDetailObs.defi.versionD}} <br>
     Arret: {{defiDetailObs.defi.idArret}} <br>
     Mots clefs: {{defiDetailObs.defi.motsClefs}} <br>
     Points: {{defiDetailObs.defi.points}} <br>
-    Duree: {{defiDetailObs.defi.duree}} min <br>
+    Durée: {{defiDetailObs.defi.duree}} min <br>
   </p>
   <p>
     Prologue:<br>
@@ -20,7 +20,7 @@
 
   <!-- Observable du CHAMIS createur du défi-->
   <div *ngIf="defiDetailObs.chami$ | async as chami">
-    <h3> à propos de l'auteur (chamis)</h3>
+    <h3>À propos de l'auteur (chamis)</h3>
     Auteur: {{ chami.pseudo }} <br>
   </div>
 
@@ -39,7 +39,7 @@
   <button [routerLink]="['/defimaker', defiDetailObs.defi.idDefi]">Modifier</button>
 
   <!-- DEBUG -->
-  <h4> DEBUG - visualisation de l'observable courent</h4>
+  <h4> DEBUG - visualisation de l'observable courant</h4>
   <pre>
     {{defiDetailObs | json}}
     {{defiDetailObs.chami$ | async | json}}

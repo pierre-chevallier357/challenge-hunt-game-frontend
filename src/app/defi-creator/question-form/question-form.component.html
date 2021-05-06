@@ -22,7 +22,7 @@
     <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question is required</div>
   </div>
   <br>
-  <label>Reponse</label>
+  <label>Réponse</label>
   <input
     type="text"
     formControlName="reponse"
@@ -53,7 +53,7 @@
     [ngClass]="{ 'is-invalid': submitted && g.pointsi.errors }"
   />
   <div *ngIf="submitted && g.pointsi.errors" class="invalid-feedback">
-    <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice' is required</div>
+    <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice is required</div>
   </div>
   <br>
   <div class="text-center">
