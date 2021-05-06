@@ -1,0 +1,94 @@
+<div *ngIf="auth.user | async as user">
+  <form class="example-form">
+    <h2>Modification d'un defi</h2>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Auteur : {{user.email}}</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>identifiant : {{defi.idDefi}}</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Titre</mat-label>
+            <input matInput required #titre [value]="defi.titre" maxlength="40">
+            <mat-hint align="end">{{titre.value.length}} / 40</mat-hint>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>type</mat-label>
+            <mat-select #type [value]="defi.defiType">
+              <mat-option value="fun">fun</mat-option>
+              <mat-option value="enigme">enigme</mat-option>
+              <mat-option value="challenge">challenge</mat-option>
+              <mat-option value="hardcore">hardcore</mat-option>
+              <mat-option value="franchement_mec">franchement_mec</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Mots clefs</mat-label>
+        <input matInput #motsClefs [value]="defi.motsClefs" placeholder="Ex. Grenoble" required value=""
+          maxlength="120">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Durée (en min)</mat-label>
+        <input matInput #duree [value]="defi.duree" placeholder="Ex. Grenoble" required value="" maxlength="4">
+        <mat-hint align="start"><i>Entrez un nombre entier</i> </mat-hint>
+      </mat-form-field>
+      <br><br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Points</mat-label>
+        <input matInput #points [value]="defi.points" placeholder="Ex. Grenoble" required value="" maxlength="4">
+        <mat-hint align="start"><i>Entrez un nombre entier</i> </mat-hint>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Note moyenne : {{defi.noteMoyenne}}</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label><b>Prologue</b></mat-label>
+        <textarea matInput #prologue [value]="defi.prologue" placeholder="Prologue du défi"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label><b>Description</b></mat-label>
+        <textarea matInput #description [value]="defi.description" placeholder="Description du défi"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label><b>Epilogue</b></mat-label>
+        <textarea matInput #epilogue [value]="defi.epilogue" placeholder="Epilogue du défi"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label><b>Commentaire</b></mat-label>
+        <textarea matInput #commentaire [value]="defi.commentaire" placeholder="Commentaire du défi"></textarea>
+        <mat-hint align="start"><i>Ne divulguez pas d'informations personnelles</i> </mat-hint>
+      </mat-form-field>
+    </p>
+
+  </form>
+  <button (click)="submitUpdate({
+    titre: titre.value,
+    defiType: type.value,
+    motsClefs: motsClefs.value,
+    points: integer(points.value),
+    duree: integer(duree.value),
+    prologue: prologue.value,
+    description: description.value,
+    epilogue: epilogue.value,
+    commentaire: commentaire.value
+  })">ENVOYER</button>
+</div>

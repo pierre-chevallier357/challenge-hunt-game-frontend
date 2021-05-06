@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -29,12 +30,15 @@ export class DefiDetailComponent implements OnInit {
   visiteObs: Observable<Visite[]> = this.visiteService.getAllVisite();
 
   defiDetail$ !: Observable<DefiDetail>;
+  myDefiDetail$!: Observable<DefiDetail>;
   selectedId !: string;
+  ownerDefi: boolean=false;
 
   constructor(private chamiService: ChamiService,
               private defiService: DefiService,
               private visiteService: VisiteService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              public auth:AngularFireAuth) {}
 
   ngOnInit(): void {
     this.defiDetail$ = this.route.paramMap.pipe(
@@ -44,8 +48,32 @@ export class DefiDetailComponent implements OnInit {
             defi: defi,
             chami$ : this.chamiService.getChamiByUid(defi.uid),
             visite$ : this.visiteService.getVisiteByIdDefi(defi.idDefi)
-          }))
-        ))
-    );
+          })))));
+
+      this.myDefiDetail$ = this.route.paramMap.pipe(
+        switchMap(params =>
+           this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
+            switchMap((defi:Defi):Observable<DefiDetail> =>
+              this.auth.user.pipe(
+                map((user):DefiDetail=>{
+                  if (user?.uid === defi.uid){
+                    this.ownerDefi = true;
+                  } else {
+                    this.ownerDefi = false;
+                  }
+                  return ({
+                      defi: defi,
+                      chami$ : this.chamiService.getChamiByUid(defi.uid),
+                      visite$ : this.visiteService.getVisiteByIdDefi(defi.idDefi)
+                    });
+                })
+              )))));
+
+/*
+                  this.pseudoInput.nativeElement.value = chami.pseudo;
+                  this.ageInput.nativeElement.value = chami.age;
+                  this.villeInput.nativeElement.value = chami.ville;
+                  this.descriptionInput.nativeElement.value = chami.description;
+                  */
   }
 }

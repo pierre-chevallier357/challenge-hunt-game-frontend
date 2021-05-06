@@ -1,3 +1,4 @@
+import { DefiForm2Component } from './defi-detail/defi-form2/defi-form2.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -41,8 +42,9 @@ import { QuestionFormComponent } from './defi-creator/question-form/question-for
 import { DefiResultComponent } from './defi-result/defi-result.component';
 import { VisiteComponent } from './visite/visite.component';
 
+
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
     ChallengeAcceptedComponent,
     ChallengeComponent,
@@ -58,8 +60,9 @@ import { VisiteComponent } from './visite/visite.component';
     TableChallengeComponent,
     DefiFormComponent,
     QuestionFormComponent,
-      DefiResultComponent,
-      VisiteComponent
+    DefiResultComponent,
+    VisiteComponent,
+    DefiForm2Component
    ],
   imports: [
     AngularFireAuthModule,
