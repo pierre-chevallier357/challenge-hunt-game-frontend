@@ -3,16 +3,24 @@
   {{defi.epilogue}} <br>
 </p>
 
-<h5>Votre score est selon le site:{{resultatCalc}} </h5>
+<h5>Votre score est selon le site: {{resultatCalc}}/5 </h5>
 
 <h5>Et maintenant la correction :)</h5>
 <div *ngIf="questionObs | async as questions">
   <div *ngFor="let question of questions">
     La question: {{question.question}} <br>
-    VOTRE REPONSE ICI QUAND C'EST IMPLEMENTER AHHHHHHHHHHHHHHHHHHHHH <br>
+   <div *ngFor="let reponse of reponseListe">
+     <div  *ngIf="reponse.question === question.numero">
+        Ta réponse: {{reponse.reponse}}<br>
+     </div>
+   </div>
     La réponse attendue: {{question.secret}}
   </div>
 </div>
+
+<p>
+  {{defi.commentaire}}
+</p>
 
 <p>
   Comme le système de calcul ne peux pas vérifier si l'erreur est dûe à <br>
