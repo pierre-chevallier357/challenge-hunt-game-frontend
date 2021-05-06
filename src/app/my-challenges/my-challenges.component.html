@@ -1,9 +1,12 @@
-  <!-- Défis et visites correspondant à l'UID-->
-  <div *ngIf="profilObs$ | async as profil">
-    <div *ngIf="profil.defi$ | async as defi">
-      <table-challenge [DATA_SOURCE]="defi"></table-challenge>
-    </div>
-    <pre>
-      {{ profil | json}}
-    </pre>
+<h2>Mes Defis</h2>
+
+<!-- Défis et visites correspondant à l'UID-->
+<div *ngIf="profilObs$ | async as profil">
+  <div *ngIf="profil.defi$ | async as defis">
+    <table-challenge [DATA_SOURCE]="defis" [chamiData]="[profil.chami]">
+    </table-challenge>
   </div>
+  <pre>
+          {{ profil | json}}
+        </pre>
+</div>
