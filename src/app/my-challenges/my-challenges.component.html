@@ -2,8 +2,12 @@
 <div *ngIf="profilObs$ | async as profil">
   <h2 class="w3-center">Mes Defis</h2>
   <div *ngIf="profil.defi$ | async as defis">
-    <table-challenge [DATA_SOURCE]="defis" [chamiData]="[profil.chami]">
-    </table-challenge>
+    <div *ngIf="arretObs$ | async as arrets">
+      <table-challenge  [DATA_SOURCE]="defis"
+                        [chamiData]="[profil.chami]"
+                        [arretData]="arrets">
+      </table-challenge>
+  </div>
   </div>
   <div *ngIf="profil.visite$ | async as visites">
     <div *ngIf="visites.length >= 0;else AucuneVisite">

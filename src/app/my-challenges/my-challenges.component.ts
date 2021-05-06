@@ -1,3 +1,4 @@
+import { ArretService } from './../service/arret.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 import { stringify } from '@angular/compiler/src/util';
 import { Defi } from '../interface/defi';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Arret } from '../interface/arret';
 
 @Component({
   selector: 'app-my-challenges',
@@ -23,6 +25,7 @@ export class MyChallengesComponent implements OnInit {
   @Input() profilObsC!: Profil;
   profilObs$!: Observable<Profil>
   defiObs$: Observable<Defi[]> = this.defiService.getAllDefis();
+  arretObs$: Observable<Arret[]> = this.arretService.getAllArret();
 
 
   constructor(
@@ -30,6 +33,7 @@ export class MyChallengesComponent implements OnInit {
     private defiService: DefiService,
     private chamiService: ChamiService,
     private visiteService: VisiteService,
+    private arretService: ArretService,
     private router: Router,
     private route: ActivatedRoute) { }
 
