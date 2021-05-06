@@ -12,5 +12,8 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
   }
+  RayanContact(){
+    alert('Voici le contact de KAILI Rayan: "pour vous servir. ": \n\n kailirayan@mailoo.org');
+  }
 
 }

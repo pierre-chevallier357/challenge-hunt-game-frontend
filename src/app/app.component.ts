@@ -49,7 +49,13 @@ export class AppComponent implements OnInit{
       title : 'Mes visites & défis',
       logo: 'contact_page',
       routerLink: '/myChallenges'
+    },
+    {
+      title : 'A propos',
+      logo: 'info',
+      routerLink: '/about'
     }
+
   ];
 
   title: any; // Debug Visual Studio Code
