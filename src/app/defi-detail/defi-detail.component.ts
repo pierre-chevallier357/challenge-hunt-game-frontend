@@ -1,5 +1,5 @@
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { ChamiService } from '../service/chami.service';
@@ -31,49 +31,74 @@ export class DefiDetailComponent implements OnInit {
 
   defiDetail$ !: Observable<DefiDetail>;
   myDefiDetail$!: Observable<DefiDetail>;
-  selectedId !: string;
-  ownerDefi: boolean=false;
+  defiObs$ = this.defiService.getAllDefis();
 
-  constructor(private chamiService: ChamiService,
-              private defiService: DefiService,
-              private visiteService: VisiteService,
-              private route: ActivatedRoute,
-              public auth:AngularFireAuth) {}
+  selectedId !: string;
+  ownerDefi: boolean = false;
+
+  constructor(
+    private chamiService: ChamiService,
+    private defiService: DefiService,
+    private visiteService: VisiteService,
+    private route: ActivatedRoute,
+    public auth: AngularFireAuth,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.defiDetail$ = this.route.paramMap.pipe(
       switchMap(params =>
-         this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
-          map((defi:Defi):DefiDetail => ({
+        this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
+          map((defi: Defi): DefiDetail => ({
             defi: defi,
-            chami$ : this.chamiService.getChamiByUid(defi.uid),
-            visite$ : this.visiteService.getVisiteByIdDefi(defi.idDefi)
+            chami$: this.chamiService.getChamiByUid(defi.uid),
+            visite$: this.visiteService.getVisiteByIdDefi(defi.idDefi)
           })))));
 
-      this.myDefiDetail$ = this.route.paramMap.pipe(
-        switchMap(params =>
-           this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
-            switchMap((defi:Defi):Observable<DefiDetail> =>
-              this.auth.user.pipe(
-                map((user):DefiDetail=>{
-                  if (user?.uid === defi.uid){
-                    this.ownerDefi = true;
-                  } else {
-                    this.ownerDefi = false;
-                  }
-                  return ({
-                      defi: defi,
-                      chami$ : this.chamiService.getChamiByUid(defi.uid),
-                      visite$ : this.visiteService.getVisiteByIdDefi(defi.idDefi)
-                    });
-                })
-              )))));
+    this.myDefiDetail$ = this.route.paramMap.pipe(
+      switchMap(params =>
+        this.defiService.getDefiByidDefi(Number(params.get('id'))).pipe(
+          switchMap((defi: Defi): Observable<DefiDetail> =>
+            this.auth.user.pipe(
+              map((user): DefiDetail => {
+                if (user?.uid === defi.uid) {
+                  this.ownerDefi = true;
+                } else {
+                  this.ownerDefi = false;
+                }
+                return ({
+                  defi: defi,
+                  chami$: this.chamiService.getChamiByUid(defi.uid),
+                  visite$: this.visiteService.getVisiteByIdDefi(defi.idDefi)
+                });
+              })
+            )))));
+  }
+  // TODO - mettre en service
+  async ouvrirPageDefi(idDefi: number): Promise<void> {
+    await this.router.navigate([`/defi/${idDefi}`], { relativeTo: this.route });
+  }
 
-/*
-                  this.pseudoInput.nativeElement.value = chami.pseudo;
-                  this.ageInput.nativeElement.value = chami.age;
-                  this.villeInput.nativeElement.value = chami.ville;
-                  this.descriptionInput.nativeElement.value = chami.description;
-                  */
+  nameIt(i: number): string {
+    switch (i) {
+      case (0):
+        return 'insolitement mauvais';
+      case (1):
+        return 'mauvais';
+      case (2):
+        return 'pas très bon';
+      case (3):
+        return 'plutot bon';
+      case (4):
+        return 'très bon';
+      case (5):
+        return 'excellent';
+      default:
+        return 'error'
+    }
+  }
+  nameOfDefi(idDefi: number, defis: Defi[]) {
+    const title: string | undefined = defis.find((defi: Defi) => defi.idDefi === idDefi)?.titre;
+    if (title) { return title }
+    else { return "error" }
   }
 }

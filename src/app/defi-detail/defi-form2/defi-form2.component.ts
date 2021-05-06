@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Defi } from 'src/app/interface/defi';
 import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-defi-form2',
@@ -18,7 +19,9 @@ export class DefiForm2Component implements OnInit {
 
   constructor(
     public auth:AngularFireAuth,
-    private http:HttpClient) { }
+    private http:HttpClient,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   get authObs() {
     return this.auth.user
@@ -55,6 +58,11 @@ export class DefiForm2Component implements OnInit {
         ()=>document.location.reload(),
         ()=>alert('erreur lors de la création du compte \n ou Vous avez trop appuillé sur le bouton envoyer'));
     }
+  }
+
+  // TODO - mettre en service
+  async ouvrirPageDefiMaker(idDefi: number): Promise<void> {
+    await this.router.navigate([`/defimaker/${idDefi}`], { relativeTo: this.route });
   }
 
   integer(i:any){
