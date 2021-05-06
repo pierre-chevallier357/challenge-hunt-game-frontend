@@ -1,5 +1,8 @@
   <!-- Défis et visites correspondant à l'UID-->
   <div *ngIf="profilObs$ | async as profil">
+    <div *ngIf="profil.defi$ | async as defi">
+      <table-challenge [DATA_SOURCE]="defi"></table-challenge>
+    </div>
     <pre>
       {{ profil | json}}
     </pre>
