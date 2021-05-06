@@ -14,13 +14,14 @@ import { Reponse } from '../interface/reponse';
   styleUrls: ['./challenge-accepted.component.scss']
 })
 export class ChallengeAcceptedComponent implements OnInit {
-
   defi!: Observable<Defi>;
   idDefi!: number;
   listeReponse: Partial<Reponse>[] = [];
   reponsePartial!: Partial<Reponse>;
   questions: Question[] = [];
 
+  next = false;
+  resultatCalc = 0;
 
   constructor(private questionService: QuestionService,
               private defiService: DefiService,
@@ -66,12 +67,30 @@ export class ChallengeAcceptedComponent implements OnInit {
   }
 
   onSubmitValidey(): void {
+    this.next = true;
+
     for (const reponse of this.listeReponse) {
       if (reponse.indiceUtilise !== true) {
         reponse.indiceUtilise = false;
       }
     }
 
-    this.router.navigate(['defion', this.idDefi, 'resultat'], {state: this.listeReponse});
+    this.questionService.getQuestionByidDefi(this.idDefi).subscribe(questions => {
+      this.questions = questions;
+      for (let i = 0; i < this.listeReponse.length; i++ ){
+        if (this.listeReponse[i].reponse === questions[i].secret) {
+          this.resultatCalc += questions[i].pointsQuestion;
+        }
+        if (this.listeReponse[i].indiceUtilise === true){
+          this.resultatCalc -= questions[i].pointsQuestion;
+        }
+      }
+      if (this.resultatCalc < 0){
+        this.resultatCalc = 0;
+      }
+    });
+  }
+
+  finish(): void {
   }
 }

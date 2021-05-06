@@ -39,13 +39,12 @@ import { TableChallengeComponent } from './challenge/tableChallenge/tableChallen
 import 'leaflet/dist/images/marker-shadow.png';
 import { DefiFormComponent } from './defi-creator/defi-form/defi-form.component';
 import { QuestionFormComponent } from './defi-creator/question-form/question-form.component';
-import { DefiResultComponent } from './defi-result/defi-result.component';
 import { VisiteComponent } from './visite/visite.component';
 import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     ChallengeAcceptedComponent,
     ChallengeComponent,
@@ -61,10 +60,9 @@ import { AboutComponent } from './about/about.component';
     TableChallengeComponent,
     DefiFormComponent,
     QuestionFormComponent,
-    DefiResultComponent,
     VisiteComponent,
     DefiForm2Component,
-      AboutComponent
+    AboutComponent
    ],
   imports: [
     AngularFireAuthModule,
