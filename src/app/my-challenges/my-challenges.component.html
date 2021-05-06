@@ -1,6 +1,6 @@
 <!-- Défis et visites correspondant à l'UID-->
 <div *ngIf="profilObs$ | async as profil">
-  <h2 class="w3-center">Mes Defis</h2>
+  <h2 class="w3-center">Mes défis</h2>
   <div *ngIf="profil.defi$ | async as defis">
     <div *ngIf="arretObs$ | async as arrets">
       <table-challenge  [DATA_SOURCE]="defis"
@@ -21,11 +21,11 @@
                   <h3>{{nameIt(visite.note)}}</h3>
                   <p>{{nameOfDefi(visite.idDefi,allDefis)}} - <i>statut : {{visite.status}}</i></p>
                   <p class="w3-opacity">Note:{{visite.score}} <mat-icon>star</mat-icon> /
-                    temps: {{visite.temps}}min <br>
-                    score obtenu: {{visite.score}} - {{visite.modeD}} </p>
+                    temps : {{visite.temps}}min <br>
+                    score obtenu : {{visite.score}} - {{visite.modeD}} </p>
                   <p>{{visite.commentaire}}</p>
                   <p><button class="w3-button w3-light-grey w3-block"
-                             (click)="ouvrirPageDefi(visite.idDefi)"><i class="fa fa-play"></i> Voir Deffi</button></p>
+                             (click)="ouvrirPageDefi(visite.idDefi)"><i class="fa fa-play"></i>Voir défi</button></p>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
       </div>
     </div>
     <ng-template #AucuneVisite>
-      Vous n'avez effectué aucune visites
+      Vous n'avez effectué aucune visite
     </ng-template>
   </div>
 </div>

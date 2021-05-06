@@ -1,11 +1,3 @@
-<!--
-<div *ngIf="false";else VISU>
-
-</div>
-
-<ng-template #VISU>
-
--->
 <div *ngIf="auth.user | async as user">
   <div *ngIf="myDefiDetail$ | async as defiDetailObs">
     <div *ngIf="ownerDefi">
@@ -13,22 +5,22 @@
     </div>
     <div *ngIf="!ownerDefi">
 
-      <h2>Defi {{ defiDetailObs.defi.idDefi }}</h2>
-      <h3>Defi {{ defiDetailObs.defi.titre }}</h3>
+      <h2>Défi {{ defiDetailObs.defi.idDefi }}</h2>
+      <h3>Défi {{ defiDetailObs.defi.titre }}</h3>
       <p>
-        Type: {{defiDetailObs.defi.defiType}} <br>
-        Date de creation: {{defiDetailObs.defi.dateCreation}} <br>
-        Date de modification: {{defiDetailObs.defi.dateModification}} <br>
-        Version: {{defiDetailObs.defi.versionD}} <br>
-        Arret: {{defiDetailObs.defi.idArret}} <br>
-        Mots clefs: {{defiDetailObs.defi.motsClefs}} <br>
-        Points: {{defiDetailObs.defi.points}} <br>
+        Type : {{defiDetailObs.defi.defiType}} <br>
+        Date de création : {{defiDetailObs.defi.dateCreation}} <br>
+        Date de modification : {{defiDetailObs.defi.dateModification}} <br>
+        Version : {{defiDetailObs.defi.versionD}} <br>
+        Arrêt : {{defiDetailObs.defi.idArret}} <br>
+        Mots clefs : {{defiDetailObs.defi.motsClefs}} <br>
+        Points : {{defiDetailObs.defi.points}} <br>
         Duree: {{defiDetailObs.defi.duree}} min <br>
-        Description {{defiDetailObs.defi.description}} <br>
-        commentaire de l'auteur {{defiDetailObs.defi.commentaire}}<br>
+        Description : {{defiDetailObs.defi.description}} <br>
+        Commentaire de l'auteur : {{defiDetailObs.defi.commentaire}}<br>
       </p>
       <p>
-        Prologue:<br>
+        Prologue :<br>
         - {{defiDetailObs.defi.prologue}}
       </p>
       <button [routerLink]="['/defion', defiDetailObs.defi.idDefi]">Accepter ce défi</button>
@@ -36,9 +28,9 @@
 
       <!-- Observable du CHAMIS createur du défi-->
       <div *ngIf="defiDetailObs.chami$ | async as chami">
-        <h3> à propos de l'auteur </h3>
-        Auteur: {{ chami.pseudo }} <br>
-        Ville: {{ chami.ville}} <br>
+        <h3>À propos de l'auteur </h3>
+        Auteur : {{ chami.pseudo }} <br>
+        Ville : {{ chami.ville}} <br>
         <button [routerLink]="['/profil', defiDetailObs.defi.uid]">Voir l'auteur</button>
       </div>
     </div>
@@ -58,19 +50,6 @@
         <ng-template #aucuneVisite>
           Aucun avis pour ce défi
         </ng-template>
-
       </div>
     </div>
-
-
-
-    <!-- DEBUG
-    <h4> DEBUG - visualisation de l'observable courent</h4>
-    <pre>
-    {{defiDetailObs | json}}
-    {{defiDetailObs.chami$ | async | json}}
-    {{defiDetailObs.visite$ | async | json}}
-  </pre>
-  -->
-
 </div>

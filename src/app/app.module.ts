@@ -28,8 +28,6 @@ import { DefiDetailComponent } from './defi-detail/defi-detail.component';
 import { DefiService } from './service/defi.service';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
-import { IdeaComponent } from './idea/idea.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MapComponent } from './map/map.component';
 import { MyChallengesComponent } from './my-challenges/my-challenges.component';
 import { MyProfilComponent } from './my-Profil/my-Profil.component';
@@ -52,8 +50,6 @@ import { AboutComponent } from './about/about.component';
     DefiCreatorComponent,
     DefiDetailComponent,
     HomeComponent,
-    IdeaComponent,
-    LeaderboardComponent,
     MyChallengesComponent,
     MyProfilComponent,
     MapComponent,

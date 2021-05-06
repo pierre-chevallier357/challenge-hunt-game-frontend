@@ -51,7 +51,7 @@ export class AppComponent implements OnInit{
       routerLink: '/myChallenges'
     },
     {
-      title : 'A propos',
+      title : 'À propos',
       logo: 'info',
       routerLink: '/about'
     }

@@ -60,7 +60,7 @@ export class MyProfilComponent implements OnInit {
     } else {
       this.html.post('https://ttg-xi.herokuapp.com/api/chamis/',chami).subscribe(
         ()=>document.location.reload(),
-        ()=>alert('erreur lors de la création du compte \n ou Vous avez trop appuillé sur le bouton envoyer'));
+        ()=>alert('erreur lors de la création du compte \n ou vous avez trop appuillé sur le bouton envoyer'));
     }
   }
 
@@ -70,7 +70,7 @@ export class MyProfilComponent implements OnInit {
     } else {
       this.html.put(`https://ttg-xi.herokuapp.com/api/chamis/${chami.uid}`,chami).subscribe(
         ()=>document.location.reload(),
-        ()=>alert('erreur lors de la modification du compte \n ou Vous avez trop appuillé sur le bouton envoyer'));
+        ()=>alert('erreur lors de la modification du compte \n ou vous avez trop appuillé sur le bouton envoyer'));
     }
   }
 
