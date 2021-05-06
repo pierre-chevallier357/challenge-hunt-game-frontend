@@ -44,7 +44,7 @@ import { VisiteComponent } from './visite/visite.component';
 
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
     ChallengeAcceptedComponent,
     ChallengeComponent,
@@ -60,12 +60,9 @@ import { VisiteComponent } from './visite/visite.component';
     TableChallengeComponent,
     DefiFormComponent,
     QuestionFormComponent,
-<<<<<<< Updated upstream
-      DefiResultComponent,
-      VisiteComponent
-=======
+    DefiResultComponent,
+    VisiteComponent,
     DefiForm2Component
->>>>>>> Stashed changes
    ],
   imports: [
     AngularFireAuthModule,
