@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Visite } from '../interface/visite';
 
 @Component({
   selector: 'app-visite',
@@ -9,14 +10,15 @@ import { Router } from '@angular/router';
 })
 export class VisiteComponent implements OnInit {
 
-  defiForm!: FormGroup;
+  visiteForm!: FormGroup;
   submitted = false;
+  visite!:Partial<Visite>;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router) { }
 
   ngOnInit() {
-    this.defiForm = this.formBuilder.group({
+    this.visiteForm = this.formBuilder.group({
       temps: ['', Validators.required],
       mode: ['', Validators.required],
       status: ['', Validators.required],
@@ -24,6 +26,20 @@ export class VisiteComponent implements OnInit {
       note: ['', Validators.required],
       commentaire: ['', Validators.required],
     });
+  }
+
+  get f() { return this.visiteForm.controls; }
+
+  OnSubmit():void {
+    this.submitted = true;
+    if (this.visiteForm.invalid){
+      return;
+    }
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.visiteForm.value, null, 4));
+  }
+  OnReset(){
+    this.submitted = false;
+    this.visiteForm.reset();
   }
 
 }
