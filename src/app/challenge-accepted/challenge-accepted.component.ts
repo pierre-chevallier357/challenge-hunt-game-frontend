@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Defi } from '../interface/defi';
 import { Observable } from 'rxjs';
 import { DefiService } from '../service/defi.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionReponse} from './question-reponse';
 import {Visite} from '../interface/visite';
 import {VisiteService} from '../service/visite.service';
@@ -28,7 +28,8 @@ export class ChallengeAcceptedComponent implements OnInit {
               private visiteService: VisiteService,
               private reponseService: ReponseService,
               private route: ActivatedRoute,
-              private storage:AngularFireStorage) {}
+              private router: Router,
+              private storage: AngularFireStorage) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -95,10 +96,12 @@ export class ChallengeAcceptedComponent implements OnInit {
     visite.idDefi = this.idDefi;
     visite.version = version;
     visite.reponses = [];
-    this.questionsReponses.map((qr:QuestionReponse) => visite.reponses?.push(qr?.reponse));
+    this.questionsReponses.map((qr: QuestionReponse) => visite.reponses?.push(qr?.reponse));
 
     this.visiteService.create(visite).subscribe(createdVisite => {
       console.log(createdVisite);
+
+      this.router.navigate(['/']);
     });
   }
 }

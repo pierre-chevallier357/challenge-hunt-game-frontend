@@ -143,6 +143,7 @@ export class DefiFormComponent implements OnInit {
           this.questionService.create(question).subscribe();
         }
 
+        alert('Visite validée !');
         this.router.navigate(['defi', defi.idDefi]);
       });
     }

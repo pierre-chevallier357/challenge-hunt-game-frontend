@@ -4,6 +4,6 @@
                 [data]="geoJSON" [styler]="styler">
   </yaga-geojson>
   <yaga-marker *ngFor="let arret of arrets"
-               [title]="arret.idArret.toString()" [lat]="arret.latitude" [lng]="arret.longitude" (click)="onMarkerClick(arret)">
+               [title]="arret.nom" [lat]="arret.latitude" [lng]="arret.longitude" (click)="onMarkerClick(arret)">
   </yaga-marker>
 </yaga-map>
