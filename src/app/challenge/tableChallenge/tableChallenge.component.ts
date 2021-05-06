@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { ChamiService } from './../../service/chami.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
@@ -7,6 +9,7 @@ import { MatPaginator }  from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Defi } from 'src/app/interface/defi';
+import { Chami } from 'src/app/interface/chami';
 
 @Component({
   selector: 'table-challenge',
@@ -15,20 +18,27 @@ import { Defi } from 'src/app/interface/defi';
 })
 
 export class TableChallengeComponent implements AfterViewInit {
-  displayedColumns: string[] = ['uid', 'titre', 'motsClefs', 'description','duree', 'tenter'];
+  displayedColumns: string[] = ['autheur', 'titre', 'motsClefs', 'description','duree', 'tenter'];
 
   dataSource !:MatTableDataSource<Defi>;
 
   @Input() DATA_SOURCE:Defi[] = [];
+  @Input() chamiData: Chami[] = [];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private chamiService: ChamiService) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngAfterViewInit() {
@@ -45,4 +55,12 @@ export class TableChallengeComponent implements AfterViewInit {
   async ouvrirPageProfil(idProfil: string): Promise<void> {
     await this.router.navigate([`/profil/${idProfil}`], { relativeTo: this.route });
   }
+
+  getChamisByUid(uid: string):string{
+    var pseudo:string | undefined = this.chamiData.find((chami:Chami)=>chami.uid === uid)?.pseudo;
+    if (pseudo){return pseudo}
+    else {return "error"}
+  }
+
+
 }
