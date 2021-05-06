@@ -1,32 +1,33 @@
-<h3>DEFI: {{defi.idDefi}} RESULTAT</h3>
-<p>
-  {{defi.epilogue}} <br>
-</p>
+<div *ngIf="defi$ | async as defi">
+  <h3>DEFI: {{defi.idDefi}} RESULTAT</h3>
+  <p>
+    {{defi.epilogue}} <br>
+  </p>
 
-<h5>Votre score est selon le site: {{resultatCalc}}/{{defi.points}} </h5>
+  <h5>Votre score est selon le site: {{resultatCalc}}/{{defi.points}} </h5>
 
-<h5>Et maintenant la correction :)</h5>
-<div *ngIf="questionObs | async as questions">
-  <div *ngFor="let question of questions">
-    La question: {{question.question}} <br>
-   <div *ngFor="let reponse of reponseListe">
-     <div  *ngIf="reponse.question === question.numero">
-        Ta réponse: {{reponse.reponse}}<br>
-     </div>
-   </div>
-    La réponse attendue: {{question.secret}}
+  <h5>Et maintenant la correction :)</h5>
+  <div *ngIf="questions">
+    <div *ngFor="let question of questions">
+      La question: {{question.question}} <br>
+      <div *ngFor="let reponse of reponseListe">
+        <div *ngIf="reponse.question === question.idQuestion">
+          Ta réponse: {{reponse.reponse}}<br>
+        </div>
+      </div>
+      La réponse attendue: {{question.secret}}
+    </div>
   </div>
+
+  <p>
+    {{defi.commentaire}}
+  </p>
+
+  <p>
+    Comme le système de calcul ne peux pas vérifier si l'erreur est dûe à <br>
+    une faute d'orthographe ou à un caractère prêt nous te laissons t'autocorriger <br>
+    puis saisir ta note ;) <br>
+  </p>
+  <br>
+  <button (click)="next()">To the end.</button>
 </div>
-
-<p>
-  {{defi.commentaire}}
-</p>
-
-<p>
-  Comme le système de calcul ne peux pas vérifier si l'erreur est dûe à <br>
-  une faute d'orthographe ou à un caractère prêt nous te laissons t'autocorriger <br>
-  puis saisir ta note ;) <br>
-</p>
-<br>
-<button (click)="next()">To the end.</button>
-

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'myProfil', component: MyProfilComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
-  { path: 'resultat/:id', component: DefiResultComponent },
+  { path: 'defion/:id/resultat', component: DefiResultComponent },
   { path: 'visite/:id', component: VisiteComponent },
   // Sinon rediriger vers la page principale
   { path: '**', redirectTo: '' }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Defi } from '../interface/defi';
 import { Observable } from 'rxjs';
 import { DefiService } from '../service/defi.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Question } from '../interface/question';
 import { Reponse } from '../interface/reponse';
 
@@ -22,7 +22,10 @@ export class ChallengeAcceptedComponent implements OnInit {
   questions: Question[] = [];
 
 
-  constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) {}
+  constructor(private questionService: QuestionService,
+              private defiService: DefiService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -40,8 +43,8 @@ export class ChallengeAcceptedComponent implements OnInit {
   }
 
   onSubmit(reponseValue: string, id: number): void {
-    for(let reponse of this.listeReponse){
-      if(reponse.question === id){
+    for (const reponse of this.listeReponse){
+      if (reponse.question === id){
         reponse.reponse = reponseValue;
         return;
       }
@@ -49,26 +52,26 @@ export class ChallengeAcceptedComponent implements OnInit {
     this.listeReponse.push({
       reponse: reponseValue,
       question: id,
-    })
+    });
   }
 
-  indiceUsed(idQuestion: number,numero: number): void {
-    for(let reponse of this.listeReponse){
-      if(reponse.question === idQuestion){
+  indiceUsed(idQuestion: number, numero: number): void {
+    for (const reponse of this.listeReponse) {
+      if (reponse.question === idQuestion) {
         reponse.indiceUtilise = true;
-        alert('Vous avez utilisez un indice: \n' + this.questions[numero-1].indice);
+        alert('Vous avez utilisez un indice: \n' + this.questions[numero - 1].indice);
         return;
       }
     }
-
   }
 
-  onSubmitValidey(): void{
-
-    for(let reponse of this.listeReponse){
-      if(reponse.indiceUtilise != true){
+  onSubmitValidey(): void {
+    for (const reponse of this.listeReponse) {
+      if (reponse.indiceUtilise !== true) {
         reponse.indiceUtilise = false;
+      }
+    }
+
+    this.router.navigate(['defion', this.idDefi, 'resultat'], {state: this.listeReponse});
   }
-}
-}
 }
