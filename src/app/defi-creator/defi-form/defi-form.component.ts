@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -10,6 +11,7 @@ import {Arret} from '../../interface/arret';
 import {DefiService} from '../../service/defi.service';
 import {QuestionService} from '../../service/question.service';
 import {Router} from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-defi-form',
@@ -29,13 +31,20 @@ export class DefiFormComponent implements OnInit {
 
   @Input() defiInput!: Defi;
 
+  uidConnected!: string;
+  authObs$!:any;
+
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private defiService: DefiService,
               private questionService: QuestionService,
-              private arretService: ArretService) {}
+              private arretService: ArretService,
+              public auth:AngularFireAuth) {}
 
   ngOnInit(): void {
+    this.authObs$ = this.auth.user.pipe(
+      map((user)=>this.uidConnected = user!.uid)
+    )
     this.defiForm = this.formBuilder.group({
       titre: ['', Validators.required],
       type:  ['', Validators.required],
@@ -76,7 +85,7 @@ export class DefiFormComponent implements OnInit {
 
     this.leDefi = {
       titre: this.defiForm.get('titre')?.value,
-      uid: '1', // TODO: RECUPERER SUR LA PAGE
+      uid: this.uidConnected, // TODO: RECUPERER SUR LA PAGE
       defiType: this.defiForm.get('type')?.value,
       points: this.sum,
       motsClefs: this.defiForm.get('motsClefs')?.value,
