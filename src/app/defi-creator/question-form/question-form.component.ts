@@ -12,7 +12,7 @@ export class QuestionFormComponent implements OnInit {
   submitted = false;
   laQuestion!: Partial<Question>;
 
-  @Input() questionInput!: Question;
+  @Input() questionInput!: Partial<Question>;
   @Output() questionOutput = new EventEmitter<Partial<Question>>();
 
   constructor(private formBuilder: FormBuilder) {}
@@ -48,6 +48,8 @@ export class QuestionFormComponent implements OnInit {
     alert('SUCCESS TWO!! :-)\n\n' + JSON.stringify(this.questionForm.value, null, 4));
 
     this.laQuestion = {
+      idQuestion: this.questionInput?.idQuestion,
+      numero: this.questionInput?.numero,
       question: this.questionForm.get('question')?.value,
       pointsQuestion: this.questionForm.get('pointsqss')?.value,
       secret: this.questionForm.get('reponse')?.value,

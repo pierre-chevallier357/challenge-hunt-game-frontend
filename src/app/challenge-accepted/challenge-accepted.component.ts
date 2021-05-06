@@ -15,7 +15,7 @@ import { Reponse } from '../interface/reponse';
 })
 export class ChallengeAcceptedComponent implements OnInit {
 
-  defi!: Defi;
+  defi!: Observable<Defi>;
   idDefi!: number;
   listeReponse: Partial<Reponse>[] = [];
   reponsePartial!: Partial<Reponse>;
@@ -27,7 +27,7 @@ export class ChallengeAcceptedComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idDefi = Number(routeParams.get('id'));
-    this.defiService.getDefiByidDefi(this.idDefi).subscribe(defi => this.defi = defi);
+    this.defiService.getDefiByidDefi(this.idDefi);
     this.questionService.getQuestionByidDefi(this.idDefi).subscribe(
       questions => {
         this.questions = questions;
