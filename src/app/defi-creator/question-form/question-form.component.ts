@@ -45,8 +45,6 @@ export class QuestionFormComponent implements OnInit {
       return;
     }
 
-    alert('SUCCESS TWO!! :-)\n\n' + JSON.stringify(this.questionForm.value, null, 4));
-
     this.laQuestion = {
       idQuestion: this.questionInput?.idQuestion,
       numero: this.questionInput?.numero,

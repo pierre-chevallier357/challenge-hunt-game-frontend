@@ -81,7 +81,6 @@ export class DefiFormComponent implements OnInit {
       return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.defiForm.value, null, 4));
 
     const selectedArret = this.arretService.featureToArret(this.defiForm.get('arret')?.value);
 

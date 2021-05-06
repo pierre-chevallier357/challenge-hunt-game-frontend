@@ -1,5 +1,4 @@
 <div *ngIf="authObs$ | async as user">
-  {{uidConnected}}
   <form [formGroup]="defiForm" (ngSubmit)="OnSubmit()">
     <label>Titre</label>
     <input type="text" formControlName="titre" class="form-control"

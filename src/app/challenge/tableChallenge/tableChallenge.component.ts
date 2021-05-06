@@ -23,7 +23,7 @@ export interface  DefiPlus extends Defi {
 })
 
 export class TableChallengeComponent implements AfterViewInit {
-  displayedColumns: string[] = ['pseudo', 'arret','titre', 'motsClefs', 'description','duree','note', 'tenter'];
+  displayedColumns: string[] = ['pseudo', 'arret','titre', 'motsClefs','duree','note', 'tenter'];
 
   dataSource !:MatTableDataSource<DefiPlus>;
 

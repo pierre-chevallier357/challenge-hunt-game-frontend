@@ -46,7 +46,6 @@ export class VisiteComponent implements OnInit {
       return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.visiteForm.value, null, 4));
 
     this.visite = {
       uid: this.uidConnected,
