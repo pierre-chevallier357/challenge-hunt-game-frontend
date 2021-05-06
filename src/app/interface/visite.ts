@@ -1,5 +1,10 @@
+import { Question } from 'src/app/interface/question';
+import { Reponse } from './reponse';
+
+
 export interface Visite {
   idVisite: number;
+  idDefi: number,
   uid: string;
   dateVisite: Date;
   temps: number;
@@ -9,6 +14,6 @@ export interface Visite {
   note: number;
   score: number;
   commentaire: string;
-  indices: number[];
-  reponses: string[];
+  indices: Partial<Question>[];
+  reponses: Reponse[];
 }

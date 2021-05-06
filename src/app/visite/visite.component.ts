@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Defi } from '../interface/defi';
 import { Visite } from '../interface/visite';
+import { DefiService } from '../service/defi.service';
 
 @Component({
   selector: 'app-visite',
@@ -13,9 +15,10 @@ export class VisiteComponent implements OnInit {
   visiteForm!: FormGroup;
   submitted = false;
   visite!:Partial<Visite>;
+  defi!: Defi;
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router) { }
+    private route: ActivatedRoute, private defiService: DefiService) { }
 
   ngOnInit() {
     this.visiteForm = this.formBuilder.group({
@@ -26,6 +29,9 @@ export class VisiteComponent implements OnInit {
       note: ['', Validators.required],
       commentaire: ['', Validators.required],
     });
+    const routeParams = this.route.snapshot.paramMap;
+    const idDefi = Number(routeParams.get('id'));
+    this.defiService.getDefiByidDefi(idDefi).subscribe(defi => this.defi = defi);
   }
 
   get f() { return this.visiteForm.controls; }
@@ -36,6 +42,22 @@ export class VisiteComponent implements OnInit {
       return;
     }
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.visiteForm.value, null, 4));
+    const routeParams = this.route.snapshot.paramMap;
+    const idDefi = Number(routeParams.get('id'));
+    this.visite={
+      idDefi: idDefi,
+      uid: '900', //TODO AJOUTER L'UID
+      dateVisite: new Date(),
+      temps: this.visiteForm.get('temps')?.value,
+      version: this.defi.versionD,
+      modeD: this.visiteForm.get('mode')?.value,
+      status: this.visiteForm.get('status')?.value,
+      note: this.visiteForm.get('note')?.value,
+      score: this.visiteForm.get('score')?.value,
+      commentaire: this.visiteForm.get('commentaire')?.value,
+      //TODO RECUPERER LA LISTE DES INDICE (Partial<Question>[]) indices:
+      //TODO RECUPERER LA LISTE DES REPONSE (Reponse[]) reponses:
+    }
   }
   OnReset(){
     this.submitted = false;
