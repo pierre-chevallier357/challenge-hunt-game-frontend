@@ -12,9 +12,8 @@ import { Observable } from 'rxjs';
 })
 
 export class HomeComponent implements OnInit {
-  defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
 
-  constructor(private defiService : DefiService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
