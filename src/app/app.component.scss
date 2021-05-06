@@ -16,6 +16,8 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
+      z-index: 1000;
+      margin-top: -13px;
     }
   }
 
@@ -24,29 +26,5 @@
     > mat-drawer {
       border-right: solid grey 3px;
     }
-  }
-
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    table-layout: auto;
-  }
-
-  th {
-    border: 2px solid #000000;
-    text-align: left;
-    padding: 8px;
-    background-color: #000000;
-    color: #ffffff;
-  }
-
-  td {
-    border: 2px solid #000000;
-    text-align: left;
-    padding: 8px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #dddddd;
   }
 }
