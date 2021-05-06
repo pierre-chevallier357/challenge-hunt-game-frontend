@@ -1,3 +1,4 @@
+import { DefiResultComponent } from './defi-result/defi-result.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'myChallenges', component: MyChallengesComponent },
   { path: 'myProfil', component: MyProfilComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
+  { path: 'resultat/:id', component: DefiResultComponent },
   // Sinon rediriger vers la page principale
   { path: '**', redirectTo: '' }
 ];
