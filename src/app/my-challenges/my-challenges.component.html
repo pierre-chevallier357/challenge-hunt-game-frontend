@@ -1,12 +1,22 @@
-<h2>Mes Defis</h2>
 
 <!-- Défis et visites correspondant à l'UID-->
 <div *ngIf="profilObs$ | async as profil">
+  <h2>Mes Defis</h2>
   <div *ngIf="profil.defi$ | async as defis">
     <table-challenge [DATA_SOURCE]="defis" [chamiData]="[profil.chami]">
     </table-challenge>
   </div>
-  <pre>
-          {{ profil | json}}
-        </pre>
+  <h2>Mes visites</h2>
+  <div *ngIf="profil.visite$ | async as visites">
+    <div *ngIf="visites.length > 0;else AucuneVisite">
+      <table>
+      <tr *ngFor="let visite of visites">
+        <td>{{visite.dateVisite}}</td>
+      </tr>
+    </table>
+    </div>
+    <ng-template #AucuneVisite>
+      Vous n'avez effectué aucune visites
+    </ng-template>
+  </div>
 </div>

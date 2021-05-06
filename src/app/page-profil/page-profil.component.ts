@@ -1,3 +1,4 @@
+import { ArretService } from './../service/arret.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,6 +10,7 @@ import { VisiteService } from './../service/visite.service';
 
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { Arret } from '../interface/arret';
 
 @Component({
   selector: 'app-page-profil',
@@ -18,8 +20,14 @@ import { map, switchMap } from 'rxjs/operators';
 
 export class PageProfilComponent implements OnInit {
   profilDetail$ !:Observable<Profil>;
+  arretObs:Observable<Arret[]> = this.arretService.getAllArret();
 
-  constructor(private chamiService: ChamiService, private defiService: DefiService, private route: ActivatedRoute, private visiteService: VisiteService) {}
+  constructor(
+    private chamiService: ChamiService,
+    private defiService: DefiService,
+    private route: ActivatedRoute,
+    private visiteService: VisiteService,
+    private arretService: ArretService) {}
 
   ngOnInit(): void {
     this.profilDetail$ = this.route.paramMap.pipe(

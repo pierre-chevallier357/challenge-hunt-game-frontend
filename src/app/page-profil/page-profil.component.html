@@ -1,6 +1,12 @@
 <div *ngIf="profilDetail$ | async as profilObs">
   <h2>Profil de {{ profilObs.chami.pseudo }}</h2>
   <!-- Défis et visites -->
-  <app-my-challenges [profilObsC]="profilObs"
-                     ></app-my-challenges>
+  <div *ngIf="profilObs.defi$| async as defis">
+    <div *ngIf="arretObs | async as arrets">
+      <table-challenge  [DATA_SOURCE]="defis"
+                        [chamiData]="[profilObs.chami]"
+                        [arretData]="arrets">
+      </table-challenge>
+    </div>
+  </div>
 </div>

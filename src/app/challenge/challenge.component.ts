@@ -26,6 +26,8 @@ export interface SearchResultsChamis {
 export class ChallengeComponent {
   chamisObs:Observable<Chami[]> = this.chamiService.getAllChamis();
   defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
+  arretObs:Observable<Arret[]> = this.arretService.getAllArret();
+
   arretsObs = this.arretService.getAllArret();
 
   constructor(
