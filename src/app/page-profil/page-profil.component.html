@@ -1,5 +1,6 @@
 <div *ngIf="profilDetail$ | async as profilObs">
   <h2>Profil de {{ profilObs.chami.pseudo }}</h2>
   <!-- Défis et visites -->
-  <app-my-challenges [profilObsC]="profilObs"></app-my-challenges>
+  <app-my-challenges [profilObsC]="profilObs"
+                     ></app-my-challenges>
 </div>

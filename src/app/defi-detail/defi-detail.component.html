@@ -45,6 +45,7 @@
         Ville: {{ chami.ville}} <br>
         <button [routerLink]="['/profil', defiDetailObs.defi.uid]">Voir l'auteur</button>
       </div>
+    </div>
 
       <!-- Observable des VISITES jouées pour le DEFI-->
       <h4>Avis</h4>
@@ -75,5 +76,5 @@
     {{defiDetailObs.visite$ | async | json}}
   </pre>
   -->
-  </div>
+
 </div>

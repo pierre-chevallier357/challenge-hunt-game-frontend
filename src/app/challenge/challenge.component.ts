@@ -7,6 +7,9 @@ import { DefiService } from '../service/defi.service';
 
 import { ArretService } from '../service/arret.service';
 import { Arret } from '../interface/arret';
+import { map, switchMap } from 'rxjs/operators';
+import { Defi } from '../interface/defi';
+import { Observable } from 'rxjs';
 
 export interface SearchResultsChamis {
   total: number;
@@ -21,8 +24,8 @@ export interface SearchResultsChamis {
 })
 
 export class ChallengeComponent {
-  chamisObs = this.chamiService.getAllChamis();
-  defisObs = this.defiService.getAllDefis();
+  chamisObs:Observable<Chami[]> = this.chamiService.getAllChamis();
+  defisObs:Observable<Defi[]> = this.defiService.getAllDefis();
   arretsObs = this.arretService.getAllArret();
 
   constructor(

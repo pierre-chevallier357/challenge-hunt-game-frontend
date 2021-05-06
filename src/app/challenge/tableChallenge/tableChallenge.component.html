@@ -1,12 +1,13 @@
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-  <!-- UID -->
-    <ng-container matColumnDef="uid">
+  <!--  autheur -->
+    <ng-container matColumnDef="autheur">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>AUTEUR</th>
       <td mat-cell *matCellDef="let element">
         <button type="button" class="btn btn-primary-outline pull-right"
          (click)="ouvrirPageProfil(element.uid);">
-         <i class="fa fa-plus"></i>chami no.{{element.uid}}</button>
+         {{getChamisByUid(element.uid)}}
+        </button>
       </td>
     </ng-container>
 

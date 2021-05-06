@@ -17,8 +17,12 @@ export class DefiForm2Component implements OnInit {
 
 
   constructor(
-    public auth:AngularFireAuth,
+    private auth:AngularFireAuth,
     private http:HttpClient) { }
+
+  get authObs() {
+    return this.auth.user
+  }
 
   ngOnInit() {
   }
