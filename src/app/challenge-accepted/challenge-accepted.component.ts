@@ -3,9 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Defi } from '../interface/defi';
 import { Observable } from 'rxjs';
 import { DefiService } from '../service/defi.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import { Question } from '../interface/question';
+import {ActivatedRoute} from '@angular/router';
 import {QuestionReponse} from './question-reponse';
+import {Visite} from '../interface/visite';
+import {VisiteService} from '../service/visite.service';
+import {ReponseService} from '../service/reponse.service';
+import {Reponse} from '../interface/reponse';
 
 @Component({
   selector: 'app-challenge-accepted',
@@ -15,14 +18,15 @@ import {QuestionReponse} from './question-reponse';
 export class ChallengeAcceptedComponent implements OnInit {
   defi$!: Observable<Defi>;
   idDefi!: number;
-  questions$!: Observable<Question[]>;
   questionsReponses: QuestionReponse[] = [];
 
-  next = false;
+  step = 0;
   resultatCalc = 0;
 
   constructor(private questionService: QuestionService,
               private defiService: DefiService,
+              private visiteService: VisiteService,
+              private reponseService: ReponseService,
               private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -63,7 +67,7 @@ export class ChallengeAcceptedComponent implements OnInit {
   }
 
   onSubmitValidey(): void {
-    this.next = true;
+    this.step++;
 
     for (const qr of this.questionsReponses) {
       const question = qr.question;
@@ -83,5 +87,21 @@ export class ChallengeAcceptedComponent implements OnInit {
   }
 
   finish(): void {
+    this.step++;
+  }
+
+  visite(visite: Partial<Visite>, version: number): void {
+    visite.idDefi = this.idDefi;
+    visite.version = version;
+
+    this.visiteService.create(visite).subscribe(createdVisite => {
+      console.log(createdVisite);
+
+      for (const qr of this.questionsReponses) {
+        const reponse = qr.reponse;
+        reponse.visite = visite.idVisite;
+        this.reponseService.create(reponse as Reponse).subscribe();
+      }
+    });
   }
 }

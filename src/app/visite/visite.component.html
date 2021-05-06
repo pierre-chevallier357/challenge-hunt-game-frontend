@@ -74,12 +74,6 @@
     <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
   </div>
   <br>
+  <button>Valider</button>
+  <button (click)="OnReset()">Annuler</button>
 </form>
-
-<button (click)="OnSubmit()">Valider</button>
-<button (click)="OnReset()">Annuler</button>
-
-<h3>DEBUG</h3>
-<p>
-  {{visite | json}}
-</p>

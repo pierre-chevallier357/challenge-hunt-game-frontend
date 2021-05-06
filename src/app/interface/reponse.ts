@@ -1,4 +1,4 @@
-export interface Reponse{
+export interface Reponse {
   question: number;
   visite: number;
   reponse: string;

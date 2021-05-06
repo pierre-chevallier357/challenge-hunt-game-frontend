@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 
 export class VisiteService {
-  private visiteUrl = environment.apiUrl + '/visite/';
+  private visiteUrl = environment.apiUrl + '/visites/';
   private defiUrl = environment.apiUrl + '/defis/';
   private chamisUrl = environment.apiUrl + '/chamis/';
 
@@ -34,5 +34,9 @@ export class VisiteService {
 
   getAllVisite(): Observable<Visite[]> {
     return this.http.get<Visite[]>(this.visiteUrl);
+  }
+
+  create(visite: Partial<Visite>): Observable<Visite> {
+    return this.http.post<Visite>(this.visiteUrl, visite);
   }
 }

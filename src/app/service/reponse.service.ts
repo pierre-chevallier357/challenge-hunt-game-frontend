@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 
 export class ReponseService {
-  private reponseUrl = environment.apiUrl + '/reponse/';
+  private reponseUrl = environment.apiUrl + '/reponses/';
 
   constructor(private http: HttpClient) {
   }
@@ -22,5 +22,9 @@ export class ReponseService {
 
   getAllArret(): Observable<Reponse[]> {
     return this.http.get<Reponse[]>(this.reponseUrl);
+  }
+
+  create(reponse: Reponse): Observable<Reponse> {
+    return this.http.post<Reponse>(this.reponseUrl, reponse);
   }
 }

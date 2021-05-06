@@ -1,58 +1,64 @@
 <div *ngIf="defi$ | async as defi">
-  <div *ngIf="!next; else nextPage">
-    <h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
+  <div [ngSwitch]="step">
+    <div *ngSwitchCase="0">
+      <h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
 
-    <p>
-      {{defi.description}} <br>
-    </p>
+      <p>
+        {{defi.description}} <br>
+      </p>
 
-    <br>
+      <br>
 
-    <div *ngIf="questionsReponses">
-      <div *ngFor="let qr of questionsReponses">
-        {{qr.question.question}} <br>
-        <input #reponse />
-        <button (click)="onSubmit(reponse.value, qr.question.idQuestion)">Valider</button>
-        <br>
-        <button (click)="indiceUsed(qr.question.indice, qr.question.idQuestion)">Besoin d'aide?</button>
+      <div *ngIf="questionsReponses">
+        <div *ngFor="let qr of questionsReponses">
+          {{qr.question.question}} <br>
+          <input #reponse/>
+          <button (click)="onSubmit(reponse.value, qr.question.idQuestion)">Valider</button>
+          <br>
+          <button (click)="indiceUsed(qr.question.indice, qr.question.idQuestion)">Besoin d'aide?</button>
+        </div>
+
+        {{ questionsReponses | json }}
       </div>
 
-      {{ questionsReponses | json }}
+      <button (click)="onSubmitValidey()">Terminer</button>
     </div>
 
-    <button (click)="onSubmitValidey()">Terminer</button>
+    <div *ngSwitchCase="1">
+      <h3>DEFI: {{defi.idDefi}} RESULTAT</h3>
+
+      <p>
+        {{defi.epilogue}} <br>
+      </p>
+
+      <h5>Votre score est selon le site: {{resultatCalc}}/{{defi.points}} </h5>
+
+      <h5>Et maintenant la correction :)</h5>
+      <div *ngIf="questionsReponses">
+        <div *ngFor="let qr of questionsReponses">
+          La question: {{qr.question.question}} <br>
+          Ta réponse: {{qr.reponse.reponse}}<br>
+          La réponse attendue: {{qr.question.secret}}
+        </div>
+      </div>
+
+      <p>
+        {{defi.commentaire}}
+      </p>
+
+      <p>
+        Comme le système de calcul ne peux pas vérifier si l'erreur est dûe à <br>
+        une faute d'orthographe ou à un caractère prêt nous te laissons t'autocorriger <br>
+        puis saisir ta note ;) <br>
+      </p>
+
+      <br>
+
+      <button (click)="finish()">To the end.</button>
+    </div>
+
+    <div *ngSwitchCase="2">
+      <app-visite (visiteOutput)="visite($event, defi.versionD)"></app-visite>
+    </div>
   </div>
-
-  <ng-template #nextPage>
-    <h3>DEFI: {{defi.idDefi}} RESULTAT</h3>
-
-    <p>
-      {{defi.epilogue}} <br>
-    </p>
-
-    <h5>Votre score est selon le site: {{resultatCalc}}/{{defi.points}} </h5>
-
-    <h5>Et maintenant la correction :)</h5>
-    <div *ngIf="questionsReponses">
-      <div *ngFor="let qr of questionsReponses">
-        La question: {{qr.question.question}} <br>
-        Ta réponse: {{qr.reponse.reponse}}<br>
-        La réponse attendue: {{qr.question.secret}}
-      </div>
-    </div>
-
-    <p>
-      {{defi.commentaire}}
-    </p>
-
-    <p>
-      Comme le système de calcul ne peux pas vérifier si l'erreur est dûe à <br>
-      une faute d'orthographe ou à un caractère prêt nous te laissons t'autocorriger <br>
-      puis saisir ta note ;) <br>
-    </p>
-
-    <br>
-
-    <button (click)="finish()">To the end.</button>
-  </ng-template>
 </div>
