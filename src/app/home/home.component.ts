@@ -17,7 +17,4 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  RayanContact(){
-    alert('Voici le contact de KAILI Rayan: \n "pour vous servir.": \n\n kailirayan@mailoo.org');
-  }
 }
