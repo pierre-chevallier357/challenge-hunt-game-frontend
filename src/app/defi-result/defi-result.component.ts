@@ -18,7 +18,7 @@ export class DefiResultComponent implements OnInit {
   defi!: Defi;
   resultatCalc:number = 0;
   questionObs!: Observable<Question[]>;
-  questionListe!: Question[][];
+  questionListe!: Question[];
 
   constructor(private questionService: QuestionService ,private defiService: DefiService, private route: ActivatedRoute) {}
 
@@ -30,7 +30,7 @@ export class DefiResultComponent implements OnInit {
     this.reponseListe.push({
       question: 1,
       reponse: 'Ça dépend',
-      indiceUtilise: false,
+      indiceUtilise: true,
     });
 
     this.reponseListe.push({
