@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Visite } from '../interface/visite';
+import {map} from 'rxjs/operators';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-visite',
@@ -15,9 +17,16 @@ export class VisiteComponent implements OnInit {
 
   @Output() visiteOutput = new EventEmitter<Partial<Visite>>();
 
-  constructor(private formBuilder: FormBuilder) {}
+  uidConnected!: string;
+  authObs$!: any;
+
+  constructor(private formBuilder: FormBuilder, public auth: AngularFireAuth) {}
 
   ngOnInit(): void {
+    this.authObs$ = this.auth.user.pipe(
+      map((user) => this.uidConnected = user!.uid)
+    );
+
     this.visiteForm = this.formBuilder.group({
       temps: ['', Validators.required],
       mode: ['', Validators.required],
@@ -40,7 +49,7 @@ export class VisiteComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.visiteForm.value, null, 4));
 
     this.visite = {
-      uid: '1', // TODO AJOUTER L'UID
+      uid: this.uidConnected,
       dateVisite: new Date(),
       temps: this.visiteForm.get('temps')?.value,
       modeD: this.visiteForm.get('mode')?.value,
@@ -48,7 +57,6 @@ export class VisiteComponent implements OnInit {
       note: this.visiteForm.get('note')?.value,
       score: this.visiteForm.get('score')?.value,
       commentaire: this.visiteForm.get('commentaire')?.value,
-      // TODO RECUPERER LA LISTE DES REPONSE (Reponse[]) reponses:
     };
 
     this.visiteOutput.emit(this.visite);

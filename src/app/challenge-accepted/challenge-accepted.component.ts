@@ -8,7 +8,6 @@ import {QuestionReponse} from './question-reponse';
 import {Visite} from '../interface/visite';
 import {VisiteService} from '../service/visite.service';
 import {ReponseService} from '../service/reponse.service';
-import {Reponse} from '../interface/reponse';
 
 @Component({
   selector: 'app-challenge-accepted',

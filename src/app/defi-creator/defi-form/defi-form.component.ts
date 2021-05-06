@@ -45,6 +45,7 @@ export class DefiFormComponent implements OnInit {
     this.authObs$ = this.auth.user.pipe(
       map((user) => this.uidConnected = user!.uid)
     );
+
     this.defiForm = this.formBuilder.group({
       titre: ['', Validators.required],
       type:  ['', Validators.required],

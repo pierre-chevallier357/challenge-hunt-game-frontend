@@ -1,79 +1,81 @@
-<form [formGroup]="visiteForm" (ngSubmit)="OnSubmit()">
-  <label>Temps passé</label>
-  <br>
-  <input
-    type="number"
-    min="0"
-    formControlName="temps"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.temps.errors }"
-  />
-  <div *ngIf="submitted && f.temps.errors" class="invalid-feedback">
-    <div *ngIf="f.temps.errors.required">Temps is required</div>
-  </div>
-  <br>
-  <label>Mode de jeu</label>
-  <br>
-  <select formControlName="mode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mode.errors }">
-    <option value="Présentiel">Sur place</option>
-    <option value="Distanciel">A distance</option>
-</select>
-  <div *ngIf="submitted && f.mode.errors" class="invalid-feedback">
-    <div *ngIf="f.mode.errors.required">Mode is required</div>
-  </div>
-  <br>
-  <label>Status</label>
-  <br>
-  <select formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-    <option value="fini">Fini</option>
-    <option value="incomplet">Pas fini</option>
-    <option value="anuler">Pas fait</option>
-</select>
-  <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-    <div *ngIf="f.status.errors.required">Mode is required</div>
-  </div>
-  <br>
-  <label>Votre résultat auto corrigé ;)</label>
-  <br>
-  <input
-    type="number"
-    min="0"
-    max="5"
-    formControlName="score"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.score.errors }"
-  />
-  <div *ngIf="submitted && f.score.errors" class="invalid-feedback">
-    <div *ngIf="f.score.errors.required">Score is required</div>
-  </div>
-  <br>
-  <label>Note du défis (ce que vous en pensez sur une échelle de 0 à 5)</label>
-  <br>
-  <input
-    type="number"
-    min="0"
-    max="5"
-    formControlName="note"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.note.errors }"
-  />
-  <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
-    <div *ngIf="f.note.errors.required">Note is required</div>
-  </div>
-  <br>
-  <label>Commentaire</label>
-  <br>
-  <textarea
-    formControlName="commentaire"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }"
-    rows="3"
-    cols="150"
-  >Veuillez saisir votre texte...</textarea>
-  <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
-    <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
-  </div>
-  <br>
-  <button>Valider</button>
-  <button (click)="OnReset()">Annuler</button>
-</form>
+<div *ngIf="authObs$ | async as user">
+  <form [formGroup]="visiteForm" (ngSubmit)="OnSubmit()">
+    <label>Temps passé</label>
+    <br>
+    <input
+      type="number"
+      min="0"
+      formControlName="temps"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.temps.errors }"
+    />
+    <div *ngIf="submitted && f.temps.errors" class="invalid-feedback">
+      <div *ngIf="f.temps.errors.required">Temps is required</div>
+    </div>
+    <br>
+    <label>Mode de jeu</label>
+    <br>
+    <select formControlName="mode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mode.errors }">
+      <option value="Présentiel">Sur place</option>
+      <option value="Distanciel">A distance</option>
+    </select>
+    <div *ngIf="submitted && f.mode.errors" class="invalid-feedback">
+      <div *ngIf="f.mode.errors.required">Mode is required</div>
+    </div>
+    <br>
+    <label>Status</label>
+    <br>
+    <select formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+      <option value="fini">Fini</option>
+      <option value="incomplet">Pas fini</option>
+      <option value="anuler">Pas fait</option>
+    </select>
+    <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+      <div *ngIf="f.status.errors.required">Mode is required</div>
+    </div>
+    <br>
+    <label>Votre résultat auto corrigé ;)</label>
+    <br>
+    <input
+      type="number"
+      min="0"
+      max="5"
+      formControlName="score"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.score.errors }"
+    />
+    <div *ngIf="submitted && f.score.errors" class="invalid-feedback">
+      <div *ngIf="f.score.errors.required">Score is required</div>
+    </div>
+    <br>
+    <label>Note du défis (ce que vous en pensez sur une échelle de 0 à 5)</label>
+    <br>
+    <input
+      type="number"
+      min="0"
+      max="5"
+      formControlName="note"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.note.errors }"
+    />
+    <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+      <div *ngIf="f.note.errors.required">Note is required</div>
+    </div>
+    <br>
+    <label>Commentaire</label>
+    <br>
+    <textarea
+      formControlName="commentaire"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }"
+      rows="3"
+      cols="150"
+    >Veuillez saisir votre texte...</textarea>
+    <div *ngIf="submitted && f.commentaire.errors" class="invalid-feedback">
+      <div *ngIf="f.commentaire.errors.required">Commentaire is required</div>
+    </div>
+    <br>
+    <button>Valider</button>
+    <button (click)="OnReset()">Annuler</button>
+  </form>
+</div>
