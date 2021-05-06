@@ -13,7 +13,7 @@ import { QuestionService } from '../service/question.service';
   styleUrls: ['./defi-result.component.scss']
 })
 export class DefiResultComponent implements OnInit {
-  reponseListe: Partial<Reponse>[] = history.state;
+  reponseListe: Partial<Reponse>[] =<Partial<Reponse>[]>history.state;
   defi$!: Observable<Defi>;
   questions!: Question[];
 
