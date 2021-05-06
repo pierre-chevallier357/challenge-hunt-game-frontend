@@ -7,7 +7,7 @@
     [ngClass]="{ 'is-invalid': submitted && g.question.errors }"
   />
   <div *ngIf="submitted && g.question.errors" class="invalid-feedback">
-    <div *ngIf="g.question.errors.required">Question is required</div>
+    <div *ngIf="g.question.errors.required">Question est demandé</div>
   </div>
   <br>
   <label>Points de la question</label>
@@ -19,7 +19,7 @@
     [ngClass]="{ 'is-invalid': submitted && g.pointsqss.errors }"
   />
   <div *ngIf="submitted && g.pointsqss.errors" class="invalid-feedback">
-    <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question is required</div>
+    <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question est demandé</div>
   </div>
   <br>
   <label>Réponse</label>
@@ -30,7 +30,7 @@
     [ngClass]="{ 'is-invalid': submitted && g.reponse.errors }"
   />
   <div *ngIf="submitted && g.reponse.errors" class="invalid-feedback">
-    <div *ngIf="g.reponse.errors.required">Reponse is required</div>
+    <div *ngIf="g.reponse.errors.required">Reponse est demandé</div>
   </div>
   <br>
   <label>Indice</label>
@@ -41,7 +41,7 @@
     [ngClass]="{ 'is-invalid': submitted && g.indice.errors }"
   />
   <div *ngIf="submitted && g.indice.errors" class="invalid-feedback">
-    <div *ngIf="g.indice.errors.required">Indice is required</div>
+    <div *ngIf="g.indice.errors.required">Indice est demandé</div>
   </div>
   <br>
   <label>Points indice</label>
@@ -53,11 +53,11 @@
     [ngClass]="{ 'is-invalid': submitted && g.pointsi.errors }"
   />
   <div *ngIf="submitted && g.pointsi.errors" class="invalid-feedback">
-    <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice is required</div>
+    <div *ngIf="g.pointsi.errors.required">Le nombre de points de l'indice est demandé</div>
   </div>
   <br>
   <div class="text-center">
     <button class="btn btn-primary mr-1">Valider</button>
-    <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()">Annuler</button>
   </div>
 </form>
