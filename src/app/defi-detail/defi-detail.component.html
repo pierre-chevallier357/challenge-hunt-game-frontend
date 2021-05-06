@@ -7,11 +7,6 @@
 
 -->
 <div *ngIf="auth.user | async as user">
- {{user.uid}}
-
-
-
-
   <div *ngIf="myDefiDetail$ | async as defiDetailObs">
     <div *ngIf="ownerDefi">
       <app-defi-form2 [defi]="defiDetailObs.defi"></app-defi-form2>

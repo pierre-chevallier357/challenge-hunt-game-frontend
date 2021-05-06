@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs';
-import { ChamiService } from './../../service/chami.service';
-import { AngularFireAuth } from '@angular/fire/auth';
+
+import { Arret } from './../../interface/arret';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
@@ -11,6 +10,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Defi } from 'src/app/interface/defi';
 import { Chami } from 'src/app/interface/chami';
 
+export interface  DefiPlus extends Defi {
+  pseudo: string,
+  arret: string
+}
+
+
 @Component({
   selector: 'table-challenge',
   styleUrls: ['tableChallenge.component.scss'],
@@ -18,22 +23,32 @@ import { Chami } from 'src/app/interface/chami';
 })
 
 export class TableChallengeComponent implements AfterViewInit {
-  displayedColumns: string[] = ['autheur', 'titre', 'motsClefs', 'description','duree', 'tenter'];
+  displayedColumns: string[] = ['pseudo', 'arret','titre', 'motsClefs', 'description','duree','note', 'tenter'];
 
-  dataSource !:MatTableDataSource<Defi>;
+  dataSource !:MatTableDataSource<DefiPlus>;
 
   @Input() DATA_SOURCE:Defi[] = [];
   @Input() chamiData: Chami[] = [];
+  @Input() arretData: Arret[] = [];
+
+
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private chamiService: ChamiService) {}
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<Defi>(this.DATA_SOURCE);
+    const DATA_SOURCE_PLUS:DefiPlus[] = this.DATA_SOURCE.map(
+      (defi:Defi)=> ({
+        ...defi,
+        arret : this.getArretByIdA(defi.idArret),
+        pseudo : this.getChamisByUid(defi.uid)
+      }));
+
+
+    this.dataSource = new MatTableDataSource<DefiPlus>(DATA_SOURCE_PLUS);
   }
 
   applyFilter(event: Event) {
@@ -57,8 +72,14 @@ export class TableChallengeComponent implements AfterViewInit {
   }
 
   getChamisByUid(uid: string):string{
-    var pseudo:string | undefined = this.chamiData.find((chami:Chami)=>chami.uid === uid)?.pseudo;
+    const pseudo:string | undefined = this.chamiData.find((chami:Chami)=>chami.uid === uid)?.pseudo;
     if (pseudo){return pseudo}
+    else {return "error"}
+  }
+
+  getArretByIdA(idA: number):string{
+    const arret:string | undefined = this.arretData.find((arret:Arret)=>arret.idArret === idA)?.nom;
+    if (arret){return arret}
     else {return "error"}
   }
 

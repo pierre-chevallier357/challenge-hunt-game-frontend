@@ -8,8 +8,11 @@
 
 <div *ngIf="defisObs | async as defis">
   <div *ngIf="chamisObs | async as chamis">
+    <div *ngIf="arretObs | async as arret">
     <table-challenge [DATA_SOURCE]="defis"
-                     [chamiData]="chamis">
+                     [chamiData]="chamis"
+                     [arretData]="arret">
     </table-challenge>
   </div>
+</div>
 </div>
