@@ -1,17 +1,60 @@
 <div *ngIf="defi | async as defi">
-  <h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
-  <p>
-    {{defi.description}} <br>
-  </p>
-  <br>
-  <div *ngIf="questions">
-  <div *ngFor="let question of questions">
-  {{question.question}} <br>
-    <input #reponse />
-    <button (click)="onSubmit(reponse.value,question.idQuestion)">Valider</button>
+  <div *ngIf="!next; else nextPage">
+    <h3>DEFI: {{defi.idDefi}} ACCEPTE</h3>
+
+    <p>
+      {{defi.description}} <br>
+    </p>
+
     <br>
-    <button (click)="indiceUsed(question.idQuestion,question.numero)">Besoin d'aide?</button>
-  </div>
+
+    <div *ngIf="questions">
+      <div *ngFor="let question of questions">
+        {{question.question}} <br>
+        <input #reponse />
+        <button (click)="onSubmit(reponse.value,question.idQuestion)">Valider</button>
+        <br>
+        <button (click)="indiceUsed(question.idQuestion,question.numero)">Besoin d'aide?</button>
+      </div>
+    </div>
+
+    <button (click)="onSubmitValidey()">Terminer</button>
   </div>
 
-  <button (click)="onSubmitValidey()">Terminer</button>
+  <ng-template #nextPage>
+    <h3>DEFI: {{defi.idDefi}} RESULTAT</h3>
+
+    <p>
+      {{defi.epilogue}} <br>
+    </p>
+
+    <h5>Votre score est selon le site: {{resultatCalc}}/{{defi.points}} </h5>
+
+    <h5>Et maintenant la correction :)</h5>
+    <div *ngIf="questions">
+      <div *ngFor="let question of questions">
+        La question: {{question.question}} <br>
+        <div *ngFor="let reponse of listeReponse">
+          <div *ngIf="reponse.question === question.idQuestion">
+            Ta réponse: {{reponse.reponse}}<br>
+          </div>
+        </div>
+        La réponse attendue: {{question.secret}}
+      </div>
+    </div>
+
+    <p>
+      {{defi.commentaire}}
+    </p>
+
+    <p>
+      Comme le système de calcul ne peux pas vérifier si l'erreur est dûe à <br>
+      une faute d'orthographe ou à un caractère prêt nous te laissons t'autocorriger <br>
+      puis saisir ta note ;) <br>
+    </p>
+
+    <br>
+
+    <button (click)="finish()">To the end.</button>
+  </ng-template>
+</div>
