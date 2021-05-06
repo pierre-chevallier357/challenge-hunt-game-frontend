@@ -1,5 +1,6 @@
 export interface Reponse{
   question: number;
+  visite: number;
   reponse: string;
-  idVisite: number;
+  indiceUtilise: boolean;
 }

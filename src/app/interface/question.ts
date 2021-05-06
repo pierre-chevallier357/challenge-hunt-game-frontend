@@ -4,5 +4,7 @@ export interface Question{
   numero: number;
   question: string;
   secret: string;
-  points: number;
+  pointsQuestion: number;
+  indice: string;
+  pointsIndice: number;
 }

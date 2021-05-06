@@ -4,14 +4,11 @@ import { Observable } from 'rxjs';
 import { DefiType, Defi } from 'src/app/interface/defi';
 import { ArretService } from 'src/app/service/arret.service';
 import { FeatureCollection, Point } from 'geojson';
-import {QuestionIndice} from '../question-form/question-indice';
 import {Question} from '../../interface/question';
-import {Indice} from '../../interface/indice';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Arret} from '../../interface/arret';
 import {DefiService} from '../../service/defi.service';
 import {QuestionService} from '../../service/question.service';
-import {IndiceService} from '../../service/indice.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -24,7 +21,6 @@ export class DefiFormComponent implements OnInit {
   DefiType = DefiType;
   leDefi!: Partial<Defi>;
   listeQuestion: Partial<Question>[] = [];
-  listeIndice: Partial<Indice>[] = [];
   semStops!: Observable<FeatureCollection<Point>>;
 
   submitted = false;
@@ -37,7 +33,6 @@ export class DefiFormComponent implements OnInit {
               private router: Router,
               private defiService: DefiService,
               private questionService: QuestionService,
-              private indiceService: IndiceService,
               private arretService: ArretService) {}
 
   ngOnInit(): void {
@@ -125,29 +120,19 @@ export class DefiFormComponent implements OnInit {
           this.questionService.create(question).subscribe();
         }
 
-        for (const indice of this.listeIndice) {
-          indice.idDefi = defi.idDefi;
-          this.indiceService.create(indice).subscribe();
-        }
-
         this.router.navigate(['defi', defi.idDefi]);
       });
     }
   }
 
-  questionIndice(questionIndice: QuestionIndice): void {
+  question(question: Partial<Question>): void {
     this.incrementation += 1;
 
-    const question = questionIndice.question;
-    const indice = questionIndice.indice;
-
     question.numero = this.incrementation;
-    indice.numero = this.incrementation;
 
     this.listeQuestion.push(question);
-    this.listeIndice.push(indice);
 
-    this.sum += question.points ?? 0;
+    this.sum += question.pointsQuestion ?? 0;
   }
 
   onReset(): void {

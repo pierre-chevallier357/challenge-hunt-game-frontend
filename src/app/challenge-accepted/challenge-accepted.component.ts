@@ -1,5 +1,3 @@
-import { IndiceService } from './../service/indice.service';
-import { Indice } from './../interface/indice';
 import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
 import { Defi } from '../interface/defi';
@@ -19,40 +17,35 @@ export class ChallengeAcceptedComponent implements OnInit {
 
   defi!: Defi;
   idDefi!: number;
-  listeReponse!: Partial<Reponse>[];
+  listeReponse: Partial<Reponse>[] = [];
   reponsePartial!: Partial<Reponse>;
-  listeIndice!: Partial<Indice>[];
-  indicePartial!: Partial<Indice>;
-  questionObs: Observable<Question[]> = this.questionService.getAllQuestion();
-  indiceObs: Observable<Indice[]> = this.indiceService.getAll();
+  questions: Question[] = [];
 
-  constructor(private questionService: QuestionService,private indiceService: IndiceService, private defiService: DefiService, private route: ActivatedRoute) {}
+  constructor(private questionService: QuestionService, private defiService: DefiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idDefi = Number(routeParams.get('id'));
     this.defiService.getDefiByidDefi(this.idDefi).subscribe(defi => this.defi = defi);
-    this.questionObs = this.questionService.getQuestionByidDefi(this.idDefi);
-  }
-
-  onSubmit(reponse: string,idQuestion: number): void {
-      this.reponsePartial = {
-        question: idQuestion,
-        reponse: reponse,
+    this.questionService.getQuestionByidDefi(this.idDefi).subscribe(
+      questions => {
+        this.questions = questions;
+        questions.map(question => this.listeReponse.push({
+          question: question.idQuestion
+        }));
       }
-      this.listeReponse.push(this.reponsePartial);
+    );
   }
 
-  indiceUsed(indice: string,points: number,id: number,numero: number):void{
-    this.indicePartial = {
-      idDefi: this.idDefi,
-      idIndice: id,
-      numero: numero,
-      description: indice,
-      points: points,
-    };
-    alert('VOus avez utilisez un indice: \n\n' + indice);
-    this.listeIndice.push(this.indicePartial);
+  onSubmit(reponseValue: string, idQuestion: number): void {
+    const reponse = this.listeReponse.find(reponseFound => reponseFound.question = idQuestion);
+    if (reponse) { reponse.reponse = reponseValue; }
+  }
+
+  indiceUsed(idQuestion: number): void {
+    const reponse = this.listeReponse.find(reponseFound => reponseFound.question = idQuestion);
+    if (reponse) { reponse.indiceUtilise = true; }
+    alert('VOus avez utilisez un indice');
   }
 
   onSubmitValidey(): void{

@@ -3,30 +3,18 @@
   {{defi.description}} <br>
 </p>
 <br>
-<div *ngIf="questionObs | async as questions">
-<ul *ngFor="let question of questions">
+<div *ngIf="questions">
+<div *ngFor="let question of questions">
 {{question.question}} <br>
-<form >
   <input #reponse />
   <button (click)="onSubmit(reponse.value,question.idQuestion)">TRY ME BI**H</button>
   <br>
-  <div *ngIf="indiceObs | async as indices">
-    <div *ngFor="let indice of indices">
-      <div *ngIf="indice.idIndice === question.idQuestion">
-  <button (click)="indiceUsed(indice.description,indice.points,question.idQuestion,question.numero)">USE SOME HELP BRO</button>
-  </div>
+  <button (click)="indiceUsed(question.idQuestion)">USE SOME HELP BRO</button>
 </div>
-</div>
-</form>
-</ul>
 </div>
 
 <button (click)="onSubmitValidey()">LATER BI**H</button>
 <h3>DEBUG</h3>
 <div>
-  {{reponsePartial | json}}
+  {{ listeReponse | json}}
 </div>
-<div>
-  {{indicePartial | json}}
-</div>
-
