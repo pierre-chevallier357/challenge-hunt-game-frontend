@@ -40,8 +40,8 @@ export class DefiDetailComponent implements OnInit {
     private chamiService: ChamiService,
     private defiService: DefiService,
     private visiteService: VisiteService,
-    private route: ActivatedRoute,
     public auth: AngularFireAuth,
+    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
