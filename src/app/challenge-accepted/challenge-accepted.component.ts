@@ -8,6 +8,7 @@ import {QuestionReponse} from './question-reponse';
 import {Visite} from '../interface/visite';
 import {VisiteService} from '../service/visite.service';
 import {ReponseService} from '../service/reponse.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-challenge-accepted',
@@ -26,7 +27,8 @@ export class ChallengeAcceptedComponent implements OnInit {
               private defiService: DefiService,
               private visiteService: VisiteService,
               private reponseService: ReponseService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private storage:AngularFireStorage) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -93,7 +95,7 @@ export class ChallengeAcceptedComponent implements OnInit {
     visite.idDefi = this.idDefi;
     visite.version = version;
     visite.reponses = [];
-    this.questionsReponses.map(qr => visite.reponses?.push(qr.reponse));
+    this.questionsReponses.map((qr:QuestionReponse) => visite.reponses?.push(qr?.reponse));
 
     this.visiteService.create(visite).subscribe(createdVisite => {
       console.log(createdVisite);
