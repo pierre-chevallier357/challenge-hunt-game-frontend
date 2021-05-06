@@ -1,5 +1,5 @@
 <form [formGroup]="questionForm" (ngSubmit)="OnSubmit()">
-  <label>Question</label>
+  <label>Question </label>
   <input
     type="text"
     formControlName="question"
@@ -10,7 +10,7 @@
     <div *ngIf="g.question.errors.required">Question est demandé</div>
   </div>
   <br>
-  <label>Points de la question</label>
+  <label>Points de la question </label>
   <input
     type="number"
     formControlName="pointsqss"
@@ -22,7 +22,7 @@
     <div *ngIf="g.pointsqss.errors.required">Le nombre de points de la question est demandé</div>
   </div>
   <br>
-  <label>Réponse</label>
+  <label>Réponse </label>
   <input
     type="text"
     formControlName="reponse"
@@ -33,7 +33,7 @@
     <div *ngIf="g.reponse.errors.required">Reponse est demandé</div>
   </div>
   <br>
-  <label>Indice</label>
+  <label>Indice </label>
   <input
     type="text"
     formControlName="indice"
@@ -44,7 +44,7 @@
     <div *ngIf="g.indice.errors.required">Indice est demandé</div>
   </div>
   <br>
-  <label>Points indice</label>
+  <label>Points indice </label>
   <input
     type="number"
     formControlName="pointsi"

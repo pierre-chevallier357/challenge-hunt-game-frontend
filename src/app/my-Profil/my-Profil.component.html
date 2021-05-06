@@ -67,16 +67,19 @@
   </div>
 
   <ng-template #CREATION_PROFIL>
-    <button mat-raised-button color="primary" (click)="submitCreate({
-    uid: user.uid,
-    email: user.email,
-    pseudo: pseudo.value,
-    age: integer(age.value),
-    ville: ville.value,
-    description: description.value,
-    nbDefis: 0
-  })">ENREGISTER MON NOUVEAU PROFIL</button>
+    <div>
+      <button mat-raised-button color="primary" (click)="submitCreate({
+        uid: user.uid,
+        email: user.email,
+        pseudo: pseudo.value,
+        age: integer(age.value),
+        ville: ville.value,
+        description: description.value,
+        nbDefis: 0
+      })">ENREGISTER MON NOUVEAU PROFIL</button>
+    </div>
   </ng-template>
+
 
 
 </div>

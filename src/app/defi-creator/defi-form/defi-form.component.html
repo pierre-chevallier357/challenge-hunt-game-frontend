@@ -1,13 +1,13 @@
 <div *ngIf="authObs$ | async as user">
   <form [formGroup]="defiForm" (ngSubmit)="OnSubmit()">
-    <label>Titre</label>
+    <label>Titre </label>
     <input type="text" formControlName="titre" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.titre.errors }" />
     <div *ngIf="submitted && f.titre.errors" class="invalid-feedback">
       <div *ngIf="f.titre.errors.required">Titre est demandé</div>
     </div>
     <br>
-    <label>Type</label>
+    <label>Type </label>
     <select formControlName="type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
       <option *ngFor="let type of DefiType | keyvalue" value="{{ type.key }}">
         {{ type.value }}
@@ -17,7 +17,7 @@
       <div *ngIf="f.type.errors.required">Type est demandé</div>
     </div>
     <br>
-    <label>Arrêt</label>
+    <label>Arrêt </label>
     <input #semStopsSearch (keyup.enter)="searchSemStops(semStopsSearch.value)" />
     <select *ngIf="semStops | async as geoJSON" formControlName="arret" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.arret.errors }">
@@ -29,21 +29,21 @@
       <div *ngIf="f.arret.errors.required">Arrêt est demandé</div>
     </div>
     <br>
-    <label>Mots Clefs</label>
+    <label>Mots Clefs </label>
     <input type="text" formControlName="motsClefs" class="form-control" maxlength="120"
       [ngClass]="{ 'is-invalid': submitted && f.titre.errors }" />
     <div *ngIf="submitted && f.motsClefs.errors" class="invalid-feedback">
       <div *ngIf="f.motsClefs.errors.required">Mots Clefs est demandé</div>
     </div>
     <br>
-    <label>Durée</label>
+    <label>Durée </label>
     <input type="number" formControlName="duree" min="0" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.duree.errors }" />
     <div *ngIf="submitted && f.duree.errors" class="invalid-feedback">
       <div *ngIf="f.duree.errors.required">Durée est demandé</div>
     </div>
     <br>
-    <label>Prologue</label>
+    <label>Prologue </label>
     <textarea formControlName="prologue" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.prologue.errors }" rows="3"
       cols="150">Veuillez saisir votre texte...</textarea>
@@ -51,7 +51,7 @@
       <div *ngIf="f.prologue.errors.required">Prologue est demandé</div>
     </div>
     <br>
-    <label>Description</label>
+    <label>Description </label>
     <textarea formControlName="description" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.description.errors }" rows="3"
       cols="150">Veuillez saisir votre texte...</textarea>
@@ -59,7 +59,7 @@
       <div *ngIf="f.description.errors.required">Description est demandé</div>
     </div>
     <br>
-    <label>Epilogue</label>
+    <label>Epilogue </label>
     <textarea formControlName="epilogue" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.epilogue.errors }" rows="3"
       cols="150">Veuillez saisir votre texte...</textarea>
@@ -67,7 +67,7 @@
       <div *ngIf="f.epilogue.errors.required">Epilogue est demandé</div>
     </div>
     <br>
-    <label>Commentaire</label>
+    <label>Commentaire </label>
     <textarea formControlName="commentaire" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.commentaire.errors }" rows="3"
       cols="150">Veuillez saisir votre texte...</textarea>
@@ -79,7 +79,7 @@
   <app-question-form (questionOutput)="newQuestion($event)"></app-question-form>
   <br>
   <div *ngIf="questions">
-    <h3>Modifier les questions</h3>
+    <h3>Modifier les questions </h3>
     <app-question-form *ngFor="let question of questions" [questionInput]="question" (questionOutput)="editQuestion($event)"></app-question-form>
   </div>
 
