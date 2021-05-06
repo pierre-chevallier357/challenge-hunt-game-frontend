@@ -1,19 +1,33 @@
-
 <!-- Défis et visites correspondant à l'UID-->
 <div *ngIf="profilObs$ | async as profil">
-  <h2>Mes Defis</h2>
+  <h2 class="w3-center">Mes Defis</h2>
   <div *ngIf="profil.defi$ | async as defis">
     <table-challenge [DATA_SOURCE]="defis" [chamiData]="[profil.chami]">
     </table-challenge>
   </div>
-  <h2>Mes visites</h2>
   <div *ngIf="profil.visite$ | async as visites">
-    <div *ngIf="visites.length > 0;else AucuneVisite">
-      <table>
-      <tr *ngFor="let visite of visites">
-        <td>{{visite.dateVisite}}</td>
-      </tr>
-    </table>
+    <div *ngIf="visites.length >= 0;else AucuneVisite">
+      <div *ngIf="defiObs$ |async as allDefis">
+        <div class="w3-container" >
+          <h2 class="w3-center">Mes visites</h2>
+          <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+            <div *ngFor="let visite of visites" class="w3-col l3 m6 w3-margin-bottom">
+              <div class="w3-card">
+                <div class="w3-container">
+                  <h3>{{nameIt(visite.note)}}</h3>
+                  <p>{{nameOfDefi(visite.idDefi,allDefis)}} - <i>statut : {{visite.status}}</i></p>
+                  <p class="w3-opacity">Note:{{visite.score}} <mat-icon>star</mat-icon> /
+                    temps: {{visite.temps}}min <br>
+                    score obtenu: {{visite.score}} - {{visite.modeD}} </p>
+                  <p>{{visite.commentaire}}</p>
+                  <p><button class="w3-button w3-light-grey w3-block"
+                             (click)="ouvrirPageDefi(visite.idDefi)"><i class="fa fa-play"></i> Voir Deffi</button></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <ng-template #AucuneVisite>
       Vous n'avez effectué aucune visites

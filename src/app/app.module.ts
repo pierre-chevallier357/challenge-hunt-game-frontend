@@ -62,7 +62,9 @@ import { AboutComponent } from './about/about.component';
     QuestionFormComponent,
     VisiteComponent,
     DefiForm2Component,
-    AboutComponent
+    AboutComponent,
+    MyChallengesComponent,
+    TableChallengeComponent
    ],
   imports: [
     AngularFireAuthModule,
