@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { YagaModule } from '@yaga/leaflet-ng2';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -84,7 +85,8 @@ import { AboutComponent } from './about/about.component';
     MatToolbarModule,
     MatMenuModule,
     ReactiveFormsModule,
-    YagaModule
+    YagaModule,
+    AngularFireStorageModule
   ],
   providers: [ChamiService, DefiService],
   bootstrap: [AppComponent]
