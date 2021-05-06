@@ -27,31 +27,48 @@ export class ChallengeAcceptedComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idDefi = Number(routeParams.get('id'));
-    this.defiService.getDefiByidDefi(this.idDefi);
+    this.defi = this.defiService.getDefiByidDefi(this.idDefi);
     this.questionService.getQuestionByidDefi(this.idDefi).subscribe(
       questions => {
         this.questions = questions;
         questions.map(question => this.listeReponse.push({
           question: question.idQuestion
         }
-
         ));
       }
     );
   }
 
-  onSubmit(reponseValue: string, idQuestion: number): void {
-    const reponse = this.listeReponse.find(reponseFound => reponseFound.question = idQuestion);
-    if (reponse) { reponse.reponse = reponseValue; }
+  onSubmit(reponseValue: string, id: number): void {
+    for(let reponse of this.listeReponse){
+      if(reponse.question === id){
+        reponse.reponse = reponseValue;
+        return;
+      }
+    }
+    this.listeReponse.push({
+      reponse: reponseValue,
+      question: id,
+    })
   }
 
   indiceUsed(idQuestion: number,numero: number): void {
-    const reponse = this.listeReponse.find(reponseFound => reponseFound.question = idQuestion);
-    if (reponse) { reponse.indiceUtilise = true; }
-    alert('Vous avez utilisez un indice: \n' + this.questions[numero-1].indice);
+    for(let reponse of this.listeReponse){
+      if(reponse.question === idQuestion){
+        reponse.indiceUtilise = true;
+        alert('Vous avez utilisez un indice: \n' + this.questions[numero-1].indice);
+        return;
+      }
+    }
+
   }
 
   onSubmitValidey(): void{
 
+    for(let reponse of this.listeReponse){
+      if(reponse.indiceUtilise != true){
+        reponse.indiceUtilise = false;
   }
+}
+}
 }
