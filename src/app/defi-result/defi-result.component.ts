@@ -35,6 +35,9 @@ export class DefiResultComponent implements OnInit {
           this.resultatCalc -= questions[i].pointsQuestion;
         }
       }
+      if(this.resultatCalc<0){
+        this.resultatCalc = 0;
+      }
     });
 
     this.reponseListe.push({
