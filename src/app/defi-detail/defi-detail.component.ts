@@ -1,3 +1,4 @@
+import { ArretService } from './../service/arret.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +12,7 @@ import { VisiteService } from '../service/visite.service';
 
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { Arret } from '../interface/arret';
 
 export interface DefiDetail {
   defi: Defi;
@@ -32,6 +34,7 @@ export class DefiDetailComponent implements OnInit {
   defiDetail$ !: Observable<DefiDetail>;
   myDefiDetail$!: Observable<DefiDetail>;
   defiObs$ = this.defiService.getAllDefis();
+  arretObs$ = this.arretService.getAllArret();
 
   selectedId !: string;
   ownerDefi: boolean = false;
@@ -40,6 +43,7 @@ export class DefiDetailComponent implements OnInit {
     private chamiService: ChamiService,
     private defiService: DefiService,
     private visiteService: VisiteService,
+    private arretService:ArretService,
     public auth: AngularFireAuth,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -76,6 +80,13 @@ export class DefiDetailComponent implements OnInit {
   // TODO - mettre en service
   async ouvrirPageDefi(idDefi: number): Promise<void> {
     await this.router.navigate([`/defi/${idDefi}`], { relativeTo: this.route });
+  }
+
+  // TODO - mettre en service
+  getArretByIdA(idA: number, arretData:Arret[]):string{
+    const arret:string | undefined = arretData.find((arret:Arret)=>arret.idArret === idA)?.nom;
+    if (arret){return arret}
+    else {return "error"}
   }
 
   nameIt(i: number): string {

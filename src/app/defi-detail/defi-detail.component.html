@@ -11,7 +11,9 @@
           <div class="w3-col m6">
             <h2>Défi : {{ defiDetailObs.defi.titre }} <i>(no. {{ defiDetailObs.defi.idDefi }})</i></h2>
             <p><b>Mots clefs :</b> {{defiDetailObs.defi.motsClefs}} </p>
-            <p><b>Arrêt :</b> {{defiDetailObs.defi.idArret}} </p>
+            <div *ngIf="arretObs$ | async as arrets">
+              <p><b>Arrêt :</b> {{getArretByIdA(defiDetailObs.defi.idArret,arrets)}} </p>
+            </div>
             <p><b>Type :</b> {{defiDetailObs.defi.defiType}} </p>
             <p><b>points :</b> {{defiDetailObs.defi.points}} </p>
             <p><b>Duree :</b> {{defiDetailObs.defi.duree}} </p>
