@@ -10,7 +10,7 @@
   </div>
   </div>
   <div *ngIf="profil.visite$ | async as visites">
-    <div *ngIf="visites.length >= 0;else AucuneVisite">
+    <div *ngIf="visites.length > 0;else AucuneVisite">
       <div *ngIf="defiObs$ |async as allDefis">
         <div class="w3-container" >
           <h2 class="w3-center">Mes visites</h2>
