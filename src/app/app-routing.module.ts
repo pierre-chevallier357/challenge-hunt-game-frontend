@@ -23,7 +23,6 @@ const routes: Routes = [
   { path: 'myProfil', component: MyProfilComponent },
   { path: 'profil/:uid', component: PageProfilComponent },
   { path: 'about', component: AboutComponent },
-
   // Sinon rediriger vers la page principale
   { path: '**', redirectTo: '' }
 ];
