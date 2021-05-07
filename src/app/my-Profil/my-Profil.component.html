@@ -54,7 +54,7 @@
   </form>
 
 
-  <div *ngIf="profilObs$ | async as chami;else CREATION_PROFIL">
+  <div class="center" *ngIf="profilObs$ | async as chami;else CREATION_PROFIL">
     <button mat-raised-button color="gray" (click)="submitUpdate({
       uid: user.uid,
       email: user.email,
@@ -67,7 +67,7 @@
   </div>
 
   <ng-template #CREATION_PROFIL>
-    <div>
+    <div class="center">
       <button mat-raised-button color="primary" (click)="submitCreate({
         uid: user.uid,
         email: user.email,
