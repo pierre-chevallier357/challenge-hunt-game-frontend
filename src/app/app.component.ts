@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import firebase from 'firebase/app';
 import { map, switchMap } from 'rxjs/operators';
-import { ChamiService } from './service/chami.service';
+import { ChamiService } from './services/chami.service';
 
 export interface ErrorManager {
   ChamisTableError: boolean;
@@ -21,41 +21,39 @@ export interface SidebarButton {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
-export class AppComponent implements OnInit{
-
+export class AppComponent implements OnInit {
   dataIconGoogle = 'assets/images/iconGoogle.png';
-  iconMarker = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
+  iconMarker =
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/585px-Map_marker.svg.png';
 
   sidebar: SidebarButton[] = [
     {
-      title : 'Page d\'accueil',
+      title: "Page d'accueil",
       logo: 'home',
-      routerLink: '/'
+      routerLink: '/',
     },
     {
-      title : 'Chercher un défi',
+      title: 'Chercher un défi',
       logo: 'explore',
-      routerLink: '/challenge'
+      routerLink: '/challenge',
     },
     {
-      title : 'Créer un défi',
+      title: 'Créer un défi',
       logo: 'add_circle',
-      routerLink: '/defimaker'
+      routerLink: '/defimaker',
     },
     {
-      title : 'Mes visites & défis',
+      title: 'Mes visites & défis',
       logo: 'contact_page',
-      routerLink: '/myChallenges'
+      routerLink: '/myChallenges',
     },
     {
-      title : 'À propos',
+      title: 'À propos',
       logo: 'info',
-      routerLink: '/about'
-    }
-
+      routerLink: '/about',
+    },
   ];
 
   title: any; // Debug Visual Studio Code
@@ -63,36 +61,40 @@ export class AppComponent implements OnInit{
   opened!: boolean;
 
   userConnect$: any;
-  unConnected:boolean = true
+  unConnected: boolean = true;
 
   profilConnect$: any;
-  accountNotCreated:boolean = true
+  accountNotCreated: boolean = true;
 
   constructor(
     public auth: AngularFireAuth,
     private router: Router,
-    private chamiService: ChamiService,) {}
+    private chamiService: ChamiService
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.userConnect$ = this.auth.user.pipe(
-      map((user)=>{
-        !user? this.unConnected=true:this.unConnected=false;
-      }));
+      map((user) => {
+        !user ? (this.unConnected = true) : (this.unConnected = false);
+      })
+    );
 
     this.profilConnect$ = this.auth.user.pipe(
-        switchMap((user) =>
-          this.chamiService.getChamiByUid(user!.uid).pipe(
-            map(()=>{
-              this.accountNotCreated = false;
-              console.log(this.accountNotCreated)
-            }))));
-
+      switchMap((user) =>
+        this.chamiService.getChamiByUid(user!.uid).pipe(
+          map(() => {
+            this.accountNotCreated = false;
+            console.log(this.accountNotCreated);
+          })
+        )
+      )
+    );
   }
 
   login(): void {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({
-      prompt: 'select_account'
+      prompt: 'select_account',
     });
     this.auth.signInWithPopup(provider);
     // Envoyer une requette HTML pour enregister l'utilisateur
@@ -105,5 +107,4 @@ export class AppComponent implements OnInit{
   loadProfil() {
     this.router.navigate(['profil']);
   }
-
 }

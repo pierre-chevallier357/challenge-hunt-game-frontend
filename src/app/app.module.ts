@@ -1,4 +1,4 @@
-import { DefiForm2Component } from './defi-detail/defi-form2/defi-form2.component';
+import { DefiForm2Component } from './components/defi-detail/defi-form2/defi-form2.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -20,27 +20,26 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
-import { ChallengeComponent } from './challenge/challenge.component';
-import { ChamiService } from './service/chami.service';
-import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
-import { DefiDetailComponent } from './defi-detail/defi-detail.component';
-import { DefiService } from './service/defi.service';
+import { ChallengeAcceptedComponent } from './components/challenge-accepted/challenge-accepted.component';
+import { ChallengeComponent } from './components/challenge/challenge.component';
+import { ChamiService } from './services/chami.service';
+import { DefiCreatorComponent } from './components/defi-creator/defi-creator.component';
+import { DefiDetailComponent } from './components/defi-detail/defi-detail.component';
+import { DefiService } from './services/defi.service';
 import { environment } from '../environments/environment';
-import { HomeComponent } from './home/home.component';
-import { MapComponent } from './map/map.component';
-import { MyChallengesComponent } from './my-challenges/my-challenges.component';
-import { MyProfilComponent } from './my-Profil/my-Profil.component';
-import { PageProfilComponent } from './page-profil/page-profil.component';
+import { HomeComponent } from './components/home/home.component';
+import { MapComponent } from './components/map/map.component';
+import { MyChallengesComponent } from './components/my-challenges/my-challenges.component';
+import { MyProfilComponent } from './components/my-Profil/my-Profil.component';
+import { PageProfilComponent } from './components/page-profil/page-profil.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TableChallengeComponent } from './challenge/tableChallenge/tableChallenge.component';
+import { TableChallengeComponent } from './components/challenge/tableChallenge/tableChallenge.component';
 
 import 'leaflet/dist/images/marker-shadow.png';
-import { DefiFormComponent } from './defi-creator/defi-form/defi-form.component';
-import { QuestionFormComponent } from './defi-creator/question-form/question-form.component';
-import { VisiteComponent } from './visite/visite.component';
-import { AboutComponent } from './about/about.component';
-
+import { DefiFormComponent } from './components/defi-creator/defi-form/defi-form.component';
+import { QuestionFormComponent } from './components/defi-creator/question-form/question-form.component';
+import { VisiteComponent } from './components/visite/visite.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +60,8 @@ import { AboutComponent } from './about/about.component';
     DefiForm2Component,
     AboutComponent,
     MyChallengesComponent,
-    TableChallengeComponent
-   ],
+    TableChallengeComponent,
+  ],
   imports: [
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -82,9 +81,9 @@ import { AboutComponent } from './about/about.component';
     MatMenuModule,
     ReactiveFormsModule,
     YagaModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   providers: [ChamiService, DefiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

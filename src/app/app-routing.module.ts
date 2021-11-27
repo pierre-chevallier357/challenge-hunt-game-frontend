@@ -1,16 +1,16 @@
-import { AboutComponent } from './about/about.component';
-import { VisiteComponent } from './visite/visite.component';
+import { AboutComponent } from './components/about/about.component';
+import { VisiteComponent } from './components/visite/visite.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ChallengeAcceptedComponent } from './challenge-accepted/challenge-accepted.component';
-import { ChallengeComponent } from './challenge/challenge.component';
-import { DefiCreatorComponent } from './defi-creator/defi-creator.component';
-import { DefiDetailComponent } from './defi-detail/defi-detail.component';
-import { HomeComponent } from './home/home.component';
-import { MyChallengesComponent } from './my-challenges/my-challenges.component';
-import { MyProfilComponent } from './my-Profil/my-Profil.component';
-import { PageProfilComponent } from './page-profil/page-profil.component';
+import { ChallengeAcceptedComponent } from './components/challenge-accepted/challenge-accepted.component';
+import { ChallengeComponent } from './components/challenge/challenge.component';
+import { DefiCreatorComponent } from './components/defi-creator/defi-creator.component';
+import { DefiDetailComponent } from './components/defi-detail/defi-detail.component';
+import { HomeComponent } from './components/home/home.component';
+import { MyChallengesComponent } from './components/my-challenges/my-challenges.component';
+import { MyProfilComponent } from './components/my-Profil/my-Profil.component';
+import { PageProfilComponent } from './components/page-profil/page-profil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,12 +24,11 @@ const routes: Routes = [
   { path: 'profil/:uid', component: PageProfilComponent },
   { path: 'about', component: AboutComponent },
   // Sinon rediriger vers la page principale
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
 export class AppRoutingModule {}
